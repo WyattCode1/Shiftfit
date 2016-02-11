@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for strangler-new/utils/config.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">strangler-new/utils/</a> config.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">77.36% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>41/53</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">57.14% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>16/28</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">80% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>8/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">77.36% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>41/53</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">201×</span>
+<span class="cline-any cline-yes">201×</span>
+<span class="cline-any cline-yes">201×</span>
+<span class="cline-any cline-yes">185×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+&nbsp;
+var _ = require('lodash');
+var blog_image_regex = /^http:\/\/i[0-9]+\.wp\.com\/blog\.zintro\.com/;
+var HTTPS_REGEX = new RegExp('^(?:https?:)?//');
+var IMG_REGEX = new RegExp('.(gif|jpe?g|mp4|png|swf)$');
+var JAVASCRIPT_REGEX = new RegExp('.js$');
+var NAME_MASK  = new RegExp('([^-]+).*');
+&nbsp;
+&nbsp;
+function strip_proto(str) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if(!str) {
+<span class="cstat-no" title="statement not covered" >        return null;</span>
+    }
+    return str.search(blog_image_regex) === -1 ? null : <span class="branch-1 cbranch-no" title="branch not covered" >str.replace(/^http:/, '');</span>
+}
+&nbsp;
+function passthrough(str) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if(!str) {
+<span class="cstat-no" title="statement not covered" >        return null;</span>
+    }
+    return str.search(HTTPS_REGEX) === -1 ? null : <span class="branch-1 cbranch-no" title="branch not covered" >str;</span>
+}
+&nbsp;
+function image(images_urls, str, assets_url) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if(!str) {
+<span class="cstat-no" title="statement not covered" >        return null;</span>
+    }
+    if(str.search(IMG_REGEX) === -1) {
+        return null;
+    }
+    return assets_url + '/strangler_images/' + str;
+}
+&nbsp;
+function lookup(config, str) {
+    var str_to_url = {
+        'algorithm_metrics.css': config.assets_url + '/stylesheets/algorithm_metrics.css',
+        'add_credit_card_group': config.secure_app_url + '/backend-rest/form_of_payment/add_credit_card_group',
+        'add_group_user': config.secure_app_url + '/node_admin_add_user_group',
+        'admin': config.secure_app_url + '/admin',
+        'adroll.js': config.assets_url + '/js/adroll.js',
+        'area': config.secure_app_url + '/area',
+        'area2': config.secure_app_url + '/area2',
+        'area_directory': config.app_url + '/areasDirectory',
+        'area_exists': config.secure_app_url + '/area_exists',
+        'auto_complete': config.assets_url + '/js/auto_complete.js',
+        'back_to_admin': config.secure_app_url + '/backend-rest/login/back_to_admin',
+        'baseconversation': config.secure_app_url + '/baseconversation',
+        'blog': 'http://blog.zintro.com',
+        'browse': config.secure_app_url + '/browse',
+        'bbb':'//www.bbb.org/boston/business-reviews/online-social-media-networking/zintro-inc-in-waltham-ma-138051',
+        'browse_inquiries_rest': config.secure_app_url + '/backend-rest/browse_inquiries.json',
+        'browse_experts_rest': config.secure_app_url + '/backend-rest/browse_experts.json',
+        'cancel_payment' : config.secure_app_url + '/backend-rest/conversations/requestPaymentCancellation.json',
+        'captcha_rest': config.secure_app_url + '/captcha/jcaptcha.jpg',
+        'client_conversation': config.secure_app_url + '/backend-rest/inquiry_step_two/client_conversation.json',
+        'config_xml.js': config.assets_url + '/js/config_xml.js',
+        'contact': 'http://helpdesk.zintro.com/knowledgebase/articles/40927-contact-information',
+        'conversation': config.secure_app_url + '/conversation',
+        'conversations_attachment': config.secure_app_url + '/conversation_attachment',
+        'conversations_exists_url': config.secure_app_url + '/backend-rest/conversations/conversations_left_panel.json',
+        'conversations_count_url': config.secure_app_url + '/backend-rest/conversations/inquiry_metadata.json',
+        'expert_conversations_url': config.secure_app_url + '/backend-rest/inquiry_step_two/expert_conversation.json',
+        'expert_signup': config.secure_app_url + '/expertsignup',
+        'experts': 'http:' + config.app_url + '/experts',
+        'date-picker-icon': config.assets_url + '/images/date-picker-icon.png',
+        'delete_group': config.secure_app_url + '/node_admin_delete_group',
+        'delete_group_user': config.secure_app_url + '/node_admin_delete_user_group',
+        'facebook': '//facebook.com/Z1ntr0',
+        'fake_conversation': config.secure_app_url + '/fake',
+        'forums': 'http://helpdesk.zintro.com/forums/133936-i-think-zintro-should',
+        'full_engagement': config.secure_app_url + '/backend-rest/inquiry_step_two/full_engagement.json',
+        'global.css': config.assets_url + '/stylesheets/global.css',
+        'gplus': '//plus.google.com/u/0/b/106021465896399902285/106021465896399902285',
+        'group_autocomplete_url' : config.secure_app_url + '/groupautocomplete',
+        'home': config.app_url + '/home',
+        'upgrade': config.secure_app_url + '/upgrade',
+        'myaccount': config.secure_app_url + '/myaccount',
+        'helpdesk': 'http://helpdesk.zintro.com',
+        'homevideo_config.xml': config.assets_url + '/homevideo_config.xml',
+        'ie_browse': config.secure_app_url + '/#browse',
+        'ie_signin': config.secure_app_url + '/#signin',
+        'imagecrop.min.js': config.assets_url + '/js/imagecrop.min.js',
+        'impersonate': config.secure_app_url + '/impersonate',
+        'index_experts': config.lucene_url + '/expertSearch/reindexExpertZintroTwo',
+        'inquiry': config.secure_app_url + '/inquiry',
+        'inquiry2': config.secure_app_url + '/inquiry2',
+        'inquiry1': config.secure_app_url + '/inquiry1',
+        'inquiry_not_released': config.secure_app_url + '/api/gwt/sendMandrillMail/notReleasedInquiry',
+        'inquiry_type_picture': config.secure_app_url + '/inquiryTypePicture/',
+        'jcarousel.responsive.js': config.assets_url + '/js/jcarousel.responsive.js',
+        'jquery': config.assets_url + '/js/jquery.min.js',
+        'jquery_cookie': '//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js',
+        'jquery.jcarousel.min.js': config.assets_url + '/js/jquery.jcarousel.min.js',
+        'jquery_ui': '//code.jquery.com/ui/1.11.1/jquery-ui.min.js',
+        'kiss_metrics_event': config.secure_app_url + '/kiss_metrics_event',
+        'kiss_metrics_property': config.secure_app_url + '/kiss_metrics_property',
+        'kissmetrics_api': 'http://trk.kissmetrics.com',
+        'linkedin': '//www.linkedin.com/company/zintro-inc.',
+        'load_groups': config.secure_app_url + '/node_admin_group_list',
+        'logout': config.app_url + '/logout',
+        'matches': config.secure_app_url + '/matches',
+        'mike-query.js': config.assets_url + '/js/mike-query.js',
+        'monitor_inquiry': config.secure_app_url + '/node_admin_engagements_monitor',
+        'myinfo': config.secure_app_url + '/myaccount',
+        'node_admin': config.secure_app_url + '/node_admin',
+        'node_admin_active_experts_csv': config.secure_app_url + '/node_admin_active_experts_csv',
+        'notfound.jpg': config.assets_url + '/notfound.jpg',
+        'one_time_batch_processes': config.secure_app_url + '/backend-rest/one_time_batch_processes',
+        'open_attachment_event' : config.secure_app_url + '/backend-rest/conversations/conversation_open_attach_engagement',
+        'pardot.js': config.assets_url + '/js/pardot.js',
+        'profile': config.secure_app_url + '/profile',
+        'profile_legacy': config.secure_app_url + '/internalProfile',
+        'profile_picture': config.secure_app_url + '/profilePicture',
+        'referral_suscription_award': config.secure_app_url + '/backend-rest/referral_suscription_award/increase_premiumship.json',
+        'related_areas_rest': config.secure_app_url + '/backend-rest/areas_search',
+        'reveal-icon': config.assets_url + '/images/reveal-icon.png',
+        'rss':'http://blog.zintro.com/feed/',
+        's3_article_images_url': 'https://s3.amazonaws.com/zintro-user-images',
+        'salesforce_path': config.backend_rest_node_one + '/backend-rest/salesforce_path/create_and_update_leads_path',
+        'save_group_details': config.secure_app_url + '/node_admin_save_group',
+        'send_mail': config.secure_app_url + '/backend-rest/send_mail',
+        'shortlisted_expert_mail': config.secure_app_url + '/api/gwt/sendMandrillMail/shortlistedExpert',
+        'signin': config.secure_app_url + '/signin',
+        'signup': config.secure_app_url + '/signup',
+        'site.js': config.assets_url + '/js/site.js',
+        'snap.js': config.assets_url + '/js/snap.js',
+        'specific_group': config.secure_app_url + '/node_admin_specific_group',
+        'specific_users_group': config.secure_app_url + '/node_admin_user_group_list',
+        'subscribe_user': config.secure_app_url + '/backend-rest/subscriptions/subscribe_user.json',
+        'success_stories': 'http://blog.zintro.com/success-stories/',
+        'syndication_ladders': config.secure_app_url + '/syndication_ladders',
+        'team': config.app_url + '/team',
+        'techsmith_smart_player.min.css': config.assets_url + '/stylesheets/techsmith-smart-player.min.css',
+        'techsmith_smart_player.min.js': config.assets_url + '/js/techsmith-smart-player.min.js',
+        'terms': 'http://helpdesk.zintro.com/knowledgebase/articles/389735',
+        'twitter': '//twitter.com/Zintro',
+        'upload_links': config.secure_app_url + '/backend-rest/user_link_uploads/upload',
+        'update_syndication_category': config.secure_app_url + '/node_admin_update_syndication_category',
+        'user_autocomplete_url' : config.secure_app_url + '/userautocomplete',
+        'zmail': config.secure_app_url + '/zmail'
+    };
+    return str_to_url[str];
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function javascript(str, assets_url) {</span>
+<span class="cstat-no" title="statement not covered" >    if(!str) {</span>
+<span class="cstat-no" title="statement not covered" >        return null;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if(str.search(JAVASCRIPT_REGEX) === -1) {</span>
+<span class="cstat-no" title="statement not covered" >        return null;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return assets_url + '/js/' + str;</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function _currenttime() {</span>
+<span class="cstat-no" title="statement not covered" >    var d = new Date();</span>
+<span class="cstat-no" title="statement not covered" >    var n = d.getTime();</span>
+<span class="cstat-no" title="statement not covered" >    return n;</span>
+}
+&nbsp;
+module.exports = function(env) {
+    var config = _.reduce(
+        env,
+        function(config, value, key) {
+            var match = key.match(/^npm_package_config_(.+)/);
+            var ignore = /^(?:stop|start)$/;
+            if(!match) {
+                return config;
+            }
+            var new_key = match[1];
+            if(new_key.search(ignore) !== -1) {
+                return config;
+            }
+            config[new_key] = value;
+            return config;
+        },
+        {}
+    );
+    var images_urls = _.sortBy(
+        _.filter(config, function(value, key) {
+            <span class="missing-if-branch" title="if path not taken" >I</span>if(key.search(/^images_urls_\d+$/) !== -1) {
+<span class="cstat-no" title="statement not covered" >                return value;</span>
+            }
+        })
+    );
+    config.currenttime = _currenttime;
+&nbsp;
+    config.url = function() {
+        var head = arguments[0];
+        var tail = _.toArray(arguments).slice(1).join('');
+        return (
+                strip_proto(head) ||
+                passthrough(head) ||
+                image(images_urls, head, config.assets_url) ||
+                lookup(config, head) ||
+<span class="branch-4 cbranch-no" title="branch not covered" >                javascript(head, config.assets_url) </span>||
+<span class="branch-5 cbranch-no" title="branch not covered" >                head</span>
+            ) + tail;
+    }
+    return config;
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Feb 11 2016 12:28:13 GMT-0300 (ART)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
