@@ -23,7 +23,10 @@ function _post(req, res) {
         var sessionHash = global.guid();
         res.cookie('ShiftfitLogin', sessionHash);
         userSession.setNewSession(sessionHash, user.id, function (err) {
-            return res.status(200).send();
+            if (err) {
+                return res.status(500).send();
+            }
+            return  res.redirect(302, '/home');
         })
     });
 }
