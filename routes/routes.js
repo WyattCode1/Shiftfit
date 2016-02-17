@@ -9,9 +9,10 @@ var dot = require("dot").process({
 function loadApp() {
 
     app.use(function user(req, res, next) {
-        if (req.cookies.AppLogin) {
-            var token = req.cookies.AppLogin;
+        if (req.cookies.ShiftfitLogin) {
+            var token = req.cookies.ShiftfitLogin;
             global.connection.query('select_user_by_session', [token], 'Getting logged user', function(user) {
+                console.info('Logged? = ' + user);
                 if (user[0]) {
                     req.auth_user = user[0];
                 }
@@ -60,6 +61,8 @@ function loadApp() {
     }
 
     require('./home/home.js')().register(app, config);
+
+    require('./login/login.js')().register(app, config);
 
 
 }

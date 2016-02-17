@@ -39,7 +39,7 @@
     "app_port": 80,
     "view_paths": "./views",
     "cache": false,
-    "postgresql": "postgresql://localhost/shiftfit",
+    "postgresql": "postgresql://postgres:postgres@localhost/shiftfit?application_name=shfitfit",
     "layout": "main.dot"
   },
   "scripts": {

@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var app = express();
 app.use(cookieParser());
 var BODY_LIMIT_KB = 1024 * 1024 * 8;
+var path = require('path');
 var bodyParser = require('body-parser');
 app.use(bodyParser.json({limit: BODY_LIMIT_KB}));
 app.use(bodyParser.urlencoded({
@@ -46,6 +47,37 @@ console.info = log.info;
 console.error = log.error;
 console.debug = log.debug;
 /*---end tracer----*/
+
+/*GUID GENERATOR*/
+global.guid = function guid() {
+    function _p8(s) {
+        var p = (Math.random().toString(16)+"000000000").substr(2,8);
+        return s ? "-" + p.substr(0,4) + "-" + p.substr(4,4) : p ;
+    }
+    return _p8() + _p8(true) + _p8(true) + _p8() + _p8(true) + _p8(true) + _p8();
+}
+/*END GUID GENERATOR*/
+
+/*STATIC*/
+app.use('/assets', express.static(
+    path.join(__dirname, 'assets'), {
+        index: false,
+        setHeaders: function(res, path) {
+            var rel = path.match(/[^\/]+\/[^\/]+$/);
+            res.set('Cache-Control', 'no-cached');
+        }
+    }
+));
+app.use('/images', express.static(
+    path.join(__dirname, 'images'), {
+        index: false,
+        setHeaders: function(res, path) {
+            var rel = path.match(/[^\/]+\/[^\/]+$/);
+            res.set('Cache-Control', 'no-cached');
+        }
+    }
+));
+/*STATIC*/
 
 /*---Global exports---*/
 global.config = config;

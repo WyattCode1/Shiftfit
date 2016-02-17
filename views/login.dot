@@ -1,0 +1,13 @@
+<div>
+    <form method="post" action="/login">
+        <div>
+            <input name="email" type="text" />
+        </div>
+        <div>
+            <input name="pwd" type="password"/>
+        </div>
+        <div>
+            <button type="submit" value="SUBMIT">SUBMIT</button>
+        </div>
+    </form>
+</div>
