@@ -1,13 +1,27 @@
-<div>
-    <form method="post" action="/login">
-        <div>
-            <input name="email" type="text" />
-        </div>
-        <div>
-            <input name="pwd" type="password"/>
-        </div>
-        <div>
-            <button type="submit" value="SUBMIT">SUBMIT</button>
-        </div>
-    </form>
-</div>
+{{#def.header}}
+
+	<section id="cta">
+		<h2>Bienvenido!!!</h2>
+		<p>Ingresa a la aplicacion y reserva tu turno, no dejes de entrenar!!! </p>
+
+		<form method="post" action="/login" style="margin-left: 777px;">
+			<div>
+				<div class="row uniform 50%">
+					<div class="8u 12u(mobilep)">
+						<input type="email" name="email" id="email" placeholder="Email" />
+					</div>
+
+					<div class="8u 12u(mobilep)">
+						<input type="password" name="pwd" id="pwd" placeholder="Password" /> 
+					</div>
+
+					<div class="8u 12u(mobilep)">
+						<input type="submit" value="Ingresar" class="fit" />
+					</div>
+				</div>
+			</div>
+		</form>
+	</section>
+
+
+{{#def.footer}}

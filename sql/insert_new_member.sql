@@ -1,0 +1,1 @@
+INSERT INTO shiftfit_user (id, email, password, is_admin) VALUES (nextval('shiftfit_user_sequence'), $1, $2, false) returning *;

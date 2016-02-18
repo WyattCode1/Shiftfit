@@ -20,7 +20,7 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="#" class="button">Sign Up</a></li>
+            <li><a href="/login" class="button">Login</a></li>
         </ul>
     </nav>
 </header>

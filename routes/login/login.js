@@ -1,12 +1,13 @@
 'use strict'
 
 var _ = require('lodash');
-var user = require('../../domain/User.js')();
+var userClass = require('../../domain/User.js')();
 var userSession = require('../../domain/UserSession.js')();
 
 function _get(req, res) {
     console.info('Loading escaped login page');
     console.info(req.auth_user);
+    
     if (req.auth_user) {
        return  res.redirect(302, '/home');
     } else {
@@ -15,9 +16,15 @@ function _get(req, res) {
 }
 
 function _post(req, res) {
+	var sessionHash = global.guid();
+	var user; 
+	
     console.info('Posting login page');
     console.info(req.body.email);
     console.info(req.body.pwd);
+    
+
+
     user.getUserByEmail(req.body.email, function (user) {
         console.info("User: " + user.user_name);
         var sessionHash = global.guid();
@@ -29,6 +36,29 @@ function _post(req, res) {
             return  res.redirect(302, '/home');
         })
     });
+
+
+	userClass.getUserByEmail(req.body.email, function (user) {
+		console.info("Logged user");
+		console.info("User = " + JSON.stringify(user));
+		
+		if(user == null || user==undefined) {
+			userClass.registerNewUser(req.body.email, req.body.pwd, function (userNew) {
+				console.info("Register user");
+				console.info("User = " + JSON.stringify(userNew));
+				user = userNew;
+			});
+		}
+
+		res.cookie('ShiftfitLogin', sessionHash);
+		userSession.setNewSession(sessionHash, user.id, function (err) {
+		return res.status(200).send();
+
+		})
+	});
+
+	console.info("Not Logged user");
+
 }
 
 module.exports = function () {
