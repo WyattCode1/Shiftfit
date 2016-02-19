@@ -23,21 +23,6 @@ function _post(req, res) {
     console.info(req.body.email);
     console.info(req.body.pwd);
     
-
-
-    user.getUserByEmail(req.body.email, function (user) {
-        console.info("User: " + user.user_name);
-        var sessionHash = global.guid();
-        res.cookie('ShiftfitLogin', sessionHash);
-        userSession.setNewSession(sessionHash, user.id, function (err) {
-            if (err) {
-                return res.status(500).send();
-            }
-            return  res.redirect(302, '/home');
-        })
-    });
-
-
 	userClass.getUserByEmail(req.body.email, function (user) {
 		console.info("Logged user");
 		console.info("User = " + JSON.stringify(user));
@@ -51,14 +36,15 @@ function _post(req, res) {
 		}
 
 		res.cookie('ShiftfitLogin', sessionHash);
-		userSession.setNewSession(sessionHash, user.id, function (err) {
-		return res.status(200).send();
-
-		})
+        userSession.setNewSession(sessionHash, user.id, function (err) {
+            if (err) {
+                return res.status(500).send();
+            }
+            return  res.redirect(302, '/home');
+        });
 	});
 
 	console.info("Not Logged user");
-
 }
 
 module.exports = function () {
@@ -67,5 +53,5 @@ module.exports = function () {
             app.post('/login', _post);
             app.get('/login', _get);
         }
-    }
+    };
 };

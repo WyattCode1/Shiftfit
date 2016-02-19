@@ -14,9 +14,8 @@ CREATE TABLE shiftfit_user (
 
 INSERT INTO shiftfit_user (id, email, user_name, first_name, password, last_name, is_admin) VALUES (nextval('shiftfit_user_sequence'), 'lanza@shiftfit.com', 'lanza', 'Luis', 'shift', 'Lanzafame', true);
 INSERT INTO shiftfit_user (id, email, user_name, first_name, password, last_name, is_admin) VALUES (nextval('shiftfit_user_sequence'), 'rodri@shiftfit.com', 'rigo', 'Rodrigo', 'shift', 'Avila', true);
-INSERT INTO shiftfit_user (id, email, user_name, first_name, password, last_name, is_admin) VALUES (nextval('shiftfit_user_sequence'), 'juan@shiftfit.com', 'keme', 'Juan', 'shift', 'Barreiro', true);
+INSERT INTO shiftfit_user (id, email, user_name, first_name, password, last_name, is_admin) VALUES (nextval('shiftfit_user_sequence'), 'jmbarreirop@gmail.com', 'keme', 'Juan', 'expert', 'Barreiro', true);
 INSERT INTO shiftfit_user (id, email, user_name, first_name, password, last_name, is_admin) VALUES (nextval('shiftfit_user_sequence'), 'walter@aquila.com', 'walteraq', 'Walter', 'soyelmejoraquilafuncionaperfecto', 'Aquila', false);
-
 
 DROP TABLE IF EXISTS shiftfit_user_session;
 CREATE TABLE shiftfit_user_session (
