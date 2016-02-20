@@ -1,0 +1,211 @@
+{{#def.header}}
+
+
+<section id="banner" style="padding-top: 40px">
+    <h2>Dashboard</h2>
+    <div class="container">
+
+        <table>
+            <thead>
+            <tr id="days">
+                <th> </th>
+                <th>Lun</th>
+                <th>Mar</th>
+                <th>Mie</th>
+                <th>Jue</th>
+                <th>Vie</th>
+                <th>Sab</th>
+                <th>Dom</th>
+            </tr>
+            </thead>
+            <tbody id="table_body">
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+<script type="text/javascript">
+    var date = "{{=it.hour_range || '7/22'}}".split('/');
+    var days = parseInt("{{=it.working_days || '7'}}");
+    var begin = parseInt(date[0]);
+    var shifts = [{
+            name:'Crossfit',
+            start: ['0700','0800','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100'],
+            duration: '1',
+            teacher: 'Luis',
+            days: [1,2,3,4,5,6]
+        },{
+            name:'Weightlifting',
+            start: ['0930'],
+            duration: '2',
+            teacher: 'Jime',
+            days:[1,3,5]
+        }
+     ];
+
+    var end = parseInt(date[1]);
+    var i, v;
+    for (i = begin ; i < end ; i++) {
+        var hour;
+        if (i<10) {
+            hour = "0" + i;
+        } else {
+            hour = i;
+        }
+        var tr = document.createElement('tr');
+        var tr2 = document.createElement('tr');
+        var th = document.createElement('th');
+        tr.id = "hour_" + hour + "00";
+        th.innerHTML = hour + "00";
+        tr.appendChild(th);
+        var th2 = document.createElement('th');
+        tr2.id = "hour_" + hour + "30";
+        tr.style.position = "relative";
+        tr2.style.position = "relative";
+        th2.innerHTML = hour + "30";
+        tr2.appendChild(th2);
+
+        for (v = 0; v < days ; v++) {
+            var td = document.createElement('td');
+            td.id = "day_" + (v + 1);
+            td.style.padding = '0';
+            tr.appendChild(td);
+            tr2.appendChild(td.cloneNode(true));
+        }
+
+
+        document.getElementById('table_body').appendChild(tr);
+        document.getElementById('table_body').appendChild(tr2);
+
+
+    }
+
+    shifts.forEach(function (shift) {
+        shift.start.forEach(function (startTime) {
+            var parent = $('#hour_'+ startTime);
+            shift.days.forEach(function (day) {
+                var start = $('#hour_'+ startTime + " #day_" + day);
+                var heigth =  shift.duration * 2 * 50;
+                var div = document.createElement('div');
+                div.style.height = heigth + 'px';
+                div.style.lineHeight = heigth + 'px';
+                div.className  = 'shiftsection ' + shift.name.toLocaleLowerCase();
+
+                div.innerHTML = '<span>' + parseHour(startTime) + '</span>';
+                $(div).click(function () {
+                    reserva(day, startTime, shift.name);
+                });
+                start.append(div);
+            });
+        })
+    });
+
+    function endsWith(str, suffix) {
+        return str.indexOf(suffix, str.length - suffix.length) !== -1;
+    }
+
+    function reserva(day, hour, name){
+        hour = parseHour(hour);
+        day = parseDay(day);
+        var state = {
+            state0: {
+                html:'Confirmas tu reserva para ' + name + ' el dia ' + day + " " + hour +  " horas?",
+                buttons: { Cancelar: false, Aceptar: true },
+                focus: 1,
+                submit:function(e,v,m,f){
+                    if(v){
+                        e.preventDefault();
+                        $.prompt.close();
+                        return false;
+                    }
+                }
+            }
+        };
+
+        $.prompt(state);
+
+    }
+
+    function parseHour(hour) {
+        if (hour.length == 4) {
+            return hour.substr(0,2) + ":" + hour.substr(2,3);
+        }
+    }
+    function parseDay(day) {
+        var dayArray = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
+        return dayArray[parseInt(day)-1];
+    }
+</script>
+
+<style>
+    .crossfit {
+        background-color: #000088; /* For browsers that do not support gradients */
+        background: -webkit-linear-gradient(left top, #000088,  #011666); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(bottom right, #000088,  #011666); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(bottom right, #000088,  #011666); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to bottom right, #000088,  #011666); /* Standard syntax */
+    }
+    .weightlifting {
+        background-color: #00d6b2; /* For browsers that do not support gradients */
+        background: -webkit-linear-gradient(left top, #00d6b2,  #0074D9); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(bottom right, #00d6b2,  #0074D9); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(bottom right, #00d6b2,  #0074D9); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to bottom right, #00d6b2,  #0074D9); /* Standard syntax */
+    }
+    .shiftsection {
+        width: 100%;
+        height: 30px;
+        cursor: pointer;
+        position : absolute;
+        width : 150px;
+        margin-top: 2px;
+        color : white;
+        vertical-align: middle;
+
+    }
+
+    #table_body td {
+        text-align: center;
+    }
+
+    #days th {
+        width:100px !important;
+    }
+
+    div.crossfit:before {
+        content:'';
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 0;
+        background: #011666;
+        border-radius: 5px;
+        transition: all 0s ease;
+        cursor: pointer;
+    }
+
+    div.weightlifting:before {
+        content:'';
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 0;
+        background: #0074D9;
+        border-radius: 5px;
+        transition: all 0s ease;
+        cursor: pointer;
+    }
+    #table_body th {
+        border-bottom: 3px white solid;
+    }
+    
+    div.crossfit:hover:before, div.weightlifting:hover:before {
+        height: 100%;
+    }
+
+</style>
+
+{{#def.footer}}

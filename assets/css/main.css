@@ -2542,13 +2542,9 @@
 	}
 
 		table tbody tr {
-			border: solid 1px #e5e5e5;
-			border-left: 0;
-			border-right: 0;
 		}
 
 			table tbody tr:nth-child(2n + 1) {
-				background-color: #f8f8f8;
 			}
 
 		table td {

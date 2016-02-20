@@ -43,7 +43,7 @@
     "layout": "main.dot"
   },
   "scripts": {
-    "start": "$npm_package_config_start server.js",
+    "start": "$npm_package_config_start -w . -e js,dot,def,sql server.js ",
     "stop": "$npm_package_config_stop server.js "
   }
 }
