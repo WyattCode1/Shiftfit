@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 var config = require('./utils/config.js')(process.env);
 
 /*---Express config---*/
@@ -11,36 +11,34 @@ var path = require('path');
 var bodyParser = require('body-parser');
 app.use(bodyParser.json({limit: BODY_LIMIT_KB}));
 app.use(bodyParser.urlencoded({
-    limit: BODY_LIMIT_KB,
-    extended: true
+	limit: BODY_LIMIT_KB,
+	extended: true
 }));
 /*---End express config---*/
 
 var express_validator = require('express-validator');
 app.use(express_validator({
-    })
+	})
 );
 
 process.on('uncaughtException', function (err) {
-    console.error('Caught exception: ' + err.stack);
+	console.error('Caught exception: ' + err.stack);
 });
 
 /*------Set up I18n------*/
 var i18n = require('i18n');
 i18n.configure({
-    locales:['es', 'en'],
-    defaultLocale: 'en',
-    cookie: 'lang',
-    directory: __dirname + '/locales'
+	locales:['es', 'en'],
+	defaultLocale: 'en',
+	cookie: 'lang',
+	directory: __dirname + '/locales'
 });
 config.i18n = i18n.__;
 app.use(i18n.init);
 /*------End set up I18n------*/
 
 /*---tracer----*/
-var log = require('tracer').console({level:'info',
-    format : "{{timestamp}} <{{title}}> [{{file}}:{{line}}} {{message}} ",
-    dateformat : "HH:MM:ss.L"});
+var log = require('tracer').console({level:'info', format : "{{timestamp}} <{{title}}> [{{file}}:{{line}}} {{message}} ", dateformat : "HH:MM:ss.L"});
 var routes = require('./routes/routes.js')(app, config);
 app.use(i18n.init);
 console.info = log.info;
@@ -50,32 +48,57 @@ console.debug = log.debug;
 
 /*GUID GENERATOR*/
 global.guid = function guid() {
-    function _p8(s) {
-        var p = (Math.random().toString(16)+"000000000").substr(2,8);
-        return s ? "-" + p.substr(0,4) + "-" + p.substr(4,4) : p ;
-    }
-    return _p8() + _p8(true) + _p8(true) + _p8() + _p8(true) + _p8(true) + _p8();
-}
+	function _p8(s) {
+		var p = (Math.random().toString(16)+"000000000").substr(2,8);
+		return s ? "-" + p.substr(0,4) + "-" + p.substr(4,4) : p ;
+	}
+	return _p8() + _p8(true) + _p8(true) + _p8() + _p8(true) + _p8(true) + _p8();
+};
 /*END GUID GENERATOR*/
 
 /*STATIC*/
 app.use('/assets', express.static(
-    path.join(__dirname, 'assets'), {
-        index: false,
-        setHeaders: function(res, path) {
-            var rel = path.match(/[^\/]+\/[^\/]+$/);
-            res.set('Cache-Control', 'no-cached');
-        }
-    }
+	path.join(__dirname, 'assets'), {
+		index: false,
+		setHeaders: function(res, path) {
+			var rel = path.match(/[^\/]+\/[^\/]+$/);
+			res.set('Cache-Control', 'no-cached');
+		}
+	}
 ));
 app.use('/images', express.static(
-    path.join(__dirname, 'images'), {
-        index: false,
-        setHeaders: function(res, path) {
-            var rel = path.match(/[^\/]+\/[^\/]+$/);
-            res.set('Cache-Control', 'no-cached');
-        }
-    }
+	path.join(__dirname, 'images'), {
+		index: false,
+		setHeaders: function(res, path) {
+			var rel = path.match(/[^\/]+\/[^\/]+$/);
+			res.set('Cache-Control', 'no-cached');
+		}
+	}
+));
+app.use(express_validator({
+	customValidators: {
+			gte: function(param, num) {
+				return param >= num;
+			},
+			date_comparator: function(param, date1, date2) {
+				return date2 > date1;
+			},
+			empty: function(param) {
+				return false;
+			},
+			not_zero: function(param) {
+				return param != 0;
+			},
+			is_url: function(param) {
+				var url_regex = /^(((https?\:\/\/)|(www\.))[a-zA-Z0-9]+(?:(?:\.|\-)[a-zA-Z0-9]+)+(?:\:\d+)?(?:\/[\w\-]+)*(?:\/?|\/\w+\.[a-zA-Z]{2,4}(?:\?[\w]+\=[\w\-]+)?)?(?:\&[\w]+\=[\w\-]+)*.((\w{1,4})|(\W{1})))$/;
+				return url_regex.test(param);
+			},
+			is_valid_webinar: function(param) {
+				var webinar_regex = /^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
+				return 	webinar_regex.test(param);
+			}
+		}
+	}
 ));
 /*STATIC*/
 
@@ -85,25 +108,25 @@ global.connection = require('./utils/pg_connector.js')(config);
 
 /*---Server startup---*/
 var server = app.listen(config.app_port, function () {
-    console.log('Example app listening at ' + config.app_port);
+	console.log('Example app listening at ' + config.app_port);
 });
 
 module.exports = function () {
-    return {
-        close: function() {
-            server.close(function(callback) {
-                console.log('closed');
-            });
-        },
-        listen: function(ready) {
-            server.listen(3000, function() {
-                return ready(config, server);
-            });
-        },
-        get_test_app: function () {
-            //Set up test environment variables
-            config.postgresql = config.postgresql_test;
-            return app;
-        }
-    };
+	return {
+		close: function() {
+			server.close(function(callback) {
+				console.log('closed');
+			});
+		},
+		listen: function(ready) {
+			server.listen(3000, function() {
+				return ready(config, server);
+			});
+		},
+		get_test_app: function () {
+			//Set up test environment variables
+			config.postgresql = config.postgresql_test;
+			return app;
+		}
+	};
 };

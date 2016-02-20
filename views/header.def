@@ -1,26 +1,33 @@
 <header id="header" class="alt">
-    <h1><a href="index.html">Alpha</a> by HTML5 UP</h1>
-    <nav id="nav">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li>
-                <a href="#" class="icon fa-angle-down">Layouts</a>
-                <ul>
-                    <li><a href="generic.html">Generic</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="elements.html">Elements</a></li>
-                    <li>
-                        <a href="#">Submenu</a>
-                        <ul>
-                            <li><a href="#">Option One</a></li>
-                            <li><a href="#">Option Two</a></li>
-                            <li><a href="#">Option Three</a></li>
-                            <li><a href="#">Option Four</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="/login" class="button">Login</a></li>
-        </ul>
-    </nav>
+	<nav id="nav">
+		<ul>
+			<!-- <li><a href="/home" class="button">Home</a></li> -->
+
+			{{?it.user}}
+				<li class="avatar-menu header-link">
+					<a class="icon fa-angle-down">{{=it.user.user_name}}</a>
+					<ul class="sub-menu">
+						{{?it.user.is_admin}}
+							<li><a href="/admin">ADMIN</a></li>
+						{{?}}
+						<li><a href="/my_account">MY ACCOUNT</a></li>
+						<li><a href="/logout">LOGOUT</a></li>
+					</ul>
+				</li>
+			{{??}}
+				<li><a href="/login" class="button">Login</a></li>
+			{{?}}
+
+		</ul>
+	</nav>
+
+	<style>
+		.sub-menu > li > a {
+			border-top: 4px solid rgba(0, 0, 0, 0);
+			display: inline-block;
+			margin: 0 !important;
+			padding: 0px !important;
+			width: 100%;
+		}
+	</style>
 </header>

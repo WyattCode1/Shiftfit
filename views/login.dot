@@ -4,24 +4,53 @@
 		<h2>Bienvenido!!!</h2>
 		<p>Ingresa a la aplicacion y reserva tu turno, no dejes de entrenar!!! </p>
 
-		<form method="post" action="/login" style="margin-left: 777px;">
+		<form method="post" action="/login" style="margin-left: 777px;" id="formCheckPassword">
 			<div>
 				<div class="row uniform 50%">
 					<div class="8u 12u(mobilep)">
-						<input type="email" name="email" id="email" placeholder="Email" />
+						<input type="email" name="email" id="email" placeholder="Email" onblur="email_exists()" />
+					</div>
+					<div class="8u 12u(mobilep)" id="fist_name_section" style="display:none;">
+						<input type="text" name="first_name" id="first_name" placeholder="First Name" />
+					</div>
+					<div class="8u 12u(mobilep)" id="last_name_section" style="display:none;">
+						<input type="text" name="last_name" id="last_name" placeholder="Last Name" />
+					</div>
+					<div class="8u 12u(mobilep)">
+						<input type="password" name="pwd" id="pwd" placeholder="Password" />
+					</div>
+					<div class="8u 12u(mobilep)" id="cpwd_section" style="display:none;">
+						<input type="password" name="cpwd" id="cpwd" placeholder="Confirm Password" />
 					</div>
 
 					<div class="8u 12u(mobilep)">
-						<input type="password" name="pwd" id="pwd" placeholder="Password" /> 
-					</div>
-
-					<div class="8u 12u(mobilep)">
-						<input type="submit" value="Ingresar" class="fit" />
+						<input type="submit" id="submit" value="Login" class="fit" />
 					</div>
 				</div>
 			</div>
 		</form>
 	</section>
 
+	<script type="text/javascript">
+		function email_exists() {
+			if ($('#email').val()) {
+				$.get("/email_exists/"+ $('#email').val(), function(data) {
+					if (data == true) {
+						$('#submit').val('Login');
+						$('#fist_name_section').hide();
+						$('#last_name_section').hide();
+						$('#cpwd_section').hide();
+						$('input[name=pwd]').focus();
+					} else {
+						$('#submit').val('Signup');
+						$('#fist_name_section').show();
+						$('#last_name_section').show();
+						$('#cpwd_section').show();
+						$('input[name=first_name]').focus();
+					}
+				});
+			}
+		}
+	</script>
 
 {{#def.footer}}
