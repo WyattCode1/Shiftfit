@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var _ = require('lodash');
 
@@ -15,5 +15,5 @@ function _setNewSession(hash, user_id, callback) {
 module.exports = function () {
     return {
         setNewSession : _setNewSession
-    }
+    };
 };

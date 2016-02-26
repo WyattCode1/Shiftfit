@@ -98,7 +98,7 @@
                 });
                 start.append(div);
             });
-        })
+        });
     });
 
     function endsWith(str, suffix) {

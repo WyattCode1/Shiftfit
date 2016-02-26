@@ -7,8 +7,7 @@ var userSession = require('../../domain/UserSession.js')();
 function _get(req, res) {
 	console.info('Loading escaped login page');
 	console.info(req.auth_user);
-
-if (req.auth_user) {
+	if (req.auth_user) {
 		return res.redirect(302, '/home');
 	} else {
 		return res.sendPage('login');
@@ -16,7 +15,7 @@ if (req.auth_user) {
 }
 
 function _post(req, res) {
-	console.info('Posting login page');
+	console.info('Posting login page!');
 	console.info(req.body.email);
 	console.info(req.body.pwd);
 
@@ -24,33 +23,66 @@ function _post(req, res) {
 		console.info("User = " + JSON.stringify(user));
 
 		if(user == null || user == undefined) {
-			console.info("Registrando mail: " + req.body.email);
-/*
-			try {
-				req.assert('first_name').empty();
-			} catch (e) {
-				log.info('Error saving profile experience. ', e);
-				return res.status(500).send(e);
-			}
+			console.info("Registering user with email: " + req.body.email);
 
+			req.assert('email', 'Email Address is required').notEmpty();
 			req.assert('first_name', 'First Name is required').notEmpty();
 			req.assert('last_name', 'Last Name is required').notEmpty();
-			req.assert('password', 'Password required').notEmpty();
-			req.assert('password', 'Password must have 6 characters at least.').len(6,50);
-*/
-			userClass.registerNewUser(req.body.email, req.body.pwd, req.body.first_name, req.body.last_name, function (userNew) {
-				console.info("Register user");
-				console.info("User = " + JSON.stringify(userNew));
-				user = userNew;
-				create_session_and_redirect(req, res, user);
-			});
+			req.assert('pwd', 'Password required').notEmpty();
+			req.assert('pwd', 'Password must have 6 characters at least.').len(6,50);
+			req.assert('cpwd', 'Confirm Password required').notEmpty();
+			req.assert('cpwd', 'Confirm Password must have 6 characters at least.').len(6,50);
+
+			var errors = req.validationErrors();
+			if(errors) {
+				var errors = [{'type':'general', 'param': 'none', 'msg':errors[0].msg}];
+				res.status(500).send(errors);
+			} else {
+				var email 				= req.body.email;
+				var first_name 			= req.body.first_name;
+				var last_name 			= req.body.last_name;
+				var password 			= req.body.pwd;
+				var confirm_password	= req.body.cpwd;
+
+				if (password == confirm_password) {
+					userClass.registerNewUser(email, password, first_name, last_name, function (userNew) {
+						console.info("Register user");
+						console.info("User = " + JSON.stringify(userNew));
+						user = userNew;
+						create_session_and_redirect(req, res, user);
+					});					
+				} else {
+					var errors = [{'type':'general', 'param': 'pwd'}, {'type':'general', 'param': 'cpwd', 'msg': 'The passwords are different'}];
+					res.status(500).send(errors);					
+				}
+			}
 
 		} else {
-			create_session_and_redirect(req, res, user);
+			console.info('logging user');
+			req.assert('pwd', 'Password required').notEmpty();
+
+			var errors = req.validationErrors();
+			if(errors) {
+				var errors = [{'type':'general', 'param': 'pwd', 'msg':errors[0].msg}];
+				res.status(500).send(errors);
+			} else {
+				login(req, res, user, function() {
+					create_session_and_redirect(req, res, user);	
+				});
+			}
 		}
 	});
 
 	console.info("Not Logged user");
+}
+
+function login(req, res, user, callback) {
+	if (req.body.pwd == user.password) {
+		callback();
+	} else {
+		var errors = [{'type':'general', 'param': 'pwd', 'msg': 'Password is wrong'}];
+		res.status(500).send(errors);		
+	}
 }
 
 function create_session_and_redirect(req, res, user) {
@@ -58,9 +90,11 @@ function create_session_and_redirect(req, res, user) {
 	res.cookie('ShiftfitLogin', sessionHash);
 	userSession.setNewSession(sessionHash, user.id, function (err) {
 		if (err) {
+			console.info('Error creating session: ' + err);
 			return res.status(500).send();
+		} else {
+			return res.redirect(302, '/home');	
 		}
-		return res.redirect(302, '/home');
 	});
 }
 

@@ -4,7 +4,7 @@
 		<h2>Bienvenido!!!</h2>
 		<p>Ingresa a la aplicacion y reserva tu turno, no dejes de entrenar!!! </p>
 
-		<form method="post" action="/login" style="margin-left: 777px;" id="formCheckPassword">
+		<form style="margin-left: 777px;" id="formCheckPassword">
 			<div>
 				<div class="row uniform 50%">
 					<div class="8u 12u(mobilep)">
@@ -22,9 +22,8 @@
 					<div class="8u 12u(mobilep)" id="cpwd_section" style="display:none;">
 						<input type="password" name="cpwd" id="cpwd" placeholder="Confirm Password" />
 					</div>
-
 					<div class="8u 12u(mobilep)">
-						<input type="submit" id="submit" value="Login" class="fit" />
+						<input type="button" id="submit" value="Login" class="fit" onclick="login()"/>
 					</div>
 				</div>
 			</div>
@@ -32,6 +31,21 @@
 	</section>
 
 	<script type="text/javascript">
+		function login() {
+			 $.ajax({
+                type : 'POST',
+                url : '/login',
+                data: $('#formCheckPassword').serialize(),
+                success: function(data) {
+                	clean_error_messages();
+                	console.info('LOGIN OK');
+                },
+                error: function(data) {
+					var responseText = JSON.parse(data.responseText);
+					show_error_messages(responseText);
+                }
+            });
+		}
 		function email_exists() {
 			if ($('#email').val()) {
 				$.get("/email_exists/"+ $('#email').val(), function(data) {
