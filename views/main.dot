@@ -76,5 +76,12 @@
             });
             $('#general-error-div').hide();
         }
+        $.ajaxSetup({complete: onRequestCompleted});
+        function onRequestCompleted(xhr,textStatus) {
+            if (xhr.status == 302) {
+                location.href = xhr.getResponseHeader("Location");
+            }
+        }
+
     </script>
 </html>

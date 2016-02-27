@@ -4,6 +4,11 @@ var _ = require('lodash');
 var userClass = require('../../domain/User.js')();
 var userSession = require('../../domain/UserSession.js')();
 
+
+//var hash = bcrypt.hashSync("bacon");
+//bcrypt.compareSync("bacon", hash); // true
+//bcrypt.compareSync("veggies", hash); // false
+
 function _get(req, res) {
 	console.info('Loading escaped login page');
 	console.info(req.auth_user);
@@ -41,7 +46,7 @@ function _post(req, res) {
 				var email 				= req.body.email;
 				var first_name 			= req.body.first_name;
 				var last_name 			= req.body.last_name;
-				var password 			= req.body.pwd;
+				var password 			= global.hashSync(req.body.pwd);
 				var confirm_password	= req.body.cpwd;
 
 				if (password == confirm_password) {
@@ -64,6 +69,7 @@ function _post(req, res) {
 			var errors = req.validationErrors();
 			if(errors) {
 				var errors = [{'type':'general', 'param': 'pwd', 'msg':errors[0].msg}];
+				console.info('ERROR ' + JSON.stringify(errors));
 				res.status(500).send(errors);
 			} else {
 				login(req, res, user, function() {
@@ -77,10 +83,10 @@ function _post(req, res) {
 }
 
 function login(req, res, user, callback) {
-	if (req.body.pwd == user.password) {
+		if (global.compareSync(req.body.pwd, user.password)) {
 		callback();
 	} else {
-		var errors = [{'type':'general', 'param': 'pwd', 'msg': 'Password is wrong'}];
+		var errors = [{'type':'general', 'param': 'pwd', 'msg': 'Wrong username or password'}];
 		res.status(500).send(errors);		
 	}
 }
@@ -93,7 +99,8 @@ function create_session_and_redirect(req, res, user) {
 			console.info('Error creating session: ' + err);
 			return res.status(500).send();
 		} else {
-			return res.redirect(302, '/home');	
+			console.info('Redirecting to Home');
+			return res.status(200).send('/home');
 		}
 	});
 }
@@ -118,6 +125,11 @@ function _logout(req, res) {
 }
 
 module.exports = function () {
+
+
+	console.log('expert: ' + global.hashSync("expert"));
+	console.log('shift: ' + global.hashSync("shift"));
+
 	return {
 		register : function (app) {
 			app.get('/login', _get);

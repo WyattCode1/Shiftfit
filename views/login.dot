@@ -32,13 +32,13 @@
 
 	<script type="text/javascript">
 		function login() {
-			 $.ajax({
+			clean_error_messages([]);
+			$.ajax({
                 type : 'POST',
                 url : '/login',
                 data: $('#formCheckPassword').serialize(),
-                success: function(data) {
-                	clean_error_messages();
-                	console.info('LOGIN OK');
+                success: function(data, data2) {
+					window.location.href = data;
                 },
                 error: function(data) {
 					var responseText = JSON.parse(data.responseText);

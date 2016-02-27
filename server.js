@@ -39,7 +39,6 @@ app.use(i18n.init);
 
 /*---tracer----*/
 var log = require('tracer').console({level:'info', format : "{{timestamp}} <{{title}}> [{{file}}:{{line}}} {{message}} ", dateformat : "HH:MM:ss.L"});
-var routes = require('./routes/routes.js')(app, config);
 app.use(i18n.init);
 console.info = log.info;
 console.error = log.error;
@@ -79,14 +78,28 @@ app.use('/images', express.static(
 
 var express_validator = require('./utils/validator.js')(app);
 
+/*bcrypt initialization*/
+var bcrypt = require('bcrypt');
+var salt = "$2a$10$lQezIBTrejG2XW/lZS3jUO";
+
 /*---Global exports---*/
 global.config = config;
 global.connection = require('./utils/pg_connector.js')(config);
+global.hashSync = function hashSync(data) {
+	return bcrypt.hashSync(data, salt);
+}
+global.compareSync = function (data, hash) {
+	return bcrypt.compareSync(data, hash);
+}
 
 /*---Server startup---*/
 var server = app.listen(config.app_port, function () {
 	console.log('Example app listening at ' + config.app_port);
 });
+
+/* Calling routes */
+var routes = require('./routes/routes.js')(app, config);
+
 
 module.exports = function () {
 	return {

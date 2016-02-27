@@ -12,10 +12,10 @@ CREATE TABLE shiftfit_user (
 	last_name   varchar(100)
 );
 
-INSERT INTO shiftfit_user (id, email, user_name, first_name, password, last_name, is_admin) VALUES (nextval('shiftfit_user_sequence'), 'lanza@shiftfit.com', 'lanza', 'Luis', 'shift', 'Lanzafame', true);
-INSERT INTO shiftfit_user (id, email, user_name, first_name, password, last_name, is_admin) VALUES (nextval('shiftfit_user_sequence'), 'rodri@shiftfit.com', 'rigo', 'Rodrigo', 'shift', 'Avila', true);
-INSERT INTO shiftfit_user (id, email, user_name, first_name, password, last_name, is_admin) VALUES (nextval('shiftfit_user_sequence'), 'jmbarreirop@gmail.com', 'kEme', 'Juan', 'expert', 'Barreiro', true);
-INSERT INTO shiftfit_user (id, email, user_name, first_name, password, last_name, is_admin) VALUES (nextval('shiftfit_user_sequence'), 'walter@aquila.com', 'walteraq', 'Walter', 'soyelmejoraquilafuncionaperfecto', 'Aquila', false);
+INSERT INTO shiftfit_user (id, email, user_name, first_name, password, last_name, is_admin) VALUES (nextval('shiftfit_user_sequence'), 'lanza@shiftfit.com', 'lanza', 'Luis', '$2a$10$lQezIBTrejG2XW/lZS3jUOs9YmCOLMEH7RULEkQNVmqTYWXbpil6u', 'Lanzafame', true);
+INSERT INTO shiftfit_user (id, email, user_name, first_name, password, last_name, is_admin) VALUES (nextval('shiftfit_user_sequence'), 'rodri@shiftfit.com', 'rigo', 'Rodrigo', '$2a$10$lQezIBTrejG2XW/lZS3jUOs9YmCOLMEH7RULEkQNVmqTYWXbpil6u', 'Avila', true);
+INSERT INTO shiftfit_user (id, email, user_name, first_name, password, last_name, is_admin) VALUES (nextval('shiftfit_user_sequence'), 'jmbarreirop@gmail.com', 'kEme', 'Juan', '$2a$10$lQezIBTrejG2XW/lZS3jUOHBCRQ7HN9uG7BJb2SJj4rpL84w5oXnS', 'Barreiro', true);
+INSERT INTO shiftfit_user (id, email, user_name, first_name, password, last_name, is_admin) VALUES (nextval('shiftfit_user_sequence'), 'walter@aquila.com', 'walteraq', 'Walter', '$2a$10$lQezIBTrejG2XW/lZS3jUOs9YmCOLMEH7RULEkQNVmqTYWXbpil6u', 'Aquila', false);
 
 DROP TABLE IF EXISTS shiftfit_user_session;
 CREATE TABLE shiftfit_user_session (
