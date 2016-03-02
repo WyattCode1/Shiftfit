@@ -4,14 +4,13 @@ var _ = require('lodash');
 var userClass = require('../../domain/User.js')();
 var userSession = require('../../domain/UserSession.js')();
 
-
 //var hash = bcrypt.hashSync("bacon");
 //bcrypt.compareSync("bacon", hash); // true
 //bcrypt.compareSync("veggies", hash); // false
 
 function _get(req, res) {
 	console.info('Loading escaped login page');
-	console.info(req.auth_user);
+	console.info('req.auth_user: ' + req.auth_user);
 	if (req.auth_user) {
 		return res.redirect(302, '/home');
 	} else {
@@ -47,9 +46,8 @@ function _post(req, res) {
 				var first_name 			= req.body.first_name;
 				var last_name 			= req.body.last_name;
 				var password 			= global.hashSync(req.body.pwd);
-				var confirm_password	= req.body.cpwd;
 
-				if (password == confirm_password) {
+				if (req.body.pwd == req.body.cpwd) {
 					userClass.registerNewUser(email, password, first_name, last_name, function (userNew) {
 						console.info("Register user");
 						console.info("User = " + JSON.stringify(userNew));
@@ -57,7 +55,7 @@ function _post(req, res) {
 						create_session_and_redirect(req, res, user);
 					});					
 				} else {
-					var errors = [{'type':'general', 'param': 'pwd'}, {'type':'general', 'param': 'cpwd', 'msg': 'The passwords are different'}];
+					var errors = [{'type':'general', 'param': 'pwd', 'msg': ''}, {'type':'general', 'param': 'cpwd', 'msg': 'The passwords are different'}];
 					res.status(500).send(errors);					
 				}
 			}
@@ -83,7 +81,7 @@ function _post(req, res) {
 }
 
 function login(req, res, user, callback) {
-		if (global.compareSync(req.body.pwd, user.password)) {
+	if (global.compareSync(req.body.pwd, user.password)) {
 		callback();
 	} else {
 		var errors = [{'type':'general', 'param': 'pwd', 'msg': 'Wrong username or password'}];
@@ -99,8 +97,17 @@ function create_session_and_redirect(req, res, user) {
 			console.info('Error creating session: ' + err);
 			return res.status(500).send();
 		} else {
-			console.info('Redirecting to Home');
-			return res.status(200).send('/home');
+			var rol_query = 'SELECT home FROM rol WHERE id = $1';
+		    global.connection.query(rol_query, [user.rol_id], 'Getting redirect url after correct login/signup', function(result, err) {
+		        if (err || !result) {
+		            console.error('Error getting redirect url');
+					return res.status(200).send('/home');
+		        } else {
+		        	console.info('1: ' + result);
+			        console.info('Redirecting to: ' + result[0].home);
+					res.status(200).send(result[0].home);	        	
+		        }
+		    });
 		}
 	});
 }
@@ -125,11 +132,6 @@ function _logout(req, res) {
 }
 
 module.exports = function () {
-
-
-	console.log('expert: ' + global.hashSync("expert"));
-	console.log('shift: ' + global.hashSync("shift"));
-
 	return {
 		register : function (app) {
 			app.get('/login', _get);

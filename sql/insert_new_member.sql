@@ -4,14 +4,12 @@ INSERT INTO shiftfit_user (
 	email,
 	password,
 	first_name,
-	last_name,
-	is_admin)
+	last_name)
 VALUES (
 	nextval('shiftfit_user_sequence'),
 	$3||'-'||$4,
 	$1,
 	$2,
 	$3,
-	$4,
-	false)
+	$4)
 returning *;

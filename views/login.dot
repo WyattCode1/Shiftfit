@@ -41,6 +41,7 @@
 					window.location.href = data;
                 },
                 error: function(data) {
+                	clean_error_messages(['pwd','cpwd']);
 					var responseText = JSON.parse(data.responseText);
 					show_error_messages(responseText);
                 }

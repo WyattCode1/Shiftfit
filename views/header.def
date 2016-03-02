@@ -4,10 +4,10 @@
 			<!-- <li><a href="/home" class="button">Home</a></li> -->
 
 			{{?it.user}}
-				<li class="avatar-menu header-link">
+				<li>
 					<a class="icon fa-angle-down">{{=it.user.user_name}}</a>
-					<ul class="sub-menu">
-						{{?it.user.is_admin}}
+					<ul>
+						{{?it.user.rol_id >= 2}}
 							<li><a href="/admin">ADMIN</a></li>
 						{{?}}
 						<li><a href="/my_account">MY ACCOUNT</a></li>
@@ -15,19 +15,12 @@
 					</ul>
 				</li>
 			{{??}}
-				<li><a href="/login" class="button">Login</a></li>
+				{{?it.should_show_login}}
+					<li><a href="/login" class="button">Login</a></li>
+				{{?}}
 			{{?}}
 
 		</ul>
-	</nav>
 
-	<style>
-		.sub-menu > li > a {
-			border-top: 4px solid rgba(0, 0, 0, 0);
-			display: inline-block;
-			margin: 0 !important;
-			padding: 0px !important;
-			width: 100%;
-		}
-	</style>
+	</nav>
 </header>

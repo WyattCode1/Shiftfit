@@ -11,6 +11,7 @@ function loadApp() {
 
 	app.use(function user(req, res, next) {
 		req.merge = {};
+		req.merge = _.merge(req.merge, {"should_show_login": req.url!='/login'});
 		if (req.cookies.ShiftfitLogin) {
 			var token = req.cookies.ShiftfitLogin;
 			global.connection.query('select_user_by_session', [token], 'Getting logged user', function(user) {
@@ -19,7 +20,7 @@ function loadApp() {
 					req.auth_user = user[0];
 					req.merge = _.merge(req.merge, {"user": req.auth_user});
 				} else {
-					console.info("user doesn't logged");
+					console.info("user doesn't logged: " + req.url);
 				}
 				next();
 			});
