@@ -3,8 +3,6 @@
 var pg = require('pg');
 var log;
 
-
-
 function PgConnector(conf, log, sql_cache) {
     this.config = conf;
     this.log = log;
@@ -48,7 +46,7 @@ PgConnector.prototype.query = function(query, params, label, callback, orderby, 
     return this.do_search(sql, params, label, callback);
 };
 
-exports = module.exports = function(conf, sql_cache_options) {
+module.exports = function(conf, sql_cache_options) {
     log = console;
     var sql_cache = require('./sql_cache.js')(console);;
     return new PgConnector(conf, log, sql_cache);

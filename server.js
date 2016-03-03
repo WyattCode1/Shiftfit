@@ -29,11 +29,10 @@ process.on('uncaughtException', function (err) {
 var i18n = require('i18n');
 i18n.configure({
 	locales:['es', 'en'],
-	defaultLocale: 'en',
+	defaultLocale: 'es',
 	cookie: 'lang',
 	directory: __dirname + '/locales'
 });
-config.i18n = i18n.__;
 app.use(i18n.init);
 /*------End set up I18n------*/
 

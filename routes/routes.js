@@ -10,6 +10,10 @@ var dot = require("dot").process({
 function loadApp() {
 
 	app.use(function user(req, res, next) {
+		if(!req.cookies.lang) {
+			res.cookie('lang', 'es');
+			return res.redirect(req.url);
+		}
 		req.merge = {};
 		if (req.cookies.ShiftfitLogin) {
 			var token = req.cookies.ShiftfitLogin;
@@ -39,7 +43,12 @@ function loadApp() {
 
 	app.use(function easyRender(req, res, next) {
 		res.sendPage = function (template) {
-			var body = dot[template](_.merge(req.merge, config));
+			try {
+				var body = dot[template](_.merge(req.merge, config, {i18n:res.__}));
+			} catch (e) {
+				console.error('Could not find page', e);
+				throw e;
+			}
 			res.status(200).send(dot.main(_.merge({"body": body}, config)));
 		};
 		next();
@@ -71,6 +80,8 @@ function loadApp() {
 	require('./home/home.js')().register(app, config);
 
 	require('./login/login.js')().register(app, config);
+
+	require('./cruds/crud_generator.js')().register(app, ['shift']);
 }
 
 module.exports = function (application, conf) {

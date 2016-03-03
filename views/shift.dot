@@ -1,0 +1,35 @@
+{{#def.header}}
+
+<section id="cta">
+    <h2>Turno!!!</h2>
+    {{?it.shift}}
+        {{=it.i18n('change_shift')}}
+    {{??}}
+        {{=it.i18n('new_shift')}}
+    {{?}}
+
+    <form style="margin-left: 777px;" id="formCheckPassword">
+        <div>
+            <div class="row uniform 50%">
+                <div class="8u 12u(mobilep)">
+                    <input type="text" name="name" id="name" placeholder="Name" />
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+    <script>
+        {{?it.shift}}
+            $('#name').val("{{=it.shift.name}}");
+        {{?}}
+
+    </script>
+
+
+</section>
+
+<script type="text/javascript">
+</script>
+
+{{#def.footer}}

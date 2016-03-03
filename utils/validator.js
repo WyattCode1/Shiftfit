@@ -2,7 +2,7 @@
 
 var express_validator = require('express-validator');
 
-exports = module.exports = function(app) {
+module.exports = function(app) {
     app.use(express_validator({
         customValidators: {
             gte: function(param, num) {

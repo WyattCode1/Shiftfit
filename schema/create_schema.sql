@@ -34,8 +34,19 @@ CREATE TABLE rol (
 );
 
 DROP SEQUENCE IF EXISTS rol_sequence;
-CREATE SEQUENCE rol_sequence START WITH 4;
+CREATE SEQUENCE rol_sequence START WITH 1;
 
-INSERT INTO rol (id, weight, name, home) VALUES (1, 1, 'user', '/home');
-INSERT INTO rol (id, weight, name, home) VALUES (2, 10, 'admin', '/admin');
-INSERT INTO rol (id, weight, name, home) VALUES (3, 100, 'moderator', '/admin');
+INSERT INTO rol (id, weight, name, home) VALUES (nextval('rol_sequence'), 1, 'user', '/home');
+INSERT INTO rol (id, weight, name, home) VALUES (nextval('rol_sequence'), 10, 'admin', '/admin');
+INSERT INTO rol (id, weight, name, home) VALUES (nextval('rol_sequence'), 100, 'moderator', '/admin');
+
+
+DROP SEQUENCE IF EXISTS shift_sequence;
+CREATE SEQUENCE shift_sequence START WITH 1;
+DROP TABLE IF EXISTS shift;
+CREATE TABLE shift (
+	id	integer PRIMARY KEY,
+	name varchar(100) NOT NULL
+);
+
+INSERT INTO shift (id, name) VALUES (nextval('shift_sequence'), 'Crossfit');
