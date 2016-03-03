@@ -11,14 +11,13 @@ function loadApp() {
 
 	app.use(function user(req, res, next) {
 		req.merge = {};
-		req.merge = _.merge(req.merge, {"should_show_login": req.url!='/login'});
 		if (req.cookies.ShiftfitLogin) {
 			var token = req.cookies.ShiftfitLogin;
 			global.connection.query('select_user_by_session', [token], 'Getting logged user', function(user) {
 				if (user[0]) {
 					console.info('Logged = ' + user[0].user_name);
 					req.auth_user = user[0];
-					req.merge = _.merge(req.merge, {"user": req.auth_user});
+					req.merge = _.merge(req.merge, {'user': req.auth_user}, {'is_admin': req.auth_user.weight >= 10});
 				} else {
 					console.info("user doesn't logged: " + req.url);
 				}
@@ -30,6 +29,7 @@ function loadApp() {
 	});
 
 	app.use(function header(req, res, next) {
+		req.merge = _.merge(req.merge, {"is_login_page": req.url=='/login'});
 		next();
 	});
 

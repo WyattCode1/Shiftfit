@@ -3,7 +3,8 @@
 var _ = require('lodash');
 
 function _getUserByEmail(email, callback) {
-	global.connection.query('SELECT * FROM shiftfit_user where email = $1', [email], 'Getting user by email', function(user, err) {
+	var user_query = 'SELECT * FROM shiftfit_user su LEFT JOIN rol r ON (r.id = su.rol_id) where lower(su.email) = lower($1)';
+	global.connection.query(user_query, [email], 'Getting user by email', function(user, err) {
 		if (err) {
 			console.error(err.message);
 			return callback();

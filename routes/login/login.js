@@ -103,7 +103,6 @@ function create_session_and_redirect(req, res, user) {
 		            console.error('Error getting redirect url');
 					return res.status(200).send('/home');
 		        } else {
-		        	console.info('1: ' + result);
 			        console.info('Redirecting to: ' + result[0].home);
 					res.status(200).send(result[0].home);	        	
 		        }

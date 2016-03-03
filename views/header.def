@@ -7,7 +7,7 @@
 				<li>
 					<a class="icon fa-angle-down">{{=it.user.user_name}}</a>
 					<ul>
-						{{?it.user.rol_id >= 2}}
+						{{?it.is_admin}}
 							<li><a href="/admin">ADMIN</a></li>
 						{{?}}
 						<li><a href="/my_account">MY ACCOUNT</a></li>
@@ -15,7 +15,7 @@
 					</ul>
 				</li>
 			{{??}}
-				{{?it.should_show_login}}
+				{{?!it.is_login_page}}
 					<li><a href="/login" class="button">Login</a></li>
 				{{?}}
 			{{?}}
