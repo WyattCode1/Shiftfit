@@ -1,7 +1,7 @@
 {{#def.header}}
 
 <section id="cta">
-    <h2>Turno!!!</h2>
+    <h2>{{=it.i18n('shift_title')}}</h2>
     {{?it.shift}}
         {{=it.i18n('change_shift')}}
     {{??}}

@@ -1,6 +1,8 @@
 {
   "change_shift" : "Modificar Turno",
   "new_shift" : "Crear Turno",
-  "home_title" : "Shiftfit"
+  "home_title" : "Shiftfit",
+  "shift_title" : "TURNO!!!"
+
 
 }
