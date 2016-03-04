@@ -34,6 +34,7 @@ function loadApp() {
 
 	app.use(function header(req, res, next) {
 		req.merge = _.merge(req.merge, {"is_login_page": req.url=='/login'});
+		req.merge = _.merge(req.merge, {"is_home_page":  req.url=='/home'});
 		next();
 	});
 
@@ -75,6 +76,8 @@ function loadApp() {
 		}
 	};
 
+	require('./admin/admin.js')().register(app, config);
+
 	require('./dashboard/dashboard.js')().register(app, config);
 
 	require('./home/home.js')().register(app, config);
@@ -82,6 +85,7 @@ function loadApp() {
 	require('./login/login.js')().register(app, config);
 
 	require('./cruds/crud_generator.js')().register(app, ['shift']);
+
 }
 
 module.exports = function (application, conf) {

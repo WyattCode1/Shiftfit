@@ -18,6 +18,7 @@
         <script type="text/javascript" src="https://code.jquery.com/ui/1.8.20/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/assets/impromptu/jquery-impromptu.min.js"></script>
 		<script type="text/javascript" src="assets/js/jquery.dropotron.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.scrollgress.min.js"></script>
 		<script type="text/javascript" src="assets/js/skel.min.js"></script>
 		<script type="text/javascript" src="assets/js/util.js"></script>
 		<script type="text/javascript" src="assets/js/main.js"></script>

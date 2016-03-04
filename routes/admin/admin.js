@@ -3,14 +3,14 @@
 var _ = require('lodash');
 
 function _get(req, res) {
-    console.info('Loading dashboard');
-    res.sendPage("dashboard");
+    console.info('Loading admin');
+    res.sendPage("admin");
 }
 
 module.exports = function () {
     return {
         register : function (app) {
-            app.get('/dashboard', _get);
+            app.get('/admin', _get);
         }
     };
 };

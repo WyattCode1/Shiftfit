@@ -1,10 +1,11 @@
-<header id="header" class="alt">
+<header id="header" {{?it.is_home_page||it.is_login_page}} class="alt" {{?}}>
 	<nav id="nav">
 		<ul>
-			<!-- <li><a href="/home" class="button">Home</a></li> -->
-
+			{{?!it.is_home_page}}
+				<li><a href="/home">Shiftfit</a></li>
+			{{?}}
 			{{?it.user}}
-				<li>
+				<li style="float: right;">
 					<a class="icon fa-angle-down">{{=it.user.user_name}}</a>
 					<ul>
 						{{?it.is_admin}}
@@ -15,12 +16,10 @@
 					</ul>
 				</li>
 			{{??}}
-				{{?!it.is_login_page}}
+				<!-- {{?!it.is_login_page}}
 					<li><a href="/login" class="button">Login</a></li>
-				{{?}}
+				{{?}} -->
 			{{?}}
-
 		</ul>
-
 	</nav>
 </header>

@@ -37,8 +37,8 @@ DROP SEQUENCE IF EXISTS rol_sequence;
 CREATE SEQUENCE rol_sequence START WITH 1;
 
 INSERT INTO rol (id, weight, name, home) VALUES (nextval('rol_sequence'), 1, 'user', '/home');
-INSERT INTO rol (id, weight, name, home) VALUES (nextval('rol_sequence'), 10, 'admin', '/admin');
-INSERT INTO rol (id, weight, name, home) VALUES (nextval('rol_sequence'), 100, 'moderator', '/admin');
+INSERT INTO rol (id, weight, name, home) VALUES (nextval('rol_sequence'), 10, 'admin', '/home');
+INSERT INTO rol (id, weight, name, home) VALUES (nextval('rol_sequence'), 100, 'moderator', '/home');
 
 
 DROP SEQUENCE IF EXISTS shift_sequence;

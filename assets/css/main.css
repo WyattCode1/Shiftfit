@@ -2826,8 +2826,10 @@ body.landing #page-wrapper {
 #header nav {
 	height: inherit;
 	line-height: inherit;
+/*	
 	position: absolute;
 	right: 0.75em;
+ */
 	top: 0;
 	vertical-align: middle;
 }

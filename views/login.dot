@@ -1,71 +1,69 @@
 {{#def.header}}
+<section id="cta">
+	<h2>Bienvenido!!!</h2>
+	<p>Ingresa a la aplicacion y reserva tu turno, no dejes de entrenar!!! </p>
 
-	<section id="cta">
-		<h2>Bienvenido!!!</h2>
-		<p>Ingresa a la aplicacion y reserva tu turno, no dejes de entrenar!!! </p>
-
-		<form style="margin-left: 777px;" id="formCheckPassword">
-			<div>
-				<div class="row uniform 50%">
-					<div class="8u 12u(mobilep)">
-						<input type="email" name="email" id="email" placeholder="Email" onblur="email_exists()" />
-					</div>
-					<div class="8u 12u(mobilep)" id="fist_name_section" style="display:none;">
-						<input type="text" name="first_name" id="first_name" placeholder="First Name" />
-					</div>
-					<div class="8u 12u(mobilep)" id="last_name_section" style="display:none;">
-						<input type="text" name="last_name" id="last_name" placeholder="Last Name" />
-					</div>
-					<div class="8u 12u(mobilep)">
-						<input type="password" name="pwd" id="pwd" placeholder="Password" />
-					</div>
-					<div class="8u 12u(mobilep)" id="cpwd_section" style="display:none;">
-						<input type="password" name="cpwd" id="cpwd" placeholder="Confirm Password" />
-					</div>
-					<div class="8u 12u(mobilep)">
-						<input type="button" id="submit" value="Login" class="fit" onclick="login()"/>
-					</div>
+	<form style="margin-left: 777px;" id="formCheckPassword">
+		<div>
+			<div class="row uniform 50%">
+				<div class="8u 12u(mobilep)">
+					<input type="email" name="email" id="email" placeholder="Email" onblur="email_exists()" />
+				</div>
+				<div class="8u 12u(mobilep)" id="fist_name_section" style="display:none;">
+					<input type="text" name="first_name" id="first_name" placeholder="First Name" />
+				</div>
+				<div class="8u 12u(mobilep)" id="last_name_section" style="display:none;">
+					<input type="text" name="last_name" id="last_name" placeholder="Last Name" />
+				</div>
+				<div class="8u 12u(mobilep)">
+					<input type="password" name="pwd" id="pwd" placeholder="Password" />
+				</div>
+				<div class="8u 12u(mobilep)" id="cpwd_section" style="display:none;">
+					<input type="password" name="cpwd" id="cpwd" placeholder="Confirm Password" />
+				</div>
+				<div class="8u 12u(mobilep)">
+					<input type="button" id="submit" value="Login" class="fit" onclick="login()"/>
 				</div>
 			</div>
-		</form>
-	</section>
-
-	<script type="text/javascript">
-		function login() {
-			clean_error_messages([]);
-			$.ajax({
-                type : 'POST',
-                url : '/login',
-                data: $('#formCheckPassword').serialize(),
-                success: function(data, data2) {
-					window.location.href = data;
-                },
-                error: function(data) {
-                	clean_error_messages(['pwd','cpwd']);
-					var responseText = JSON.parse(data.responseText);
-					show_error_messages(responseText);
-                }
-            });
-		}
-		function email_exists() {
-			if ($('#email').val()) {
-				$.get("/email_exists/"+ $('#email').val(), function(data) {
-					if (data == true) {
-						$('#submit').val('Login');
-						$('#fist_name_section').hide();
-						$('#last_name_section').hide();
-						$('#cpwd_section').hide();
-						$('input[name=pwd]').focus();
-					} else {
-						$('#submit').val('Signup');
-						$('#fist_name_section').show();
-						$('#last_name_section').show();
-						$('#cpwd_section').show();
-						$('input[name=first_name]').focus();
-					}
-				});
-			}
-		}
-	</script>
-
+		</div>
+	</form>
+</section>
 {{#def.footer}}
+
+<script type="text/javascript">
+	function login() {
+		clean_error_messages([]);
+		$.ajax({
+            type : 'POST',
+            url : '/login',
+            data: $('#formCheckPassword').serialize(),
+            success: function(data, data2) {
+				window.location.href = data;
+            },
+            error: function(data) {
+            	clean_error_messages(['pwd','cpwd']);
+				var responseText = JSON.parse(data.responseText);
+				show_error_messages(responseText);
+            }
+        });
+	}
+	function email_exists() {
+		if ($('#email').val()) {
+			$.get("/email_exists/"+ $('#email').val(), function(data) {
+				if (data == true) {
+					$('#submit').val('Login');
+					$('#fist_name_section').hide();
+					$('#last_name_section').hide();
+					$('#cpwd_section').hide();
+					$('input[name=pwd]').focus();
+				} else {
+					$('#submit').val('Signup');
+					$('#fist_name_section').show();
+					$('#last_name_section').show();
+					$('#cpwd_section').show();
+					$('input[name=first_name]').focus();
+				}
+			});
+		}
+	}
+</script>
