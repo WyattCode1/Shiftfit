@@ -8,13 +8,13 @@
         {{=it.i18n('new_shift')}}
     {{?}}
 
-    <form style="margin-left: 777px;" id="formCheckPassword">
+    <form style="margin-left: 777px;" id="shiftForm">
         <div>
             <div class="row uniform 50%">
                 <div class="8u 12u(mobilep)">
                     <input type="text" name="name" id="name" placeholder="Name" />
                 </div>
-
+                <a href="#a" onclick="submit()">SAVE</a>
             </div>
         </div>
     </form>
@@ -22,8 +22,13 @@
     <script>
         {{?it.shift}}
             $('#name').val("{{=it.shift.name}}");
+            var url = '/shift/{{=it.shift.id}}';
+        {{??}}
+            var url = '/shift';
         {{?}}
-
+        function submit() {
+            $.post( url, $('#shiftForm').serialize() );
+        }
     </script>
 
 

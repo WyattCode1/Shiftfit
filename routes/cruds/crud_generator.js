@@ -22,10 +22,20 @@ function _get (req, res, domain) {
 }
 
 function _post (req, res, domain) {
+    var object = require('./' + domain + '.js')();
+    var callback = function (id) {
+        if (id) {
+            res.status(200).send();
+        } else {
+            res.status(500).send();
+        }
+    }
     if (req.params.domainId) {
         console.info('Is post Edit');
+        object.update(req, callback)
     } else {
         console.info('Is post NEW');
+        object.save(req, callback);
     }
     res.status(200).send();
 }

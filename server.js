@@ -16,11 +16,6 @@ app.use(bodyParser.urlencoded({
 }));
 /*---End express config---*/
 
-var express_validator = require('express-validator');
-app.use(express_validator({
-	})
-);
-
 process.on('uncaughtException', function (err) {
 	console.error('Caught exception: ' + err.stack);
 });
