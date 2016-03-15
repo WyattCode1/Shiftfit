@@ -10,15 +10,20 @@ function _get (req, res, domain) {
     } else {
         console.error(domain + '.js is missing.');
     }
-    object.get_all(function (shifts){
-        _.merge(req.merge, {'shifts' : shifts});
+    object.get_all(function (oDoms){
+        var dom = domain + 's';
+        var objs = {};
+        objs[dom] = oDoms;
+        _.merge(req.merge, objs);
         if (req.params.domainId) {
-            object.get(req.params.domainId, function (shift) {
-                _.merge(req.merge , {'shift': shift});
+            object.get(req.params.domainId, function (oDom) {
+                var obj = {};
+                obj[domain] = oDom;
+                _.merge(req.merge , obj);
                 return res.sendPage(domain);
             })
         } else {
-            console.info('Getting shifts');
+            console.info('Getting ' + domain);
                 return res.sendPage(domain);
         }
     });
@@ -28,11 +33,11 @@ function _get (req, res, domain) {
 function _post (req, res, domain) {
     var object = require('./' + domain + '.js')();
     console.info(required);
-    required.forEach(function (rName) {
+    console.info(required[domain]);
+    required[domain+""].forEach(function (rName) {
         console.info('Adding requried for field ' + rName);
         req.assert(rName, rName + ' is required').notEmpty();
     })
-
 
     var errors = req.validationErrors();
 

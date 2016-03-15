@@ -42,6 +42,10 @@ function _get_all(callback) {
 
 }
 
+function _custom_validators(req) {
+    req.assert()
+}
+
 module.exports = function() {
     return {
         get     : _get,
