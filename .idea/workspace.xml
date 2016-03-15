@@ -34,7 +34,7 @@
       <file leaf-file-name="shift.dot" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/shift.dot">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-27.083334">
+            <state vertical-scroll-proportion="-33.041668">
               <caret line="76" column="9" selection-start-line="76" selection-start-column="9" selection-end-line="76" selection-end-column="9" />
               <folding>
                 <element signature="n#style#0;n#form#0;n#section#0;n#!!top" expanded="true" />
@@ -43,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.dot" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.dot" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/main.dot">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="23" column="45" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.3027523">
+              <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -83,11 +83,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shift.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="shift.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/cruds/shift.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.36731106">
-              <caret line="26" column="105" selection-start-line="26" selection-start-column="105" selection-end-line="26" selection-end-column="105" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="26" column="105" selection-start-line="26" selection-start-column="86" selection-end-line="26" selection-end-column="105" />
               <folding />
             </state>
           </provider>
@@ -96,8 +96,8 @@
       <file leaf-file-name="crud_generator.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/cruds/crud_generator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="50" column="31" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="31" />
+            <state vertical-scroll-proportion="-11.185185">
+              <caret line="66" column="42" selection-start-line="66" selection-start-column="34" selection-end-line="66" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -116,7 +116,7 @@
       <file leaf-file-name="login.dot" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/login.dot">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.3333335">
+            <state vertical-scroll-proportion="-15.541667">
               <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="47" selection-end-column="11" />
               <folding />
             </state>
@@ -157,13 +157,13 @@
         <option value="$PROJECT_DIR$/domain/User.js" />
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/routes/dashboard/dashboard.js" />
-        <option value="$PROJECT_DIR$/views/main.dot" />
         <option value="$PROJECT_DIR$/locales/en.json" />
         <option value="$PROJECT_DIR$/locales/es.json" />
         <option value="$PROJECT_DIR$/routes/routes.js" />
         <option value="$PROJECT_DIR$/views/shift.dot" />
-        <option value="$PROJECT_DIR$/routes/cruds/crud_generator.js" />
         <option value="$PROJECT_DIR$/routes/cruds/shift.js" />
+        <option value="$PROJECT_DIR$/routes/cruds/crud_generator.js" />
+        <option value="$PROJECT_DIR$/views/main.dot" />
       </list>
     </option>
   </component>
@@ -823,14 +823,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/main.dot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="45" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/locales/en.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -857,7 +849,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/login.dot">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.3333335">
+        <state vertical-scroll-proportion="-15.541667">
           <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="47" selection-end-column="11" />
           <folding />
         </state>
@@ -873,7 +865,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/shift.dot">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-27.083334">
+        <state vertical-scroll-proportion="-33.041668">
           <caret line="76" column="9" selection-start-line="76" selection-start-column="9" selection-end-line="76" selection-end-column="9" />
           <folding>
             <element signature="n#style#0;n#form#0;n#section#0;n#!!top" expanded="true" />
@@ -881,18 +873,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/cruds/crud_generator.js">
+    <entry file="file://$PROJECT_DIR$/routes/cruds/shift.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="31" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="31" />
+          <caret line="26" column="105" selection-start-line="26" selection-start-column="86" selection-end-line="26" selection-end-column="105" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/cruds/shift.js">
+    <entry file="file://$PROJECT_DIR$/routes/cruds/crud_generator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36731106">
-          <caret line="26" column="105" selection-start-line="26" selection-start-column="105" selection-end-line="26" selection-end-column="105" />
+        <state vertical-scroll-proportion="-11.185185">
+          <caret line="66" column="42" selection-start-line="66" selection-start-column="34" selection-end-line="66" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/main.dot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3027523">
+          <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
           <folding />
         </state>
       </provider>
