@@ -1,8 +1,10 @@
 {
-  "change_shift" : "Modificar Turno",
-  "new_shift" : "Crear Turno",
-  "home_title" : "Shiftfit",
-  "shift_title" : "TURNO!!!"
-
-
+	"change_shift": "Modificar Turno",
+	"new_shift": "Crear Turno",
+	"home_title": "Shiftfit",
+	"shift_title": "TURNO!!!",
+	"save": "Salvar",
+	"cancel": "Cancelar",
+	"modify": "Modificar",
+	"create": "Crear"
 }

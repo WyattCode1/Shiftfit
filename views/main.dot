@@ -17,11 +17,11 @@
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script type="text/javascript" src="https://code.jquery.com/ui/1.8.20/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/assets/impromptu/jquery-impromptu.min.js"></script>
-		<script type="text/javascript" src="assets/js/jquery.dropotron.min.js"></script>
-		<script type="text/javascript" src="assets/js/jquery.scrollgress.min.js"></script>
-		<script type="text/javascript" src="assets/js/skel.min.js"></script>
-		<script type="text/javascript" src="assets/js/util.js"></script>
-		<script type="text/javascript" src="assets/js/main.js"></script>
+		<script type="text/javascript" src="/assets/js/jquery.dropotron.min.js"></script>
+		<script type="text/javascript" src="/assets/js/jquery.scrollgress.min.js"></script>
+		<script type="text/javascript" src="/assets/js/skel.min.js"></script>
+		<script type="text/javascript" src="/assets/js/util.js"></script>
+		<script type="text/javascript" src="/assets/js/main.js"></script>
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

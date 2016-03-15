@@ -2,5 +2,10 @@
   "change_shift" : "Modify Shift",
   "new_shift" : "New Shift",
   "home_title" : "Alpha",
-  "shift_title" : "SHIFT!!!"
+  "shift_title" : "SHIFT!!!",
+  "save" : "Save",
+  "cancel" : "Cancel",
+  "modify" : "Modify",
+  "create" : "Create"
+
 }

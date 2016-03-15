@@ -14,6 +14,7 @@ function _get(objectId, callback) {
 }
 
 function _save(req, callback) {
+    console.info("Inserting New shift");
     global.connection.query('INSERT INTO shift (id, name) VALUES (nextval(\'shift_sequence\'), $1) RETURNING id', [req.body.name], "Inserting new shift", function (res, err){
         if (err) {
             return callback();
@@ -23,7 +24,7 @@ function _save(req, callback) {
 }
 
 function _update(req, callback) {
-    global.connection.query('UPDATE shift set name = $2 WHERE id = $1 returning id', [req.params.objectId, req.body.name], "Updating shift", function (res, err){
+    global.connection.query('UPDATE shift set name = $2 WHERE id = $1 returning id', [req.params.domainId, req.body.name], "Updating shift", function (res, err){
         if (err) {
             return callback();
         }
@@ -31,10 +32,21 @@ function _update(req, callback) {
     });
 }
 
+function _get_all(callback) {
+    global.connection.query('SELECT * from shift', null, "Getting all shift", function (res, err){
+        if (err) {
+            return callback();
+        }
+        return callback(res);
+    });
+
+}
+
 module.exports = function() {
     return {
         get     : _get,
         save    : _save,
-        update  : _update
+        update  : _update,
+        get_all : _get_all
     };
 };

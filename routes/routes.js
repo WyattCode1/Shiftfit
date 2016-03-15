@@ -84,7 +84,7 @@ function loadApp() {
 
 	require('./login/login.js')().register(app, config);
 
-	require('./cruds/crud_generator.js')().register(app, ['shift']);
+	require('./cruds/crud_generator.js')().register(app, ['shift'], ['name']);
 
 }
 
