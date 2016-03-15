@@ -3115,7 +3115,7 @@ body.landing #page-wrapper {
 }
 
 body.landing #main {
-	margin-top: -14em;
+	margin-top: 3.25em;
 }
 
 /* Footer */
@@ -3768,7 +3768,8 @@ body.landing #main {
   	margin-top: 0px;
   	z-index: 10000;
   	width: 100%;
-  	position: relative;
+  	position: absolute;
+  	top: 3.25em;
 }
 
 .notification-success {
@@ -3864,3 +3865,4 @@ span.btn-bg:hover, span.btn-conv-bg:hover {
 .required {
 	border: 2px solid red !important;
 }
+
