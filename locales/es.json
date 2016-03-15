@@ -1,10 +1,13 @@
 {
-	"change_shift": "Modificar Turno",
-	"new_shift": "Crear Turno",
-	"home_title": "Shiftfit",
-	"shift_title": "TURNO!!!",
-	"save": "Salvar",
-	"cancel": "Cancelar",
-	"modify": "Modificar",
-	"create": "Crear"
+	"change"			: "Modificar",
+	"new"				: "Crear",
+	"box_title"			: "BOX!!!",
+	"home_title"		: "Shiftfit",
+	"shift_title"		: "TURNO!!!",
+	"save"				: "Salvar",
+	"cancel"			: "Cancelar",
+	"modify"			: "Modificar",
+	"create"			: "Crear",
+	"delete"			: "Borrar",
+	"accounting_title"	: "PAGOS!!!!"
 }

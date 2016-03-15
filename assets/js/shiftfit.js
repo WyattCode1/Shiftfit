@@ -4,6 +4,21 @@ function load(page) {
     });
 }
 
+function deleteItem(page, id) {
+	$.ajax({
+		url: '/' + page + '/' + id,
+		type: 'DELETE',
+		success: function (data) {
+        	load(page);
+    	},
+        error: function (data) {
+            clean_error_messages();
+            var responseText = JSON.parse(data.responseText);
+            show_error_messages(responseText);
+        }
+    });
+}
+
 function modifyItem(page, id) {
     $.get('/' + page + '/' + id, function (data, res){
         $('#crudHtml').html(data);
@@ -11,7 +26,7 @@ function modifyItem(page, id) {
 }
 
 function submit(page, id) {
-    clean_error_messages(['name']);
+    clean_error_messages();
     if (id) {
         var url = '/' + page + '/' + id;
     } else {
@@ -20,12 +35,12 @@ function submit(page, id) {
     $.ajax({
         type: 'POST',
         url: url,
-        data: $('#shiftForm').serialize(),
+        data: $('#crudForm').serialize(),
         success: function (data, data2) {
             load(page);
         },
         error: function (data) {
-            clean_error_messages(['name']);
+            clean_error_messages();
             var responseText = JSON.parse(data.responseText);
             show_error_messages(responseText);
         }

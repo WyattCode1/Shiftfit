@@ -48,15 +48,15 @@
     <body class="landing">
 	    <div id="intercom-success-div" class="m-notification notification-success" style="display:none;">
 	        <h3>
-	            <label id="intercom-success-label" class="intercom-success-message"></label>
+	            <label id="intercom-success-label" class="intercom-success-message"> </label>
 	        </h3>
-	        <a id="intercom-success-close-anchor" class="notification-close" onclick="$('#intercom-success-div').hide()"></a>
+	        <a id="intercom-success-close-anchor" class="notification-close" onclick="$('#intercom-success-div').hide()"> </a>
 	    </div>
 	    <div id="general-error-div" class="m-notification notification-error" style="display:none;">
 	        <h3>
-	            <label id="general-error-label" class="general-error-message"></label>
+	            <label id="general-error-label" class="general-error-message"> </label>
 	        </h3>
-	        <a id="general-error-close-anchor" class="notification-close" onclick="$('#general-error-div').hide()"></a>
+	        <a id="general-error-close-anchor" class="notification-close" onclick="$('#general-error-div').hide()"> </a>
 	    </div>
         <div id="page-wrapper">
             {{=it.body}}
@@ -81,9 +81,11 @@
             $('html, body').animate({scrollTop: 0}, 'fast');
         }
         function clean_error_messages(fields) {
-            $.each(fields, function (index, field) {
-                $('#'+field).removeClass('required');
-            });
+        	if (fields) {
+	            $.each(fields, function (index, field) {
+	                $('#'+field).removeClass('required');
+	            });
+        	}
             $('#general-error-div').hide();
         }
         $.ajaxSetup({complete: onRequestCompleted});

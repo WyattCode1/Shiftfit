@@ -38,8 +38,7 @@ CREATE SEQUENCE rol_sequence START WITH 1;
 
 INSERT INTO rol (id, weight, name, home) VALUES (nextval('rol_sequence'), 1, 'user', '/home');
 INSERT INTO rol (id, weight, name, home) VALUES (nextval('rol_sequence'), 10, 'admin', '/home');
-INSERT INTO rol (id, weight, name, home) VALUES (nextval('rol_sequence'), 100, 'moderator', '/home');
-
+INSERT INTO rol (id, weight, name, home) VALUES (nextval('rol_sequence'), 100, 'moderator', '/admin');
 
 DROP SEQUENCE IF EXISTS shift_sequence;
 CREATE SEQUENCE shift_sequence START WITH 1;
@@ -50,3 +49,21 @@ CREATE TABLE shift (
 );
 
 INSERT INTO shift (id, name) VALUES (nextval('shift_sequence'), 'Crossfit');
+
+DROP SEQUENCE IF EXISTS box_sequence;
+CREATE SEQUENCE box_sequence START WITH 1;
+DROP TABLE IF EXISTS box;
+CREATE TABLE box (
+	id	integer PRIMARY KEY,
+	name varchar(100) NOT NULL
+);
+
+INSERT INTO box (id, name) VALUES (nextval('box_sequence'), 'Aquila');
+
+DROP SEQUENCE IF EXISTS accounting_sequence;
+CREATE SEQUENCE accounting_sequence START WITH 1;
+DROP TABLE IF EXISTS accounting;
+CREATE TABLE accounting (
+	id	integer PRIMARY KEY,
+	name varchar(100) NOT NULL
+);

@@ -1,5 +1,5 @@
 <section id="cta">
-    <h2>{{=it.i18n('shift_title')}}</h2>
+    <h2>{{=it.i18n('box_title')}}</h2>
 
     <form id="crudForm">
         <div>
@@ -8,15 +8,15 @@
                     <input type="text" name="name" id="name" placeholder="Name" />
                 </div>
                 <div class="8u 12u(mobilep)">
-                    <a id="save" class="button" onclick="submit('shift'{{?it.shift}}, '{{=it.shift.id}}'{{?}})">{{=it.i18n('create')}}</a>
-                    {{?it.shift}}<a href="#a" class="button" onclick="load('shift')"> {{=it.i18n('cancel')}} </a>{{?}}
+                    <a id="save" class="button" onclick="submit('box'{{?it.box}}, '{{=it.box.id}}'{{?}})"> {{=it.i18n('create')}} </a>
+                    {{?it.box}} <a href="#a" class="button" onclick="load('box')"> {{=it.i18n('cancel')}} </a> {{?}}
                 </div>
             </div>
         </div>
     </form>
     <br />
 
-    {{?it.shifts}}
+    {{?it.boxs}}
 	    <section class="box">
 	        <div class="table-wrapper">
 	            <table>
@@ -27,11 +27,11 @@
 	                    </tr>
 	                </thead>
 	                <tbody>
-		                {{~it.shifts :sf :index}}
+		                {{~it.boxs :box :index}}
 		                    <tr>
-		                        <td>{{=sf.name}}</td>
-		                        <td><a href="#a" onclick="modifyItem('shift', '{{=sf.id}}')"> {{=it.i18n('modify')}} </a></td>
-    	                        <td><a href="#a" onclick="deleteItem('shift', '{{=sf.id}}')"> {{=it.i18n('delete')}} </a></td>
+		                        <td>{{=box.name}}</td>
+		                        <td><a href="#a" onclick="modifyItem('box', '{{=box.id}}')"> {{=it.i18n('modify')}} </a></td>
+    	                        <td><a href="#a" onclick="deleteItem('box', '{{=box.id}}')"> {{=it.i18n('delete')}} </a></td>
 		                    </tr>
 		                {{~}}
 	                </tbody>
@@ -42,8 +42,8 @@
 </section>
 
 <script>
-    {{?it.shift}}
-        $('#name').val("{{=it.shift.name}}");
+    {{?it.box}}
+        $('#name').val("{{=it.box.name}}");
         $('#save').html("{{=it.i18n('modify')}}");
     {{?}}
 </script>
