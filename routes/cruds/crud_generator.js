@@ -20,11 +20,11 @@ function _get (req, res, domain) {
                 var obj = {};
                 obj[domain] = oDom;
                 _.merge(req.merge , obj);
-                return res.sendPage(domain);
+                return res.sendPartialPage(domain);
             })
         } else {
             console.info('Getting ' + domain);
-                return res.sendPage(domain);
+                return res.sendPartialPage(domain);
         }
     });
 

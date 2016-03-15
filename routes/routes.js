@@ -55,6 +55,20 @@ function loadApp() {
 		next();
 	});
 
+	app.use(function partialRender(req, res, next) {
+		res.sendPartialPage = function (template) {
+			try {
+				var body = dot[template](_.merge(req.merge, config, {i18n:res.__}));
+			} catch (e) {
+				console.error('Could not find page', e);
+				throw e;
+			}
+			res.status(200).send(body);
+		};
+		next();
+
+	});
+
 	app.admin_get = function (path, callback) {
 		app.get(path, function (req, res) {
 			return is_admin(req, res, callback);
