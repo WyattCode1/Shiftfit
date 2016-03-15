@@ -10,7 +10,7 @@ function _get(req, res) {
 module.exports = function () {
     return {
         register : function (app) {
-            app.get('/admin', _get);
+            app.admin_get('/admin', _get);
         }
     };
 };

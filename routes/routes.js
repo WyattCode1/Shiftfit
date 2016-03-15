@@ -19,7 +19,6 @@ function loadApp() {
 			var token = req.cookies.ShiftfitLogin;
 			global.connection.query('select_user_by_session', [token], 'Getting logged user', function(user) {
 				if (user[0]) {
-					console.info('Logged = ' + user[0].user_name);
 					req.auth_user = user[0];
 					req.merge = _.merge(req.merge, {'user': req.auth_user}, {'is_admin': req.auth_user.weight >= 10});
 				} else {
@@ -66,7 +65,6 @@ function loadApp() {
 			res.status(200).send(body);
 		};
 		next();
-
 	});
 
 	app.admin_get = function (path, callback) {
@@ -82,7 +80,7 @@ function loadApp() {
 	};
 
 	function is_admin(req, res, callback) {
-		if (req.auth_user && req.auth_user.is_admin) {
+		if (req.merge && req.merge.is_admin) {
 			return callback(req, res);
 		} else {
 			console.info('Have not permission to access to this page');
