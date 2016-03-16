@@ -130,6 +130,28 @@ function _logout(req, res) {
 	res.redirect(302, '/home');
 }
 
+function login_with_face(req, res) {
+	console.info(req.body);
+	if (req.body.email) {
+		userClass.getUserByEmail(req.body.email, function (user) {
+			if (user) {
+				if (user.face_id == req.body.id) {
+					return create_session_and_redirect(req, res, user);
+				}
+			} else {
+				userClass.registerNewUser(req.body.email, global.guid(), req.body.first_name, req.body.last_name,req.body.id, function (userNew) {
+					console.info("Register user");
+					console.info("User = " + JSON.stringify(userNew));
+					return create_session_and_redirect(req, res, userNew);
+				});
+			}
+		});
+	} else {
+		return res.status(500).send();
+	}
+
+}
+
 module.exports = function () {
 	return {
 		register : function (app) {
@@ -137,6 +159,7 @@ module.exports = function () {
 			app.get('/logout', _logout);
 			app.get('/email_exists/:email', _check_email);
 			app.post('/login', _post);
+			app.post('/login_with_face', login_with_face);
 		}
 	};
 };

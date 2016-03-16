@@ -46,6 +46,23 @@
 
     </head><!--/head-->
     <body class="landing">
+        <script>
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : '551763205001985',
+                    xfbml      : true,
+                    version    : 'v2.5'
+                });
+            };
+
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/es_LA/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
 	    <div id="intercom-success-div" class="m-notification notification-success" style="display:none;">
 	        <h3>
 	            <label id="intercom-success-label" class="intercom-success-message"> </label>

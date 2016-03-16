@@ -13,8 +13,14 @@ function _getUserByEmail(email, callback) {
 	});
 }
 
-function _registerNewUser(email, psw, first_name, last_name, callback) {
-	global.connection.query('insert_new_member', [email, psw, first_name, last_name], 'Create new user', function(user, err) {
+function _registerNewUser(email, psw, first_name, last_name, face_id, callback) {
+	var query = 'insert_new_member';
+	var params = [email, psw, first_name, last_name];
+	if (face_id) {
+		query = 'insert_new_member_face';
+		params.push(face_id);
+	}
+	global.connection.query(query, params, 'Create '+ query, function(user, err) {
 		console.info("Create user");
 		if (err) {
 			console.error(err.message);

@@ -24,8 +24,16 @@
 				<div class="8u 12u(mobilep)">
 					<input type="button" id="submit" value="Login" class="fit" onclick="login()"/>
 				</div>
+
+				<fb:login-button class="8u 12u(mobilep)" scope="public_profile,email" data-size="xlarge" onlogin="checkLoginState();">
+				</fb:login-button>
+			</div>
+
+
+			<div id="status">
 			</div>
 		</div>
+
 	</form>
 </section>
 {{#def.footer}}
@@ -70,5 +78,70 @@
 				}
 			});
 		}
+	}
+
+
+</script>
+<script>
+	function statusChangeCallback(response) {
+		console.log('statusChangeCallback');
+		console.log(response);
+		if (response.status === 'connected') {
+			getMe(function (user) {
+				console.log(user);
+				$.ajax({
+					url: '/login_with_face',
+					type: 'POST',
+					contentType:'application/json',
+					data: JSON.stringify(user),
+					dataType:'json',
+					success: function(data, data2){
+						console.log("LOGIN SUCCESSS");
+						console.log(data);
+						window.location.href = data;
+					}
+				});
+			});
+		} else if (response.status === 'not_authorized') {
+		} else {
+		}
+	}
+
+	function checkLoginState() {
+		FB.getLoginStatus(function(response) {
+			statusChangeCallback(response);
+		});
+	}
+
+	window.fbAsyncInit = function() {
+		FB.init({
+			appId      : '551763205001985',
+			cookie     : true,
+			xfbml      : true,
+			version    : 'v2.5'
+		});
+
+		FB.getLoginStatus(function(response) {
+			statusChangeCallback(response);
+		});
+
+	};
+
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/es_LA/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+
+	function getMe(callback) {
+		console.log('Welcome!  Fetching your information.... ');
+
+
+		FB.api('/me', 'get', { fields: 'id,first_name,last_name,gender,email' }, function(response) {
+			console.log('Successful login for: ' + response.name);
+			return callback(response);
+		});
 	}
 </script>

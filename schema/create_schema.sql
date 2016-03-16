@@ -9,6 +9,7 @@ CREATE TABLE shiftfit_user (
 	first_name  varchar(100),
 	last_name   varchar(100),
 	password    varchar(255),
+	face_id		varchar(255),
 	rol_id	    integer NOT NULL DEFAULT 1
 );
 
