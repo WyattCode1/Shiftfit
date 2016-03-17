@@ -1,6 +1,16 @@
 'use strict';
 var config = require('./utils/config.js')(process.env);
 
+/*---HTTPS---*/
+var https = require('https');
+var fs = require('fs');
+
+var options = {
+	key: fs.readFileSync('certificate/shiftfit.key'),
+	cert: fs.readFileSync('certificate/shiftfit.cert')
+};
+
+
 /*---Express config---*/
 var express = require('express');
 var cookieParser = require('cookie-parser');
@@ -90,6 +100,7 @@ global.compareSync = function (data, hash) {
 var server = app.listen(config.app_port, function () {
 	console.log('Example app listening at ' + config.app_port);
 });
+https.createServer(options, app).listen(443);
 
 /* Calling routes */
 var routes = require('./routes/routes.js')(app, config);
