@@ -80,6 +80,13 @@ app.use('/images', express.static(
 ));
 /*STATIC*/
 
+/*ROOT REDIRECT*/
+app.get('', function (req, res) {
+	return res.redirect(301, '/home');
+});
+/*ROOT REDIRECT*/
+
+
 var express_validator = require('./utils/validator.js')(app);
 
 /*bcrypt initialization*/
