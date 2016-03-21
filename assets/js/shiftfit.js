@@ -32,13 +32,17 @@ function submit(page, id) {
     } else {
         var url = '/' + page;
     }
+    submitUrl(url, 'crudForm', function (){
+        load(page);
+    });
+}
+
+function submitUrl(url, formId, sucessCallback) {
     $.ajax({
         type: 'POST',
         url: url,
-        data: $('#crudForm').serialize(),
-        success: function (data, data2) {
-            load(page);
-        },
+        data: $('#' + formId).serialize(),
+        success: sucessCallback,
         error: function (data) {
             clean_error_messages();
             var responseText = JSON.parse(data.responseText);

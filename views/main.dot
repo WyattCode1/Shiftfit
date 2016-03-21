@@ -14,8 +14,8 @@
         <!-- Stylesheets -->
 
         <!-- jQuery -->
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        <script type="text/javascript" src="https://code.jquery.com/ui/1.8.20/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/assets/js/jquery-ui.min.js"></script>
         <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
