@@ -5,7 +5,7 @@ var _ = require('lodash');
 
 function lookup(config, str) {
     var str_to_url = {
-        'zmail': config.secure_app_url + '/zmail'
+        'delete_box_user': config.secure_app_url + '/delete_box_user'
     };
     return str_to_url[str];
 }

@@ -96,7 +96,9 @@ function loadApp() {
 
 	require('./login/login.js')().register(app, config);
 
-	require('./cruds/crud_generator.js')().register(app, ['shift', 'box', 'accounting'], {'shift': ['name'], 'box': ['name'], 'accounting': ['name'] });
+	require('./cruds/crud_generator.js')().register(app, ['shift', 'box', 'accounting'], {'shift': ['name'], 'box': ['name', 'address', 'phone'], 'accounting': ['description', 'amount'] });
+
+    require('./box_users/box_users.js')().register(app);
 
 }
 

@@ -98,10 +98,10 @@ global.config = config;
 global.connection = require('./utils/pg_connector.js')(config);
 global.hashSync = function hashSync(data) {
 	return bcrypt.hashSync(data, salt);
-}
+};
 global.compareSync = function (data, hash) {
 	return bcrypt.compareSync(data, hash);
-}
+};
 
 /*---Server startup---*/
 var server = app.listen(config.app_port, function () {

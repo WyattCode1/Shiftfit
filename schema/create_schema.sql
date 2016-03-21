@@ -56,15 +56,26 @@ CREATE SEQUENCE box_sequence START WITH 1;
 DROP TABLE IF EXISTS box;
 CREATE TABLE box (
 	id	integer PRIMARY KEY,
-	name varchar(100) NOT NULL
+	name varchar(100) NOT NULL,
+	address varchar(100) NOT NULL,
+	phone varchar(30) NOT NULL,
+	payment_method varchar(30) NOT NULL
 );
-
-INSERT INTO box (id, name) VALUES (nextval('box_sequence'), 'Aquila');
 
 DROP SEQUENCE IF EXISTS accounting_sequence;
 CREATE SEQUENCE accounting_sequence START WITH 1;
 DROP TABLE IF EXISTS accounting;
 CREATE TABLE accounting (
 	id	integer PRIMARY KEY,
-	name varchar(100) NOT NULL
+	amount varchar(10) NOT NULL,
+	description varchar(100) NOT NULL,
+	box_id integer NOT NULL
+);
+
+DROP TABLE IF EXISTS user_box;
+CREATE TABLE user_box (
+	user_id	integer NOT NULL,
+	box_id integer NOT NULL,
+	is_admin boolean NOT NULL default false,
+    PRIMARY KEY(user_id, box_id)
 );

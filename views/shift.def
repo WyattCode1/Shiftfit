@@ -5,7 +5,7 @@
         <div>
             <div class="row uniform 50%">
                 <div class="8u 12u(mobilep)">
-                    <input type="text" name="name" id="name" placeholder="Name" />
+                    <input type="text" name="name" id="name" placeholder="{{=it.i18n('name')}}" />
                 </div>
                 <div class="8u 12u(mobilep)">
                     <a id="save" class="button" onclick="submit('shift'{{?it.shift}}, '{{=it.shift.id}}'{{?}})">{{=it.i18n('create')}}</a>
@@ -22,16 +22,18 @@
 	            <table>
 	                <thead>
 	                    <tr>
-	                        <td>Name</td>
-	                        <td>Action</td>
+	                        <td>{{=it.i18n('name')}}</td>
+	                        <td>{{=it.i18n('action')}}</td>
 	                    </tr>
 	                </thead>
 	                <tbody>
 		                {{~it.shifts :sf :index}}
 		                    <tr>
 		                        <td>{{=sf.name}}</td>
-		                        <td><a href="#a" onclick="modifyItem('shift', '{{=sf.id}}')"> {{=it.i18n('modify')}} </a></td>
-    	                        <td><a href="#a" onclick="deleteItem('shift', '{{=sf.id}}')"> {{=it.i18n('delete')}} </a></td>
+		                        <td>
+		                        	<a href="#" onclick="modifyItem('shift', '{{=sf.id}}')"> {{=it.i18n('modify')}} </a>
+    	                        	<a href="#" onclick="deleteItem('shift', '{{=sf.id}}')"> {{=it.i18n('delete')}} </a>
+    	                        </td>
 		                    </tr>
 		                {{~}}
 	                </tbody>

@@ -1,0 +1,77 @@
+<script>
+	function user_selected(email) {
+		addUser(email);
+	}
+	$(document).ready(function () {
+		var url = "http://juan.shiftfit.com/userautocomplete";
+		make_autocomplete('box_user', url, 'user', user_selected);
+	});
+</script>
+<section class="engagements-table-section">
+	<ul>
+		<li>
+			<span>
+				<a class="anchor-user-group" onclick="addUser()" style="top: 50px; position: relative; margin-right: 170px;">Add user</a>
+				<input type="text" autocomplete="off" class="sign-input" name="box_user" id="box_user" style="width: 375px !important;"/>
+			</span>
+		</li>
+	</ul>
+	<table>
+		<thead>
+			<tr>
+				<td class="results-cell" colspan="3">
+					<div>
+						<span>Results:</span>
+						<span id="users_count">{{=it.box.user_box_list.length}}</span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+            {{~it.box.user_box_list :user_box :index}}
+                <tr>
+                    <td>{{=user_box.email}}</td>
+                    <td>
+                    	<a href="#admin_user_section table" onclick="deleteUser('{{=user_box.id}}');"> {{=it.i18n('delete')}} </a>
+                    </td>
+                </tr>
+            {{~}}
+		</tbody>
+	</table>
+</section>
+<script>
+	function deleteUser(user_id) {
+		var box_id = "{{=it.box.box_info.id}}";
+		var url = "http://juan.shiftfit.com/delete_box_user/" + box_id + "/" + user_id;
+		makeGet(url, box_id);
+	}
+	function addUser(email) {
+		var box_id = "{{=it.box.box_info.id}}";
+		if (!email) {
+			email = $('#box_user').val();
+		}
+		if (email) {
+			var url = "http://juan.shiftfit.com/add_box_user/" + box_id + "/" + email;
+			makeGet(url, box_id);
+		}
+	}
+	function makeGet(url, box_id) {
+		$.ajax({
+			type : 'GET',
+			url : url,
+			success: function(data) {
+				modifyItem('box', box_id);
+			},
+			error: function(data) {
+	            clean_error_messages();
+	            var responseText = JSON.parse(data.responseText);
+	            show_error_messages(responseText);
+	            $('#box_user').val('');
+			}
+		});
+	}
+</script>

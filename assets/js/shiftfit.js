@@ -46,3 +46,29 @@ function submit(page, id) {
         }
     });
 }
+
+function make_autocomplete(fieldId, url, labelName, onselect) {
+	$("#" + fieldId).autocomplete({
+		source: function(request, response) {
+			$.get(url + '/' + request.term, function(data) {
+				var arrayLength = data.length;
+				var names = [];
+				for (var i = 0; i < arrayLength; i++) {
+					names.push(data[i][labelName]);
+				}
+				response(names);
+			});
+		},
+		select: function(event, ui) {
+			var user = ui.item.value;
+			return onselect(user, true);
+		},
+		minLength: 2
+	});
+	$("#" + fieldId).keypress(function (event) {
+		if ( event.which == 13 ) {
+			var user = $('#' + fieldId).val();
+			return onselect(user, true);
+		}
+	});
+}

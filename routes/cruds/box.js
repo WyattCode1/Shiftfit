@@ -2,20 +2,30 @@
 
 var _ = require('lodash');
 
-function _get(objectId, callback) {
-    console.info('Trying to get Box with id ' + objectId);
-    global.connection.query('SELECT * FROM box WHERE id = $1', [objectId], 'Getting box to edit', function (box, err) {
-        if (err) {
+function _get(object_id, callback) {
+    global.connection.query('SELECT * FROM box WHERE id = $1', [object_id], 'Getting box to edit: ' + object_id, function (box, err1) {
+        if (err1) {
             return callback();
-        }
-        console.log(box[0]);
-        return callback(box[0]);
+		} else {
+	    	global.connection.query('select_user_box_list', [box[0].id], "Getting all the admin users of the box", function (user_box, err2) {
+				if (err2) {
+					return callback();
+				}
+		        var merge = _.merge({'box_info': box[0]}, {'user_box_list': user_box});
+				return callback(merge);
+	        });
+		}
     });
 }
 
 function _save(req, callback) {
-    console.info("Inserting New box");
-    global.connection.query('INSERT INTO box (id, name) VALUES (nextval(\'box_sequence\'), $1) RETURNING id', [req.body.name], "Inserting new box", function (box, err) {
+	var name = req.body.name;
+	var address = req.body.address;
+	var phone = req.body.phone;
+	var payment_method = req.body.payment_method;
+
+	var insert_query = 'INSERT INTO box (id, name, address, phone, payment_method) VALUES (nextval(\'box_sequence\'), $1, $2, $3, $4) RETURNING id';
+    global.connection.query(insert_query, [name, address, phone, payment_method], "Inserting new box", function (box, err) {
         if (err) {
             return callback();
         }
@@ -24,8 +34,14 @@ function _save(req, callback) {
 }
 
 function _update(req, callback) {
-    console.info("Updating a box with id= " + req.params.domainId);
-    global.connection.query('UPDATE box set name = $2 WHERE id = $1 returning id', [req.params.domainId, req.body.name], "Updating box", function (box, err) {
+	var object_id = req.params.domainId;
+	var name = req.body.name;
+	var address = req.body.address;
+	var phone = req.body.phone;
+	var payment_method = req.body.payment_method;
+
+	var update_query = 'UPDATE box set name=$2, address=$3, phone=$4, payment_method=$5 WHERE id = $1 returning id';
+    global.connection.query(update_query, [object_id, name, address, phone, payment_method], "Updating box", function (box, err) {
         if (err) {
             return callback();
         }
@@ -34,20 +50,26 @@ function _update(req, callback) {
 }
 
 function _delete(req, callback) {
-    global.connection.query('DELETE FROM box WHERE id = $1 returning id', [req.params.domainId], "Deleting box", function (box, err) {
-        if (err) {
+	var box_id = req.params.domainId;
+	global.connection.query('UPDATE user_box SET is_admin=FALSE WHERE box_id = $1', [box_id], "Removing admin function of all the user in the box", function (box, err1) {
+        if (err1) {
             return callback();
         }
-        return callback(box[0].id);
+	    global.connection.query('DELETE FROM box WHERE id = $1 returning id', [box_id], "Deleting box", function (box, err2) {
+	        if (err2) {
+	            return callback();
+	        }
+	        return callback(box[0].id);
+	    });
     });
 }
 
 function _get_all(callback) {
-    global.connection.query('SELECT * from box', null, "Getting all box", function (box, err) {
-        if (err) {
-            return callback();
-        }
-        return callback(box);
+    global.connection.query('SELECT * FROM box', null, "Getting all the boxes", function (box, err) {
+		if (err) {
+			return callback();			
+		}
+		return callback(box);
     });
 }
 

@@ -1,0 +1,5 @@
+<select name="payment_method" id="payment_method">
+	<option value="cash" selected> {{=it.i18n('cash')}} </option>
+	<option value="credit_card"> {{=it.i18n('credit_card')}} </option>
+	<option value="paypal"> {{=it.i18n('paypal')}} </option>
+</select>

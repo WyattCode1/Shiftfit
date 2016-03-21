@@ -37,7 +37,7 @@ function _post (req, res, domain) {
 
     required[domain+""].forEach(function (rName) {
         console.info('Adding requried for field ' + rName);
-        req.assert(rName, rName + ' is required').notEmpty();
+        req.assert(rName, res.__(rName) + ' ' + res.__('is_required')).notEmpty();
     });
 
     var errors = req.validationErrors();

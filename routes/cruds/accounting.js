@@ -2,9 +2,8 @@
 
 var _ = require('lodash');
 
-function _get(objectId, callback) {
-    console.info('Trying to get Acconting with id ' + objectId);
-    global.connection.query('SELECT * FROM accounting WHERE id = $1', [objectId], 'Getting accounting to edit', function (accounting, err) {
+function _get(object_id, callback) {
+    global.connection.query('SELECT * FROM accounting WHERE id = $1', [object_id], 'Getting accounting to edit: ' + object_id, function (accounting, err) {
         if (err) {
             return callback();
         }
@@ -13,8 +12,12 @@ function _get(objectId, callback) {
 }
 
 function _save(req, callback) {
-    console.info("Inserting New accounting");
-    global.connection.query('INSERT INTO accounting (id, name) VALUES (nextval(\'accounting_sequence\'), $1) RETURNING id', [req.body.name], "Inserting new accounting", function (accounting, err) {
+	var amount = req.body.amount;
+	var box_id = req.body.box_id;
+	var description = req.body.description;
+
+	var insert_query = 'INSERT INTO accounting (id, description, amount, box_id) VALUES (nextval(\'accounting_sequence\'), $1, $2, $3) RETURNING id'
+    global.connection.query(insert_query, [description, amount, box_id], "Inserting new accounting", function (accounting, err) {
         if (err) {
             return callback();
         }
@@ -23,7 +26,13 @@ function _save(req, callback) {
 }
 
 function _update(req, callback) {
-    global.connection.query('UPDATE accounting set name = $2 WHERE id = $1 returning id', [req.params.domainId, req.body.name], "Updating accounting", function (accounting, err) {
+	var object_id = req.params.domainId;
+	var description = req.body.description;
+	var amount = req.body.amount;
+	var box_id = req.body.box_id;
+
+	var update_query = 'UPDATE accounting set description=$2, amount=$3, box_id=$4 WHERE id = $1 returning id';
+    global.connection.query(update_query, [object_id, description, amount, box_id], "Updating accounting", function (accounting, err) {
         if (err) {
             return callback();
         }
@@ -41,11 +50,18 @@ function _delete(req, callback) {
 }
 
 function _get_all(callback) {
-    global.connection.query('SELECT * from accounting', null, "Getting all accountings", function (accounting, err) {
-        if (err) {
+    global.connection.query('SELECT * from accounting', null, "Getting all accountings", function (accounting, err1) {
+        if (err1) {
             return callback();
+        } else {
+	    	global.connection.query('SELECT * from box', null, "Getting all boxes", function (box, err2) {
+		        if (err2) {
+		            return callback();
+		        }
+		        var merge = _.merge({'accounting_list': accounting}, {'box_list': box});
+		        return callback(merge);
+			});
         }
-        return callback(accounting);
     });
 }
 
