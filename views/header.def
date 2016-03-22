@@ -11,7 +11,7 @@
 						{{?it.is_admin}}
 							<li><a href="/admin">ADMIN</a></li>
 						{{?}}
-						<li><a href="/my_account">MY ACCOUNT</a></li>
+						<li><a href="/myaccount">MY ACCOUNT</a></li>
 						<li><a href="/logout">LOGOUT</a></li>
 					</ul>
 				</li>

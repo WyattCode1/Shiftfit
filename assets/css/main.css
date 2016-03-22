@@ -3870,3 +3870,27 @@ span.btn-bg:hover, span.btn-conv-bg:hover {
 	border: 2px solid red !important;
 }
 
+.imageBox {
+	overflow: hidden;
+	background-repeat: no-repeat;
+	cursor: move;
+}
+
+.imageBox .thumbBox {
+	width: 400px;
+	border: solid;
+	padding: 0 0 100%;
+	height: 0;
+	box-sizing: border-box;
+}
+
+.imageBox .spinner {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	text-align: center;
+	line-height: 400px;
+	background: rgba(0,0,0,0.7);
+}

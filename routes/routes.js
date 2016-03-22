@@ -79,6 +79,30 @@ function loadApp() {
 		});
 	};
 
+	app.login_get = function (path, callback) {
+		app.get(path, function (req, res) {
+			return is_logged(req, res, callback);
+		});
+	};
+
+
+	app.login_post = function (path, callback) {
+		app.post(path, function (req, res) {
+			return is_logged(req, res, callback);
+		});
+	};
+
+
+	function is_logged(req, res, callback) {
+		if (req.auth_user) {
+			return callback(req, res);
+		} else {
+			console.info('Have not permission to access to this page');
+			return res.redirect('/myaccount');
+		}
+	};
+
+	
 	function is_admin(req, res, callback) {
 		if (req.merge && req.merge.is_admin) {
 			return callback(req, res);
@@ -100,6 +124,7 @@ function loadApp() {
 
     require('./box_users/box_users.js')().register(app);
 
+	require('./myaccount/myaccount.js')().register(app);
 }
 
 module.exports = function (application, conf) {

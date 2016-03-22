@@ -2,6 +2,7 @@ DROP SEQUENCE IF EXISTS shiftfit_user_sequence;
 CREATE SEQUENCE shiftfit_user_sequence START WITH 1;
 
 DROP TABLE IF EXISTS shiftfit_user;
+
 CREATE TABLE shiftfit_user (
 	id          integer PRIMARY KEY,
 	email       varchar(100) NOT NULL,
@@ -10,13 +11,19 @@ CREATE TABLE shiftfit_user (
 	last_name   varchar(100),
 	password    varchar(255),
 	face_id		varchar(255),
+	city   	    varchar(100),
+	location    varchar(100),
+	state       varchar(100),
+	country     varchar(100),
+	phone       varchar(100),
+	birthdate   varchar(100),
 	rol_id	    integer NOT NULL DEFAULT 1
 );
 
-INSERT INTO shiftfit_user (id, email, user_name, first_name, password, last_name, rol_id) VALUES (nextval('shiftfit_user_sequence'), 'lanza@shiftfit.com', 'lanza', 'Luis', '$2a$10$lQezIBTrejG2XW/lZS3jUOs9YmCOLMEH7RULEkQNVmqTYWXbpil6u', 'Lanzafame', 2);
-INSERT INTO shiftfit_user (id, email, user_name, first_name, password, last_name, rol_id) VALUES (nextval('shiftfit_user_sequence'), 'rodri@shiftfit.com', 'rigo', 'Rodrigo', '$2a$10$lQezIBTrejG2XW/lZS3jUOs9YmCOLMEH7RULEkQNVmqTYWXbpil6u', 'Avila', 2);
-INSERT INTO shiftfit_user (id, email, user_name, first_name, password, last_name, rol_id) VALUES (nextval('shiftfit_user_sequence'), 'jmbarreirop@gmail.com', 'kEme', 'Juan', '$2a$10$lQezIBTrejG2XW/lZS3jUOHBCRQ7HN9uG7BJb2SJj4rpL84w5oXnS', 'Barreiro', 3);
-INSERT INTO shiftfit_user (id, email, user_name, first_name, password, last_name, rol_id) VALUES (nextval('shiftfit_user_sequence'), 'walter@aquila.com', 'walteraq', 'Walter', '$2a$10$lQezIBTrejG2XW/lZS3jUOs9YmCOLMEH7RULEkQNVmqTYWXbpil6u', 'Aquila', 1);
+INSERT INTO shiftfit_user (id, email, user_name, first_name, password, last_name, rol_id, city, location, state, country, phone, birthdate) VALUES (nextval('shiftfit_user_sequence'), 'lanza@shiftfit.com', 'lanza', 'Luis', '$2a$10$lQezIBTrejG2XW/lZS3jUOs9YmCOLMEH7RULEkQNVmqTYWXbpil6u', 'Lanzafame', 2, 'Caba' , 'Directorio 934', 'Buenos aires', '5555555', '25/05/1986');
+INSERT INTO shiftfit_user (id, email, user_name, first_name, password, last_name, rol_id, city, location, state, country, phone, birthdate) VALUES (nextval('shiftfit_user_sequence'), 'rodri@shiftfit.com', 'rigo', 'Rodrigo', '$2a$10$lQezIBTrejG2XW/lZS3jUOs9YmCOLMEH7RULEkQNVmqTYWXbpil6u', 'Avila', 2,'Caba' , 'Directorio 934', 'Buenos aires', '5555555', '25/05/1986');
+INSERT INTO shiftfit_user (id, email, user_name, first_name, password, last_name, rol_id, city, location, state, country, phone, birthdate) VALUES (nextval('shiftfit_user_sequence'), 'jmbarreirop@gmail.com', 'kEme', 'Juan', '$2a$10$lQezIBTrejG2XW/lZS3jUOHBCRQ7HN9uG7BJb2SJj4rpL84w5oXnS', 'Barreiro', 3, 'Caba' , 'Directorio 934', 'Buenos aires', '5555555', '25/05/1986');
+INSERT INTO shiftfit_user (id, email, user_name, first_name, password, last_name, rol_id, city, location, state, country, phone, birthdate) VALUES (nextval('shiftfit_user_sequence'), 'walter@aquila.com', 'walteraq', 'Walter', '$2a$10$lQezIBTrejG2XW/lZS3jUOs9YmCOLMEH7RULEkQNVmqTYWXbpil6u', 'Aquila', 1, 'Caba' , 'Directorio 934', 'Buenos aires', '5555555', '25/05/1986');
 
 DROP TABLE IF EXISTS shiftfit_user_session;
 CREATE TABLE shiftfit_user_session (
@@ -78,4 +85,17 @@ CREATE TABLE user_box (
 	box_id integer NOT NULL,
 	is_admin boolean NOT NULL default false,
     PRIMARY KEY(user_id, box_id)
+	name varchar(100) NOT NULL
 );
+
+DROP TABLE IF EXISTS shift_picture;
+CREATE TABLE shift_picture (
+	id		integer PRIMARY KEY,
+	picture_name	varchar(100),
+	picture_type	varchar(100),
+	picture_file	bytea,
+	last_update timestamp with time zone
+);
+
+DROP SEQUENCE IF EXISTS shift_picture_sequence;
+CREATE SEQUENCE shift_picture_sequence START WITH 1;
