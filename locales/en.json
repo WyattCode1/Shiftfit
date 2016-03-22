@@ -31,6 +31,9 @@
 
 	"internal_server_error"	: "Internal server error",
 	"email_does_not_exists"	: "Email is not registered in the database",
+	"only_numbers_req"		: "Only numbers are required",
+	"only_phone_req"		: "Only phone type required",
+	"only_amount_type_req"	: "Only amount type required",
 
 	"is_required"			: "is required",
 	"is_too_long"			: "is too long",

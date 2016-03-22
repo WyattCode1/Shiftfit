@@ -21,7 +21,7 @@
     <br />
 
     {{?it.exercises}}
-	    <section class="box">
+	    <section id="exerciseSection" class="box">
 	        <div class="table-wrapper">
 	            <table>
 	                <thead>
@@ -34,8 +34,8 @@
 		                    <tr>
 		                        <td>{{=exercise.name}}</td>
 		                        <td>
-		                        	<a href="#" onclick="modifyItem('exercise', '{{=exercise.id}}')"> {{=it.i18n('modify')}} </a>
-    	                        	<a href="#" onclick="deleteItem('exercise', '{{=exercise.id}}')"> {{=it.i18n('delete')}} </a>
+		                        	<a style="cursor: pointer;" onclick="modifyItem('exercise', '{{=exercise.id}}')"> {{=it.i18n('modify')}} </a>
+    	                        	<a style="cursor: pointer;" onclick="deleteItem('exercise', '{{=exercise.id}}')"> {{=it.i18n('delete')}} </a>
     	                        </td>
 		                    </tr>
 		                {{~}}

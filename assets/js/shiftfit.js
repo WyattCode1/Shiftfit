@@ -1,3 +1,41 @@
+function show_error_messages(errors) {
+    var msg = '';
+    var count = 0;
+    console.info('ERRORS: ' + JSON.stringify(errors));
+    $.each(errors, function (index, error) {
+        $("#"+error.param).addClass("required");
+        count = count+1;
+        msg = msg + error.msg;
+        if ((count < errors.length) && (error.msg.length > 0)) {
+            msg = msg + ' - ';
+        } else {
+            $("#"+error.type+"-error-label").html(msg);
+            $("#"+error.type+"-error-div").show();
+        }
+    });
+    $('html, body').animate({scrollTop: 0}, 'fast');
+}
+
+function clean_error_messages(fields) {
+	if (fields) {
+        $.each(fields, function (index, field) {
+            $('#'+field).removeClass('required');
+        });
+	}
+    $('#general-error-div').hide();
+    $("input, textarea").each(function(){
+		$(this).val(jQuery.trim($(this).val()));
+	});
+}
+
+$.ajaxSetup({complete: onRequestCompleted});
+
+function onRequestCompleted(xhr,textStatus) {
+    if (xhr.status == 302) {
+        location.href = xhr.getResponseHeader("Location");
+    }
+}
+
 function load(page) {
     $.get('/' + page, function (data, res){
         $('#crudHtml').html(data);

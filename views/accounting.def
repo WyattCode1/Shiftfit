@@ -50,8 +50,8 @@
 									{{?}}
 								{{~}}
 		                        <td>
-		                        	<a href="#" onclick="modifyItem('accounting', '{{=accounting.id}}')"> {{=it.i18n('modify')}} </a>
-    	                        	<a href="#" onclick="deleteItem('accounting', '{{=accounting.id}}')"> {{=it.i18n('delete')}} </a>
+		                        	<a style="cursor: pointer;" onclick="modifyItem('accounting', '{{=accounting.id}}')"> {{=it.i18n('modify')}} </a>
+    	                        	<a style="cursor: pointer;" onclick="deleteItem('accounting', '{{=accounting.id}}')"> {{=it.i18n('delete')}} </a>
     	                        </td>
 		                    </tr>
 		                {{~}}

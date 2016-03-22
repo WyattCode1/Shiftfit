@@ -14,6 +14,19 @@ module.exports = function(app) {
             empty: function(param) {
                 return (param && param.length > 0);
             },
+			only_number: function(param) {
+				var url_regex = /^[0-9]*$/;
+				return url_regex.test(param);
+			},
+			phone: function(param) {
+				var url_regex = /^[0-9\+]{1,}[0-9\-\s]{3,20}$/;
+				console.info('qeqwe: ' + url_regex.test(param));
+				return url_regex.test(param);
+			},
+			amount: function(param) {
+				var url_regex = /^(?:\d+(?:,\d{3})*(?:\.\d{2})?|\d+(?:\.\d{3})*(?:,\d{2})?)$/;
+				return url_regex.test(param);
+			},
             not_zero: function(param) {
                 return param != 0;
             },

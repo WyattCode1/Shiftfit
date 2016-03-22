@@ -73,12 +73,17 @@ function _get_all(callback) {
     });
 }
 
+function _extra_validators(req, res) {
+    req.assert('phone', res.__('only_phone_req')).phone();
+}
+
 module.exports = function() {
     return {
-        get     : _get,
-        save    : _save,
-        update  : _update,
-        delete  : _delete,
-        get_all : _get_all
+        get					: _get,
+        save				: _save,
+        update				: _update,
+        delete				: _delete,
+        get_all				: _get_all,
+        extra_validators	: _extra_validators
     };
 };

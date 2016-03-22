@@ -58,10 +58,10 @@ function _get_all(callback) {
 
 module.exports = function() {
     return {
-        get     : _get,
-        save    : _save,
-        update  : _update,
-        delete  : _delete,
-        get_all : _get_all
+        get					: _get,
+        save				: _save,
+        update				: _update,
+        delete				: _delete,
+        get_all				: _get_all,
     };
 };
