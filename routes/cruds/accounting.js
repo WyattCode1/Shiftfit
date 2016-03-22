@@ -16,7 +16,7 @@ function _save(req, callback) {
 	var box_id = req.body.box_id;
 	var description = req.body.description;
 
-	var insert_query = 'INSERT INTO accounting (id, description, amount, box_id) VALUES (nextval(\'accounting_sequence\'), $1, $2, $3) RETURNING id'
+	var insert_query = 'INSERT INTO accounting (id, description, amount, box_id) VALUES (nextval(\'accounting_sequence\'), $1, $2, $3) RETURNING id';
     global.connection.query(insert_query, [description, amount, box_id], "Inserting new accounting", function (accounting, err) {
         if (err) {
             return callback();
@@ -50,7 +50,7 @@ function _delete(req, callback) {
 }
 
 function _get_all(callback) {
-    global.connection.query('SELECT * from accounting', null, "Getting all accountings", function (accounting, err1) {
+    global.connection.query('select * from accounting ORDER BY id DESC', null, "Getting all accountings", function (accounting, err1) {
         if (err1) {
             return callback();
         } else {

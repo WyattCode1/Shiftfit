@@ -1,0 +1,55 @@
+<section id="cta">
+    
+    <h2>{{=it.i18n('exercise_title')}}</h2>
+
+    <form id="crudForm">
+        <div>
+            <div class="row uniform 50%">
+                <div class="8u 12u(mobilep)">
+                    <input type="text" name="name" id="name" placeholder="{{=it.i18n('name')}}" />
+                </div>
+                <div class="8u 12u(mobilep)">
+                    <input type="text" name="tags" id="tags" placeholder="{{=it.i18n('tags')}}" />
+                </div>
+                <div class="8u 12u(mobilep)" style="width: 425px; margin-left: -10px;">
+					<a id="save" class="button" onclick="submit('exercise'{{?it.exercise}}, '{{=it.exercise.id}}' {{?}})"> {{=it.i18n('create')}} </a>
+					{{?it.exercise}} <a href="#a" class="button" onclick="load('exercise')"> {{=it.i18n('cancel')}} </a> {{?}}
+                </div>
+            </div>
+        </div>
+    </form>
+    <br />
+
+    {{?it.exercises}}
+	    <section class="box">
+	        <div class="table-wrapper">
+	            <table>
+	                <thead>
+	                    <tr>
+	                        <td>{{=it.i18n('name')}}</td>
+	                    </tr>
+	                </thead>
+	                <tbody>
+		                {{~it.exercises :exercise :index}}
+		                    <tr>
+		                        <td>{{=exercise.name}}</td>
+		                        <td>
+		                        	<a href="#" onclick="modifyItem('exercise', '{{=exercise.id}}')"> {{=it.i18n('modify')}} </a>
+    	                        	<a href="#" onclick="deleteItem('exercise', '{{=exercise.id}}')"> {{=it.i18n('delete')}} </a>
+    	                        </td>
+		                    </tr>
+		                {{~}}
+	                </tbody>
+	            </table>
+	        </div>
+	    </section>
+    {{?}}
+</section>
+
+<script>
+    {{?it.exercise}}
+		$('#name').val("{{=it.exercise.name}}");
+		$('#tags').val("{{=it.exercise.tags}}");
+		$('#save').html("{{=it.i18n('modify')}}");
+    {{?}}
+</script>

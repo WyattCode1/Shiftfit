@@ -12,7 +12,6 @@
                     <input type="text" name="amount" id="amount" placeholder="{{=it.i18n('amount')}}" />
                 </div>
                 <div class="8u 12u(mobilep)">
-    				<label>Box:</label>
 					<select name="box_id" id="box_id">
 						{{~it.accountings.box_list :box :index}}
 							<option value="{{=box.id}}"> {{=box.name}} </option>

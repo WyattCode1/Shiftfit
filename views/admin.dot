@@ -4,8 +4,9 @@
 
 		<div id="tabs">
 			<ul>
-				<li><a href="" onclick="load('box');">Box</a></li>
-				<li><a href="" onclick="load('accounting');">Accounting</a></li>
+				<li><a href="" onclick="load('box');">{{=it.i18n('box_title')}}</a></li>
+				<li><a href="" onclick="load('accounting');">{{=it.i18n('accounting_title')}}</a></li>
+				<li><a href="" onclick="load('exercise');">{{=it.i18n('exercise_title')}}</a></li>
 			</ul>
 			<div id="crudHtml"> </div>
 		</div>
@@ -16,7 +17,6 @@
 
 <script>
 	$(function() {
-		$("#tabs").tabs({
-		});
+		$("#tabs").tabs({});
 	});
 </script>

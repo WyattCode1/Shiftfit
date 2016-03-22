@@ -85,13 +85,11 @@ function loadApp() {
 		});
 	};
 
-
 	app.login_post = function (path, callback) {
 		app.post(path, function (req, res) {
 			return is_logged(req, res, callback);
 		});
 	};
-
 
 	function is_logged(req, res, callback) {
 		if (req.auth_user) {
@@ -102,7 +100,6 @@ function loadApp() {
 		}
 	};
 
-	
 	function is_admin(req, res, callback) {
 		if (req.merge && req.merge.is_admin) {
 			return callback(req, res);
@@ -120,11 +117,12 @@ function loadApp() {
 
 	require('./login/login.js')().register(app, config);
 
-	require('./cruds/crud_generator.js')().register(app, ['shift', 'box', 'accounting'], {'shift': ['name'], 'box': ['name', 'address', 'phone'], 'accounting': ['description', 'amount'] });
+	require('./cruds/crud_generator.js')().register(app, ['shift', 'box', 'accounting', 'exercise'], {'shift': ['name'], 'box': ['name', 'address', 'phone'], 'accounting': ['description', 'amount', 'box_id'], 'exercise': ['name'] });
 
     require('./box_users/box_users.js')().register(app);
 
 	require('./myaccount/myaccount.js')().register(app);
+
 }
 
 module.exports = function (application, conf) {
