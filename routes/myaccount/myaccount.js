@@ -13,7 +13,7 @@ function _get(req, res) {
 			res.status(500).send(errors);
 		}
 		_.merge(req.merge, {'picture': picture});
-		req.merge = _.merge(req.merge, {'picture': req.pic});
+		console.info('Saving user: ' + JSON.stringify(req.merge));
 
 		res.sendPage("myaccount");
 	});

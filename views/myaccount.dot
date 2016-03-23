@@ -9,7 +9,7 @@
 	</header>
 	<div class="box">
 		<form id="formMyData">
-			<input type="hidden" name="has_picture" id="has_picture" {{?it.user.picture_name}}value="{{=it.user.picture_name}}"{{?}}/>
+			<input type="hidden" name="has_picture" id="has_picture" {{?it.picture[0].picture_name}}value="{{=it.picture[0].picture_name}}"{{?}}/>
 			<div class="row uniform 50%">
 				<div class="4u 12u(narrower)">
 					<span class="upload-btn"><span class="upload-label">{{=it.i18n('upload_photo')}}</span></span>
@@ -32,7 +32,7 @@
 
 			</div>
 
-			{{?it.picture.picture_name}} 
+			{{?it.picture[0].picture_name}} 
 				<script type="text/javascript">
 					$('.upload-photo-container').attr('style', 'background: url(http://localhost/{{=it.picture.picture_name}}');
 				</script>
@@ -101,9 +101,9 @@
 				}
 			</script>
 
-			<input type="hidden" name="picture_name" id="picture_name" />
-			<input type="hidden" name="picture_type" id="picture_type" />
-			<input type="hidden" name="picture_data" id="picture_data" />
+			<input type="hidden" name="picture_name" id="picture_name" {{?it.picture[0].picture_name}}value="{{=it.picture[0].picture_name}}"{{?}}/>
+			<input type="hidden" name="picture_type" id="picture_type" {{?it.picture[0].picture_type}}value="{{=it.picture[0].picture_type}}"{{?}}/>
+			<input type="hidden" name="picture_data" id="picture_data" {{?it.picture[0].picture_file}}value="{{=it.picture[0].picture_file}}"{{?}}/>
 
 			<input type="hidden" name="user_id" id="user_id" {{?it.user.id}}value="{{=it.user.id}}"{{?}} />
 
@@ -215,23 +215,19 @@
 <script type="text/javascript">
 
 	function prepare_picture() {
+		var has_picture = $('#has_picture').val();
+
 		$("#btnCrop").click().promise().done(function () {
 			var img_data = $('.cropped img').attr('src');
 			if (img_data) {
 				var picture_regex = /data:(.*);base64,(.*)/;
 				$("#picture_type").val(img_data.replace(picture_regex, '$1'));
 				$("#picture_data").val(img_data.replace(picture_regex, '$2'));
-				$("#picture_name").val(file_name);
-			} else {
-				var type = "{{=it.picture.picture_type}}";
-				var name = "{{=it.picture.picture_name}}";
-				var data = "{{=it.picture.picture_file}}";
-
-				$("#picture_type").val(type);
-				$("#picture_data").val(name);
-				$("#picture_name").val(data);
+				var name_regex = /.*fakepath\\(.*)/;
+				var final_name = file_name.replace(name_regex, '$1');
+				$("#picture_name").val(final_name.replace(/\s+/g, '-'));
 			}
-		});
+		}); 
 	}
 
 	function save_user() {

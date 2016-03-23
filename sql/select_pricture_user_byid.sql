@@ -1,1 +1,1 @@
-select picture_name, picture_name, picture_file from shift_picture where id=$1;
+select picture_name, picture_type, picture_file from shift_picture where id=$1;

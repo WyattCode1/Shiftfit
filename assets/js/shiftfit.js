@@ -23,9 +23,7 @@ function clean_error_messages(fields) {
         });
 	}
     $('#general-error-div').hide();
-    $("input, textarea").each(function(){
-		$(this).val(jQuery.trim($(this).val()));
-	});
+
 }
 
 $.ajaxSetup({complete: onRequestCompleted});
