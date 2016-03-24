@@ -11,6 +11,9 @@
 						{{?it.is_admin}}
 							<li><a href="/admin">ADMIN</a></li>
 						{{?}}
+						{{?it.is_admin_box}}
+							<li><a href="/myboxes">MY BOXES</a></li>
+						{{?}}
 						<li><a href="/myaccount">MY ACCOUNT</a></li>
 						<li><a href="/logout">LOGOUT</a></li>
 					</ul>

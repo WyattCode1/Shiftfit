@@ -1,0 +1,55 @@
+<section class="engagements-table-section">
+	<form id="formMyBox">
+		<div class="row uniform 50%">
+			<div class="4u 12u(narrower)">
+				<label for="priority-low">{{=it.i18n('box_name')}}</label>
+			</div>
+			<div class="6u 12u(mobilep)">
+				<input type="text" name="box_name" id="box_name" value="{{=it.box_information.name}}" placeholder="{{=it.i18n('box_name')}}" />
+			</div>
+		</div>
+
+		<div class="row uniform 50%">
+			<div class="4u 12u(narrower)">
+				<label for="priority-low">{{=it.i18n('address')}}</label>
+			</div>
+			<div class="6u 12u(mobilep)">
+				<input type="text" name="address" id="address" value="{{=it.box_information.address}}" placeholder="{{=it.i18n('address')}}" />
+			</div>
+		</div>
+
+		<div class="row uniform 50%">
+			<div class="4u 12u(narrower)">
+				<label for="priority-low">{{=it.i18n('phone')}}</label>
+			</div>
+			<div class="6u 12u(mobilep)">
+				<input type="text" name="phone" id="phone" value="{{=it.box_information.phone}}" placeholder="{{=it.i18n('phone')}}" />
+			</div>
+		</div>
+
+		<div class="row uniform 50%">
+			<div class="4u 12u(narrower)">
+				<label for="priority-low">{{=it.i18n('payment_method')}}</label>
+			</div>
+			<div class="6u 12u(mobilep)">
+				{{#def.payment_method}}
+			</div>
+		</div>
+
+		<br/>
+        <div class="8u 12u(mobilep)" style="margin-left: 50%;" >
+            <a id="save" class="button" onclick="submitBoxInformation('{{=it.box_information.id}}')"> {{=it.i18n('modify')}} </a>
+        </div>
+	</form>
+</section>
+
+<script>
+	function submitBoxInformation(box_id) {
+	    clean_error_messages();
+        var url = '/save_box_information/' + box_id;
+	    submitUrl(url, 'formMyBox', function () {
+			console.info('Box save sucessfully');
+			window.location.reload();
+	    });
+	}
+</script>

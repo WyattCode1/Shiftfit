@@ -143,7 +143,6 @@
 				</div>
 			</div>
 
-
 			<div class="row uniform 50%">
 				<div class="4u 12u(narrower)">
 					<label for="priority-low">{{=it.i18n('location_address')}}</label>
@@ -197,7 +196,6 @@
 					<input type="text" name="birthdate" id="birthdate" {{?it.user.birthdate}}value="{{=it.user.birthdate}}"{{?}} placeholder="{{=it.i18n('birthdate')}}" />
 				</div>
 			</div>
-
 
 			<div class="row uniform">
 				<div class="12u">

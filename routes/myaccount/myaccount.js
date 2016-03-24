@@ -9,7 +9,7 @@ function _get(req, res) {
 	global.connection.query('select_pricture_user_byid', [req.auth_user.id], "Select picture user", function (picture, err) {
 		if (err) {
 			console.info("Exception: " + err);
-			var errors = [{'type':'general', 'param': 'none', 'msg': 'Ocurrio un problema, intente nuevamente '}];
+			var errors = [{'type':'general', 'param': 'none', 'msg': res.__('general_error')}];
 			res.status(500).send(errors);
 		}
 		_.merge(req.merge, {'picture': picture});
@@ -18,7 +18,6 @@ function _get(req, res) {
 		res.sendPage("myaccount");
 	});
 }
-
 
 function _modify(req, res) {
 	console.info('Saving user: ' + id);
@@ -51,7 +50,7 @@ function _modify(req, res) {
 		global.connection.query('update_shift_user', [id, first_name, last_name, email, location, city, state, cel_phone, user_name, birthdate], "Updating user", function (user, err) {
 			if (err) {
 				console.info("Exception: " + err);
-				var errors = [{'type':'general', 'param': 'none', 'msg': 'Ocurrio un problema, intente nuevamente '}];
+				var errors = [{'type':'general', 'param': 'none', 'msg': res.__('general_error')}];
 				res.status(500).send(errors);
 			}
 		});
@@ -63,7 +62,7 @@ function _modify(req, res) {
 				global.connection.query('update_picture_user', [id, req.body.picture_name, req.body.picture_type, req.body.picture_data], "Insert photo user", function (user, err) {
 					if (err) {
 						console.info("Exception: " + err);
-						var errors = [{'type':'general', 'param': 'none', 'msg': 'Ocurrio un problema, intente nuevamente '}];
+						var errors = [{'type':'general', 'param': 'none', 'msg': res.__('general_error')}];
 						res.status(500).send(errors);
 					}
 					res.status(200).send(user[0]);
@@ -73,7 +72,7 @@ function _modify(req, res) {
 				global.connection.query('insert_picture_user', [id, req.body.picture_name, req.body.picture_type, req.body.picture_data], "Updating photo user", function (user, err) {
 					if (err) {
 						console.info("Exception: " + err);
-						var errors = [{'type':'general', 'param': 'none', 'msg': 'Ocurrio un problema, intente nuevamente '}];
+						var errors = [{'type':'general', 'param': 'none', 'msg': res.__('general_error')}];
 						res.status(500).send(errors);
 					}
 					res.status(200).send(user[0]);

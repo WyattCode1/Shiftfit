@@ -28,14 +28,14 @@ function clean_error_messages(fields) {
 
 $.ajaxSetup({complete: onRequestCompleted});
 
-function onRequestCompleted(xhr,textStatus) {
+function onRequestCompleted(xhr, textStatus) {
     if (xhr.status == 302) {
         location.href = xhr.getResponseHeader("Location");
     }
 }
 
 function load(page) {
-    $.get('/' + page, function (data, res){
+    $.get('/' + page, function (data, res) {
         $('#crudHtml').html(data);
     });
 }
@@ -56,7 +56,7 @@ function deleteItem(page, id) {
 }
 
 function modifyItem(page, id) {
-    $.get('/' + page + '/' + id, function (data, res){
+    $.get('/' + page + '/' + id, function (data, res) {
         $('#crudHtml').html(data);
     });
 }
@@ -68,7 +68,7 @@ function submit(page, id) {
     } else {
         var url = '/' + page;
     }
-    submitUrl(url, 'crudForm', function (){
+    submitUrl(url, 'crudForm', function () {
         load(page);
     });
 }

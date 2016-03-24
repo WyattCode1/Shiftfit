@@ -10,6 +10,7 @@
 	"shift_title"		: "TURNO!!!",
 	"exercise_title"	: "Ejercicio",
 	"accounting_title"	: "Pago",
+	"information_title"	: "Informacion",
 
 	"save"				: "Salvar",
 	"cancel"			: "Cancelar",
@@ -18,7 +19,7 @@
 	"delete"			: "Borrar",
 	"amount"			: "Cantidad",
 	"description"		: "Descripcion",
-	"box_name"			: "Box Name",
+	"box_name"			: "Nombre del Box",
 	"address"			: "Direccion",
 	"phone"				: "Telefono",
 	"payment_method"	: "Metodo de pago",

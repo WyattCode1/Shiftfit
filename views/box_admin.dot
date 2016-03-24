@@ -1,0 +1,42 @@
+{{#def.header}}
+<section id="main" class="container">
+    <form id="boxesForm">
+        <div class="8u 12u(mobilep)">
+			<select name="box_id" id="box_id" onchange="defaultSearch();">
+				{{~it.my_boxes :box :index}}
+					{{?box.is_admin}}
+						<option value="{{=box.id}}"> {{=box.name}} ({{=box.address}}) </option>
+					{{?}}
+				{{~}}
+			</select>
+        </div>
+    </form>
+   
+	<div class="box">
+		<div id="tabs">
+			<ul>
+				<li><a href="" onclick="tabSelected('box_admin_info')">{{=it.i18n('information_title')}}</a></li>
+			</ul>
+			<div id="crudHtml"> </div>
+		</div>
+	</div>
+
+</section>
+{{#def.footer}}
+
+<script>
+	$(function() {
+		$("#tabs").tabs({});
+		defaultSearch();
+	});
+
+	function defaultSearch() {
+		tabSelected('box_admin_info');
+	}
+
+	function tabSelected(page) {
+		var box_id = $('#box_id').val();
+		page = page + '/' + box_id; 
+		load(page);
+	}
+</script>

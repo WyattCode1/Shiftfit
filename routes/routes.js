@@ -20,11 +20,26 @@ function loadApp() {
 			global.connection.query('select_user_by_session', [token], 'Getting logged user', function(user) {
 				if (user[0]) {
 					req.auth_user = user[0];
-					req.merge = _.merge(req.merge, {'user': req.auth_user}, {'is_admin': req.auth_user.weight >= 10});
+					global.connection.query('select_boxes_by_user', [user[0].user_id], 'Getting the list of boxes owned by this user', function(my_boxes) {
+						if (my_boxes) {
+							req.merge = _.merge(req.merge, {'my_boxes': my_boxes});
+
+							var is_admin_box = false;
+							req.merge.my_boxes.forEach(function(each){
+								if (each.is_admin) {
+									is_admin_box = true;
+								}
+							});
+							req.merge = _.merge(req.merge, {"is_admin_box": is_admin_box});
+						}
+
+						req.merge = _.merge(req.merge, {'user': req.auth_user}, {'is_admin': req.auth_user.weight >= 10});
+						next();
+					});
 				} else {
 					console.info("user doesn't logged: " + req.url);
+					next();
 				}
-				next();
 			});
 		} else {
 			next();
@@ -33,7 +48,7 @@ function loadApp() {
 
 	app.use(function header(req, res, next) {
 		req.merge = _.merge(req.merge, {"is_login_page": req.url=='/login'});
-		req.merge = _.merge(req.merge, {"is_home_page":  req.url=='/home'});
+		req.merge = _.merge(req.merge, {"is_home_page": req.url=='/home'});
 		next();
 	});
 
@@ -110,6 +125,9 @@ function loadApp() {
 	};
 
 	require('./admin/admin.js')().register(app, config);
+
+	require('./box_admin/box_admin.js')().register(app, config);
+	require('./box_admin/box_admin_info.js')().register(app, config);
 
 	require('./dashboard/dashboard.js')().register(app, config);
 
