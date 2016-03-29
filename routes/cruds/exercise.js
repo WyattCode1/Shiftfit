@@ -47,7 +47,7 @@ function _delete(req, callback) {
     });
 }
 
-function _get_all(req, callback) {
+function _get_all(callback, req) {
     global.connection.query('SELECT * from exercise ORDER BY name', null, "Getting all exercise", function (exercise, err) {
         if (err) {
             return callback();

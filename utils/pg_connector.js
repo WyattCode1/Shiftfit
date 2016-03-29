@@ -43,6 +43,7 @@ PgConnector.prototype.query = function(query, params, label, callback, orderby, 
         sql = this.sql_cache.get(query);
     }
     this.time(label);
+    console.debug('Executing sql: ' + sql);
     return this.do_search(sql, params, label, callback);
 };
 

@@ -55,7 +55,7 @@ function _delete(req, callback) {
     });
 }
 
-function _get_all(req, callback) {
+function _get_all(callback, req) {
 	var user_id = req.merge.user.user_id;
     global.connection.query('select_weight_by_user', [user_id], "Getting all the weight related to the logged user", function (weight, err1) {
         if (err1) {

@@ -64,15 +64,16 @@ function _delete(req, callback) {
     });
 }
 
-function _get_all(callback, search_term) {
+function _get_all(callback, req) {
+	var search_term = req.query.search_term;
 	var query = 'SELECT * FROM box';
 	var params = [];
 	if (search_term) {
-		console.log('Search Term: ' + search_term);
+		console.info('Search Term: ' + search_term);
 		query = query + " WHERE lower(name) like $1";
 		params.push(search_term.toLowerCase() + '%');
 	}
-	query = " ORDER BY name";
+	query = query + " ORDER BY name";
     global.connection.query(query, params, "Getting all the boxes", function (box, err) {
 		if (err) {
 			return callback();			

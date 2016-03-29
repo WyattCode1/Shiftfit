@@ -10,7 +10,7 @@ function _get (req, res, domain) {
     } else {
         console.error(domain + '.js is missing.');
     }
-    object.get_all(req, function (oDoms){
+    object.get_all(function (oDoms){
         var dom = domain + 's';
         var objs = {};
         objs[dom] = oDoms;
@@ -26,7 +26,7 @@ function _get (req, res, domain) {
             console.info('Getting ' + domain);
             return res.sendPartialPage(domain);
         }
-    }, req.query.search_term);
+    }, req);
 }
 
 function _post (req, res, domain) {

@@ -99,9 +99,9 @@ CREATE TABLE shift_picture (
 DROP SEQUENCE IF EXISTS shift_picture_sequence;
 CREATE SEQUENCE shift_picture_sequence START WITH 1;
 
+DROP TABLE IF EXISTS exercise;
 DROP SEQUENCE IF EXISTS exercise_sequence;
 CREATE SEQUENCE exercise_sequence START WITH 1;
-DROP TABLE IF EXISTS exercise;
 CREATE TABLE exercise (
 	id	integer PRIMARY KEY,
 	name varchar(100) NOT NULL,
@@ -109,10 +109,10 @@ CREATE TABLE exercise (
 );
 
 DROP SEQUENCE IF EXISTS weight_sequence;
-CREATE SEQUENCE weight_sequence START WITH 1;
 DROP INDEX IF EXISTS weight_user_id;
-CREATE INDEX weight_user_id ON weight ( user_id );
 DROP TABLE IF EXISTS weight;
+
+CREATE SEQUENCE weight_sequence START WITH 1;
 CREATE TABLE weight (
 	id	integer PRIMARY KEY,
 	exercise_id varchar(100) NOT NULL,
@@ -122,3 +122,4 @@ CREATE TABLE weight (
 	reps varchar(40),
 	unbroken boolean not null default false
 );
+CREATE INDEX weight_user_id ON weight ( user_id );
