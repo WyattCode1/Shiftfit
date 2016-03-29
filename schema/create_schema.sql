@@ -1,4 +1,4 @@
-DROP SEQUENCE IF EXISTS shiftfit_user_sequence;
+çDROP SEQUENCE IF EXISTS shiftfit_user_sequence;
 CREATE SEQUENCE shiftfit_user_sequence START WITH 1;
 
 DROP TABLE IF EXISTS shiftfit_user;
@@ -106,4 +106,19 @@ CREATE TABLE exercise (
 	id	integer PRIMARY KEY,
 	name varchar(100) NOT NULL,
 	tags varchar(255) NOT NULL
+);
+
+DROP SEQUENCE IF EXISTS weight_sequence;
+CREATE SEQUENCE weight_sequence START WITH 1;
+DROP INDEX IF EXISTS weight_user_id;
+CREATE INDEX weight_user_id ON weight ( user_id );
+DROP TABLE IF EXISTS weight;
+CREATE TABLE weight (
+	id	integer PRIMARY KEY,
+	exercise_id varchar(100) NOT NULL,
+	date DATE NOT NULL,
+	user_id integer NOT NULL,
+	weight varchar(40),
+	reps varchar(40),
+	unbroken boolean not null default false
 );

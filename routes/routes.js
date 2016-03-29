@@ -135,9 +135,13 @@ function loadApp() {
 
 	require('./login/login.js')().register(app, config);
 
-	require('./cruds/crud_generator.js')().register(app, ['shift', 'box', 'accounting', 'exercise'], {'shift': ['name'], 'box': ['name', 'address', 'phone'], 'accounting': ['description', 'amount', 'box_id'], 'exercise': ['name'] });
+	require('./cruds/crud_generator.js')().register(app, ['shift', 'box', 'accounting', 'exercise', 'weight'],
+		{'shift': ['name'], 'box': ['name', 'address', 'phone'], 'accounting': ['description', 'amount', 'box_id'], 'exercise': ['name'], 'weight': ['date'] });
 
     require('./box_users/box_users.js')().register(app);
+
+    require('./autocompletes/exercises_autocomplete.js')().register(app);
+    require('./autocompletes/users_autocomplete.js')().register(app);
 
 	require('./myaccount/myaccount.js')().register(app);
 

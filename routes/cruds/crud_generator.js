@@ -10,7 +10,7 @@ function _get (req, res, domain) {
     } else {
         console.error(domain + '.js is missing.');
     }
-    object.get_all(function (oDoms){
+    object.get_all(req, function (oDoms){
         var dom = domain + 's';
         var objs = {};
         objs[dom] = oDoms;
@@ -54,9 +54,10 @@ function _post (req, res, domain) {
     } else {
         var callback = function (id) {
             if (id) {
-                res.status(200).send();
+        		res.status(200).send();
             } else {
-                res.status(500).send();
+		        var errors = [{'type': 'general', 'param': 'none', 'msg': res.__('general_error')}];
+    			res.status(500).send(errors);
             }
         };
         if (req.params.domainId) {
@@ -66,7 +67,6 @@ function _post (req, res, domain) {
             console.info('Is post NEW');
             object.save(req, callback);
         }
-        res.status(200).send();
     }
 }
 

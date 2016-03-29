@@ -3,7 +3,7 @@
 		addUser(email);
 	}
 	$(document).ready(function () {
-		var url = "http://juan.shiftfit.com/userautocomplete";
+		var url = "/userautocomplete";
 		make_autocomplete('box_user', url, 'user', user_selected);
 	});
 </script>
@@ -11,7 +11,7 @@
 	<ul>
 		<li>
 			<span>
-				<a class="anchor-user-group" onclick="addUser()" style="top: 50px; position: relative; margin-right: 170px;">Add user</a>
+				<a class="anchor-user-group" onclick="addUser()" style="top: 50px; position: relative; margin-right: 170px;"> {{=it.i18n('add')}} </a>
 				<input type="text" autocomplete="off" class="sign-input" name="box_user" id="box_user" style="width: 375px !important;"/>
 			</span>
 		</li>
@@ -46,7 +46,7 @@
 <script>
 	function deleteUser(user_id) {
 		var box_id = "{{=it.box.box_info.id}}";
-		var url = "http://juan.shiftfit.com/delete_box_user/" + box_id + "/" + user_id;
+		var url = "/delete_box_user/" + box_id + "/" + user_id;
 		makeGet(url, box_id);
 	}
 	function addUser(email) {
@@ -55,7 +55,7 @@
 			email = $('#box_user').val();
 		}
 		if (email) {
-			var url = "http://juan.shiftfit.com/add_box_user/" + box_id + "/" + email;
+			var url = "/add_box_user/" + box_id + "/" + email;
 			makeGet(url, box_id);
 		}
 	}

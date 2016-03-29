@@ -11,8 +11,11 @@
 	"exercise_title"	: "Exercises",
 	"accounting_title"	: "Accounting",
 	"information_title"	: "Information",
+	"weight_title"		: "Weight",
 
 	"save"				: "Save",
+	"search"			: "Search",
+	"add"				: "Add",
 	"cancel"			: "Cancel",
 	"modify"			: "Modify",
 	"create"			: "Create",
@@ -55,6 +58,11 @@
 	"password"				: "Password",
 	"repeat"				: "repeat",
 	"user_name"				: "User name",
+
+	"date"					: "Date",
+	"weight"				: "Weight",
+	"reps"					: "Reps",
+	"unbroken"				: "Unbroken",
 
 	"save_sucess"			: "Save success",
 	"general_error"			: "There was a problem, try again"

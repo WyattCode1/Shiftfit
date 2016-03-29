@@ -11,8 +11,11 @@
 	"exercise_title"	: "Ejercicio",
 	"accounting_title"	: "Pago",
 	"information_title"	: "Informacion",
+	"weight_title"		: "Pesos",
 
 	"save"				: "Salvar",
+	"search"			: "Buscar",
+	"add"				: "Agregar",
 	"cancel"			: "Cancelar",
 	"modify"			: "Modificar",
 	"create"			: "Crear",
@@ -55,6 +58,11 @@
 	"password"				: "Password",
 	"repeat"				: "Repetir",
 	"user_name"				: "Nombre de usuario",
+
+	"date"					: "Fecha",
+	"weight"				: "Peso",
+	"reps"					: "Reps",
+	"unbroken"				: "Adaptado",
 
 	"save_sucess"			: "Los datos se guardaron con exito",
 	"general_error"			: "Ocurrio un error, intente nuevamente"

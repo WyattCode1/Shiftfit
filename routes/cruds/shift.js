@@ -41,7 +41,7 @@ function _delete(req, callback) {
     });
 }
 
-function _get_all(callback) {
+function _get_all(req, callback) {
     global.connection.query('SELECT * from shift', null, "Getting all shift", function (shift, err) {
         if (err) {
             return callback();

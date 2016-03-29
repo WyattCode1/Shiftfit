@@ -49,7 +49,7 @@ function _delete(req, callback) {
     });
 }
 
-function _get_all(callback) {
+function _get_all(req, callback) {
     global.connection.query('select * from accounting ORDER BY id DESC', null, "Getting all accountings", function (accounting, err1) {
         if (err1) {
             return callback();

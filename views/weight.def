@@ -1,0 +1,117 @@
+<script>
+	function exercise_selected(ex) {
+		searchExercise(ex);
+	}
+	$(document).ready(function () {
+		var url = "/exerciseautocomplete";
+		make_autocomplete('exercise_ac', url, 'exercise', exercise_selected);
+	});
+</script>
+<section id="cta">
+    <h2>{{=it.i18n('weight_title')}}</h2>
+
+    <form id="crudForm">
+        <div>
+            <div class="row uniform 50%">
+				<input type="hidden" name="user_id" value="{{=it.user.user_id}}" />
+				<div class="8u 12u(mobilep)">
+					<select name="exercise_id" id="exercise_id">
+						{{~it.weights.exercise_list :exercise :index1}}
+							<option value="{{=exercise.id}}"> {{=exercise.name}} </option>
+						{{~}}
+					</select>
+                </div>
+                <div class="8u 12u(mobilep)">
+                    <input type="text" name="reps" id="reps" placeholder="{{=it.i18n('reps')}}" />
+                </div>
+                <div class="8u 12u(mobilep)">
+                    <input type="text" name="weight" id="weight" placeholder="{{=it.i18n('weight')}}" />
+                </div>
+                <div class="8u 12u(mobilep)">
+                    <input type="text" maxlength="10" name="date" id="date" placeholder="{{=it.i18n('date')}} MM/DD/YYYY" />
+                </div>
+				<div class="6u 12u(narrower)">
+					<input type="checkbox" id="unbroken" name="unbroken" />
+					<label for="unbroken">{{=it.i18n('unbroken')}}</label>
+				</div>
+                <div class="8u 12u(mobilep)" style="width: 425px; margin-left: -10px;" >
+                    <a id="save" class="button" onclick="submit('weight'{{?it.weight}}, '{{=it.weight.id}}'{{?}})"> {{=it.i18n('create')}} </a>
+                    {{?it.weight}} <a href="#a" class="button" onclick="load('weight')"> {{=it.i18n('cancel')}} </a> {{?}}
+                </div>
+            </div>
+        </div>
+    </form>
+
+ 	<br />
+ 
+	<ul>
+		<li>
+			<span>
+				<a onclick="searchExercise()" style="top: 50px; position: relative; margin-right: 170px;">{{=it.i18n('search')}}</a>
+				<input type="text" autocomplete="off" name="exercise_ac" id="exercise_ac" style="width: 375px !important;"/>
+			</span>
+		</li>
+	</ul>
+
+    <br />
+
+    {{?it.weights.weight_list}}
+	    <section id="weights" class="box">
+	        <div class="table-wrapper">
+	            <table>
+	                <thead>
+	                    <tr>
+	                        <td>{{=it.i18n('exercise_title')}}</td>
+	                        <td>{{=it.i18n('reps')}}</td>
+	                        <td>{{=it.i18n('weight')}}</td>
+	                        <td>{{=it.i18n('date')}}</td>
+	                        <td>{{=it.i18n('unbroken')}}</td>
+	                        <td>{{=it.i18n('action')}}</td>
+	                    </tr>
+	                </thead>
+	                <tbody>
+		                {{~it.weights.weight_list :weight :index2}}
+		                    <tr>
+								{{~it.weights.exercise_list :ex :index3}}
+									{{?ex.id == weight.exercise_id}}
+				                        <td>{{=ex.name}}</td>
+									{{?}}
+								{{~}}
+		                        <td>{{=weight.reps}}</td>
+		                        <td>{{=weight.weight}}</td>
+		                        <td>{{=weight.date}}</td>
+		                        <td>
+		                        	<input type="checkbox" id="unbroken{{=index2}}" disabled {{?weight.unbroken}} checked {{?}} />
+            						<label for="unbroken{{=index2}}"> </label>
+		                        </td>
+		                        <td>
+		                        	<a style="cursor: pointer;" onclick="modifyItem('weight', '{{=weight.id}}')"> {{=it.i18n('modify')}} </a>
+	    	                        <a style="cursor: pointer;" onclick="deleteItem('weight', '{{=weight.id}}')"> {{=it.i18n('delete')}} </a>
+		                        </td>
+		                    </tr>
+		                {{~}}
+	                </tbody>
+	            </table>
+	        </div>
+	    </section>
+    {{?}}
+</section>
+
+<script>
+	function searchExercise (ex) {
+		if (!ex) {
+			ex = $('#exercise_ac').val();
+		}
+		if (ex) {
+			alert('exercise: ' + ex);
+		}
+	}
+    {{?it.weight}}
+        $('#exercise_id').val("{{=it.weight.exercise_id}}");
+        $('#reps').val("{{=it.weight.reps}}");
+        $('#weight').val("{{=it.weight.weight}}");
+        $('#date').val("{{=it.weight.date}}");
+        $('#unbroken').prop( "checked", {{?it.weight.unbroken}} true {{??}} false {{?}});
+        $('#save').html("{{=it.i18n('modify')}}");
+    {{?}}
+</script>

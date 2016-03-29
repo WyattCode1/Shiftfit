@@ -4,19 +4,7 @@ var _ = require('lodash');
 
 function _get(req, res) {
 	console.info('Loading myaccount');
-
-	console.info('Load photo!!!!!!!!!!!!!!');
-	global.connection.query('select_pricture_user_byid', [req.auth_user.id], "Select picture user", function (picture, err) {
-		if (err) {
-			console.info("Exception: " + err);
-			var errors = [{'type':'general', 'param': 'none', 'msg': res.__('general_error')}];
-			res.status(500).send(errors);
-		}
-		_.merge(req.merge, {'picture': picture});
-		console.info('Saving user: ' + JSON.stringify(req.merge));
-
-		res.sendPage("myaccount");
-	});
+	res.sendPage("myaccount");
 }
 
 function _modify(req, res) {
@@ -46,7 +34,6 @@ function _modify(req, res) {
 		var birthdate 			= req.body.birthdate;
 		var has_picture 		= req.body.has_picture;
 
-
 		global.connection.query('update_shift_user', [id, first_name, last_name, email, location, city, state, cel_phone, user_name, birthdate], "Updating user", function (user, err) {
 			if (err) {
 				console.info("Exception: " + err);
@@ -54,7 +41,6 @@ function _modify(req, res) {
 				res.status(500).send(errors);
 			}
 		});
-
 
 		if(req.body.picture_name != null && req.body.picture_name != undefined) {
 			if(has_picture != null && has_picture != "") {
@@ -82,11 +68,26 @@ function _modify(req, res) {
 	}
 }
 
+function _get_personal_information(req, res) {
+	console.info('Load photo!!!!!!!!!!!!!!');
+	global.connection.query('select_pricture_user_byid', [req.auth_user.id], "Select picture user", function (picture, err) {
+		if (err) {
+			console.info("Exception: " + err);
+			var errors = [{'type':'general', 'param': 'none', 'msg': res.__('general_error')}];
+			res.status(500).send(errors);
+		}
+		_.merge(req.merge, {'picture': picture});
+		console.info('Saving user: ' + JSON.stringify(req.merge));
+
+		res.sendPartialPage("personal_information");
+	});
+}
 
 module.exports = function () {
 	return {
 		register : function (app) {
 			app.login_get('/myaccount', _get);
+			app.login_get('/personal_information', _get_personal_information);
 			app.login_post('/myaccount_modify', _modify);
 		}
 	};

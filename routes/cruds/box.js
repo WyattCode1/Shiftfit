@@ -64,7 +64,7 @@ function _delete(req, callback) {
     });
 }
 
-function _get_all(callback) {
+function _get_all(req, callback) {
     global.connection.query('SELECT * FROM box ORDER BY name', null, "Getting all the boxes", function (box, err) {
 		if (err) {
 			return callback();			
