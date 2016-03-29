@@ -6,7 +6,8 @@ SELECT
 	w.weight as weight,
 	w.reps as reps,
 	w.unbroken as unbroken
-FROM
-	weight w
+FROM weight w
+LEFT JOIN exercise e ON (w.exercise_id = e.id)
 WHERE w.user_id = $1
+AND e.name ilike $2
 ORDER BY w.date DESC

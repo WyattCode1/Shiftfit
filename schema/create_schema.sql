@@ -115,7 +115,7 @@ DROP TABLE IF EXISTS weight;
 CREATE SEQUENCE weight_sequence START WITH 1;
 CREATE TABLE weight (
 	id	integer PRIMARY KEY,
-	exercise_id varchar(100) NOT NULL,
+	exercise_id integer NOT NULL,
 	date DATE NOT NULL,
 	user_id integer NOT NULL,
 	weight varchar(40),

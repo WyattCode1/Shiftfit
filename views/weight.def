@@ -4,7 +4,7 @@
 	}
 	$(document).ready(function () {
 		var url = "/exerciseautocomplete";
-		make_autocomplete('exercise_ac', url, 'exercise', exercise_selected);
+		make_autocomplete('search_term', url, 'exercise', exercise_selected);
 	});
 </script>
 <section id="cta">
@@ -39,19 +39,16 @@
                     {{?it.weight}} <a href="#a" class="button" onclick="load('weight')"> {{=it.i18n('cancel')}} </a> {{?}}
                 </div>
             </div>
+			<div class="row uniform 50%">
+				<div class="8u 12u(mobilep)">
+					<input type="text" autocomplete="off" name="search" id="search_term" placeholder="{{=it.i18n('search')}}" />
+				</div>
+				<div class="8u 12u(mobilep)" style="width: 425px; margin-left: -10px;">
+					<a id="search" href="#a" class="button" onclick="find('weight')">{{=it.i18n('search')}}</a>
+				</div>
+			</div>
         </div>
     </form>
-
- 	<br />
- 
-	<ul>
-		<li>
-			<span>
-				<a onclick="searchExercise()" style="top: 50px; position: relative; margin-right: 170px;">{{=it.i18n('search')}}</a>
-				<input type="text" autocomplete="off" name="exercise_ac" id="exercise_ac" style="width: 375px !important;"/>
-			</span>
-		</li>
-	</ul>
 
     <br />
 
@@ -99,12 +96,8 @@
 
 <script>
 	function searchExercise (ex) {
-		if (!ex) {
-			ex = $('#exercise_ac').val();
-		}
-		if (ex) {
-			alert('exercise: ' + ex);
-		}
+		$('#search_term').val(ex);
+		find('weight');
 	}
     {{?it.weight}}
         $('#exercise_id').val("{{=it.weight.exercise_id}}");

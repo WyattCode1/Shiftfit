@@ -17,7 +17,7 @@ function _get(req, res) {
 module.exports = function () {
     return {
         register : function (app) {
-            app.admin_get('/exerciseautocomplete/:key', _get);
+            app.login_get('/exerciseautocomplete/:key', _get);
         }
     };
 };

@@ -56,8 +56,13 @@ function _delete(req, callback) {
 }
 
 function _get_all(callback, req) {
+	var search_term = '%'; 
+	if (req.query.search_term) {
+		console.info('Search Term: ' + req.query.search_term.toLowerCase());
+		search_term = req.query.search_term + '%';
+	}
 	var user_id = req.merge.user.user_id;
-    global.connection.query('select_weight_by_user', [user_id], "Getting all the weight related to the logged user", function (weight, err1) {
+    global.connection.query('select_weight_by_user', [user_id, search_term], "Getting all the weight related to the logged user", function (weight, err1) {
         if (err1) {
             return callback('internal_error');
         } else {
