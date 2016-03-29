@@ -28,6 +28,7 @@
 	"payment_method"	: "Payment Method",
 	"box_admin"			: "Box Admin",
 	"tags"				: "Tags",
+  	"search"			: "Search",
 
 	"cash"					: "cash",
 	"credit_card"			: "credit_card",

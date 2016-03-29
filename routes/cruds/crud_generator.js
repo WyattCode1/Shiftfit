@@ -26,7 +26,7 @@ function _get (req, res, domain) {
             console.info('Getting ' + domain);
             return res.sendPartialPage(domain);
         }
-    });
+    }, req.query.search_term);
 }
 
 function _post (req, res, domain) {
@@ -103,8 +103,18 @@ function _register (app, domainNames, requiredNames) {
     });
 }
 
+function _admin_register() {
+
+}
+
+function _root_register() {
+
+}
+
 module.exports = module.exports = function() {
     return {
-        register : _register
+        register        : _register,
+        admin_register  : _admin_register,
+        root_register   : _root_register
     };
 };

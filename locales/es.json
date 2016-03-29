@@ -1,5 +1,4 @@
 {
-
 	"name"				: "Nombre",
 	"action"			: "Accion",
 	"change"			: "Modificar",
@@ -28,6 +27,7 @@
 	"payment_method"	: "Metodo de pago",
 	"box_admin"			: "Admin del Box",
 	"tags"				: "Etiquetas",
+  	"serach"			: "Buscar",
 
 	"cash"					: "Efectivo",
 	"credit_card"			: "Tarjeta de credito",

@@ -21,10 +21,18 @@
                     {{?it.box}} <a href="#a" class="button" onclick="load('box')"> {{=it.i18n('cancel')}} </a> {{?}}
                 </div>
             </div>
+			<div class="row uniform 50%">
+				<div class="8u 12u(mobilep)">
+					<input type="text" name="search" id="search_term" placeholder="{{=it.i18n('search')}}" />
+				</div>
+				<div class="8u 12u(mobilep)" style="width: 425px; margin-left: -10px;">
+					<a id="search" href="#a" class="button" onclick="find('box')">{{=it.i18n('search')}}</a>
+				</div>
+			</div>
         </div>
     </form>
-
     <br />
+
     {{?it.box}}
 		<div id="admin_user_section">
 			{{#def.admin_user}}

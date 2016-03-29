@@ -40,6 +40,14 @@ function load(page) {
     });
 }
 
+function find(page) {
+    var searchTerm = $('#search_term').val();
+    $.get('/' + page + '?search_term=' + searchTerm, function (data, res){
+        $('#crudHtml').html(data);
+        $('#search_term').val(searchTerm);
+    });
+}
+
 function deleteItem(page, id) {
 	$.ajax({
 		url: '/' + page + '/' + id,
