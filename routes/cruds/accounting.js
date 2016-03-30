@@ -1,6 +1,7 @@
 "use strict";
 
 var _ = require('lodash');
+var req;
 
 function _get(object_id, callback) {
     global.connection.query('SELECT * FROM accounting WHERE id = $1', [object_id], 'Getting accounting to edit: ' + object_id, function (accounting, err) {
@@ -11,7 +12,7 @@ function _get(object_id, callback) {
     });
 }
 
-function _save(req, callback) {
+function _save(callback) {
 	var amount = req.body.amount;
 	var box_id = req.body.box_id;
 	var description = req.body.description;
@@ -25,7 +26,7 @@ function _save(req, callback) {
     });
 }
 
-function _update(req, callback) {
+function _update(callback) {
 	var object_id = req.params.domainId;
 	var description = req.body.description;
 	var amount = req.body.amount;
@@ -40,7 +41,7 @@ function _update(req, callback) {
     });
 }
 
-function _delete(req, callback) {
+function _delete(callback) {
     global.connection.query('DELETE FROM accounting WHERE id = $1 returning id', [req.params.domainId], "Deleting accounting", function (accounting, err) {
         if (err) {
             return callback();
@@ -49,7 +50,7 @@ function _delete(req, callback) {
     });
 }
 
-function _get_all(callback, req) {
+function _get_all(callback) {
     global.connection.query('select * from accounting ORDER BY id DESC', null, "Getting all accountings", function (accounting, err1) {
         if (err1) {
             return callback();
@@ -69,7 +70,8 @@ function _extra_validators(req, res) {
     req.assert('amount', res.__('only_amount_type_req')).amount();
 }
 
-module.exports = function() {
+module.exports = function(request) {
+    req = request;
     return {
         get					: _get,
         save				: _save,

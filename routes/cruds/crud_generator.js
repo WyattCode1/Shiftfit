@@ -4,7 +4,7 @@ var _ = require('lodash');
 var required;
 
 function _get (req, res, domain) {
-    var object = require('./' + domain + '.js')();
+    var object = require('./' + domain + '.js')(req);
     if (object) {
         console.info(domain + ' Domain initialized.');
     } else {
@@ -26,11 +26,11 @@ function _get (req, res, domain) {
             console.info('Getting ' + domain);
             return res.sendPartialPage(domain);
         }
-    }, req);
+    });
 }
 
 function _post (req, res, domain) {
-    var object = require('./' + domain + '.js')();
+    var object = require('./' + domain + '.js')(req);
 
     console.info(required);
     console.info(required[domain]);
@@ -62,19 +62,19 @@ function _post (req, res, domain) {
         };
         if (req.params.domainId) {
             console.info('Is post Edit');
-            object.update(req, callback);
+            object.update(callback);
         } else {
             console.info('Is post NEW');
-            object.save(req, callback);
+            object.save(callback);
         }
     }
 }
 
 function _delete (req, res, domain) {
-    var object = require('./' + domain + '.js')();
+    var object = require('./' + domain + '.js')(req);
     if (object) {
         console.info(domain + ' Domain initialized.');
-        object.delete(req, function (id) {
+        object.delete(function (id) {
             if (id) {
                res.status(200).send();
             } else {

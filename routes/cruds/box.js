@@ -1,6 +1,7 @@
 "use strict";
 
 var _ = require('lodash');
+var req;
 
 function _get(object_id, callback) {
     global.connection.query('SELECT * FROM box WHERE id = $1', [object_id], 'Getting box to edit: ' + object_id, function (box, err1) {
@@ -18,7 +19,7 @@ function _get(object_id, callback) {
     });
 }
 
-function _save(req, callback) {
+function _save(callback) {
 	var name = req.body.name;
 	var address = req.body.address;
 	var phone = req.body.phone;
@@ -33,7 +34,7 @@ function _save(req, callback) {
     });
 }
 
-function _update(req, callback) {
+function _update(callback) {
 	var object_id = req.params.domainId;
 	var name = req.body.name;
 	var address = req.body.address;
@@ -49,7 +50,7 @@ function _update(req, callback) {
     });
 }
 
-function _delete(req, callback) {
+function _delete(callback) {
 	var box_id = req.params.domainId;
 	global.connection.query('UPDATE user_box SET is_admin=FALSE WHERE box_id = $1', [box_id], "Removing admin function of all the user in the box", function (box, err1) {
         if (err1) {
@@ -64,7 +65,7 @@ function _delete(req, callback) {
     });
 }
 
-function _get_all(callback, req) {
+function _get_all(callback) {
 	var search_term = req.query.search_term;
 	var query = 'SELECT * FROM box';
 	var params = [];
@@ -86,7 +87,8 @@ function _extra_validators(req, res) {
     req.assert('phone', res.__('only_phone_req')).phone();
 }
 
-module.exports = function() {
+module.exports = function(request) {
+	req = request;
     return {
         get					: _get,
         save				: _save,

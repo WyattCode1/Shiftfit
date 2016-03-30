@@ -1,6 +1,7 @@
 "use strict";
 
 var _ = require('lodash');
+var req;
 
 function _get(object_id, callback) {
     global.connection.query('select_weight_by_id', [object_id], 'Getting weight to edit: ' + object_id, function (weight, err1) {
@@ -11,7 +12,7 @@ function _get(object_id, callback) {
     });
 }
 
-function _save(req, callback) {
+function _save(callback) {
 	var exercise_id = req.body.exercise_id;
 	var reps = req.body.reps;
 	var weight = req.body.weight;
@@ -28,7 +29,7 @@ function _save(req, callback) {
     });
 }
 
-function _update(req, callback) {
+function _update(callback) {
 	var object_id = req.params.domainId;
 	var exercise_id = req.body.exercise_id;
 	var reps = req.body.reps;
@@ -45,7 +46,7 @@ function _update(req, callback) {
     });
 }
 
-function _delete(req, callback) {
+function _delete(callback) {
 	var weight_id = req.params.domainId;
     global.connection.query('DELETE FROM weight WHERE id = $1 returning id', [weight_id], "Deleting weight", function (weight, err2) {
         if (err2) {
@@ -55,7 +56,7 @@ function _delete(req, callback) {
     });
 }
 
-function _get_all(callback, req) {
+function _get_all(callback) {
 	var search_term = '%'; 
 	if (req.query.search_term) {
 		console.info('Search Term: ' + req.query.search_term.toLowerCase());
@@ -82,7 +83,8 @@ function _extra_validators(req, res) {
     // hacer un validador que te obligue al menos a poner uno de los 2 o los 2. (peso o reps)
 }
 
-module.exports = function() {
+module.exports = function(request) {
+    req = request;
     return {
         get					: _get,
         save				: _save,
