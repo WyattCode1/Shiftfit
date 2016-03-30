@@ -127,6 +127,7 @@ function loadApp() {
 	require('./admin/admin.js')().register(app, config);
 
 	require('./box_admin/box_admin.js')().register(app, config);
+
 	require('./box_admin/box_admin_info.js')().register(app, config);
 
 	require('./dashboard/dashboard.js')().register(app, config);

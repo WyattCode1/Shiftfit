@@ -5,9 +5,9 @@
 				<li><a href="/home">Shiftfit</a></li>
 			{{?}}
 			{{?it.user}}
-				<li style="float: right;">
+				<li style="float:right;" class="opener active">
 					<a class="icon fa-angle-down">{{=it.user.user_name}}</a>
-					<ul>
+					<ul style="top:8%;right:5px">
 						{{?it.is_admin}}
 							<li><a href="/admin">ADMIN</a></li>
 						{{?}}
@@ -19,9 +19,9 @@
 					</ul>
 				</li>
 			{{??}}
-				<!-- {{?!it.is_login_page}}
+				{{?!it.is_login_page}}
 					<li><a href="/login" class="button">Login</a></li>
-				{{?}} -->
+				{{?}}
 			{{?}}
 		</ul>
 	</nav>

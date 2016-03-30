@@ -96,5 +96,5 @@ module.exports = function(request) {
         delete				: _delete,
         get_all				: _get_all,
         extra_validators	: _extra_validators
-    };
+	};
 };
