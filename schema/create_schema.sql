@@ -1,4 +1,4 @@
-çDROP SEQUENCE IF EXISTS shiftfit_user_sequence;
+DROP SEQUENCE IF EXISTS shiftfit_user_sequence;
 CREATE SEQUENCE shiftfit_user_sequence START WITH 1;
 
 DROP TABLE IF EXISTS shiftfit_user;

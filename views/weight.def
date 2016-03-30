@@ -28,7 +28,7 @@
                     <input type="text" name="weight" id="weight" placeholder="{{=it.i18n('weight')}}" />
                 </div>
                 <div class="8u 12u(mobilep)">
-                    <input type="date" maxlength="10" name="date" id="date" placeholder="{{=it.i18n('date')}} MM/DD/YYYY" />
+						<input type="date" maxlength="10" name="date" id="date" placeholder="{{=it.i18n('date')}} MM/DD/YYYY" />
                 </div>
 				<div class="6u 12u(narrower)">
 					<input type="checkbox" id="unbroken" name="unbroken" />
