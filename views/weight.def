@@ -2,9 +2,13 @@
 	function exercise_selected(ex) {
 		searchExercise(ex);
 	}
+	function fill_field(ex) {
+		$('#exercise_id').val(ex);
+	}
 	$(document).ready(function () {
 		var url = "/exerciseautocomplete";
 		make_autocomplete('search_term', url, 'exercise', exercise_selected);
+		make_autocomplete('exercise_id', url, 'exercise', fill_field);
 	});
 </script>
 <section id="cta">
@@ -15,12 +19,8 @@
             <div class="row uniform 50%">
 				<input type="hidden" name="user_id" value="{{=it.user.user_id}}" />
 				<div class="8u 12u(mobilep)">
-					<select name="exercise_id" id="exercise_id">
-						{{~it.weights.exercise_list :exercise :index1}}
-							<option value="{{=exercise.id}}"> {{=exercise.name}} </option>
-						{{~}}
-					</select>
-                </div>
+					<input type="text" autocomplete="off" name="exercise_id" id="exercise_id" placeholder="{{=it.i18n('exercise_title')}}" />
+				</div>
                 <div class="8u 12u(mobilep)">
                     <input type="text" name="reps" id="reps" placeholder="{{=it.i18n('reps')}}" />
                 </div>
