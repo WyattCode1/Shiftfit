@@ -146,6 +146,7 @@ function loadApp() {
 
 	require('./myaccount/myaccount.js')().register(app);
 
+	require('./pictures/pictures_load.js')().register(app);
 }
 
 module.exports = function (application, conf) {

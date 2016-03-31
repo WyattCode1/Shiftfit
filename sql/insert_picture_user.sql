@@ -1,1 +1,1 @@
-INSERT INTO shift_picture (id, picture_name, picture_type, picture_file, last_update) VALUES ($1, $2, $3, $4, current_timestamp);
+INSERT INTO shift_picture (id, picture_name, picture_type, picture_file, last_update) VALUES ($1, $2, $3, decode($4, 'base64'), current_timestamp);
