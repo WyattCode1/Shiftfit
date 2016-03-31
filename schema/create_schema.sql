@@ -105,7 +105,7 @@ CREATE SEQUENCE exercise_sequence START WITH 1;
 CREATE TABLE exercise (
 	id	integer PRIMARY KEY,
 	name varchar(100) NOT NULL,
-	tags varchar(255) NOT NULL
+	tags varchar(255)
 );
 
 DROP SEQUENCE IF EXISTS weight_sequence;
