@@ -3,8 +3,7 @@ SELECT
 	w.exercise_id as exercise_id,
 	to_char(w.date, 'MM/DD/YYYY') AS date,
 	w.user_id as user_id,
-	w.weight as weight,
-	w.reps as reps,
+	w.amount as amount,
 	w.unbroken as unbroken
 FROM weight w
 LEFT JOIN exercise e ON (w.exercise_id = e.id)

@@ -105,7 +105,9 @@ CREATE SEQUENCE exercise_sequence START WITH 1;
 CREATE TABLE exercise (
 	id	integer PRIMARY KEY,
 	name varchar(100) NOT NULL,
-	tags varchar(255)
+	tags varchar(255),
+	by_reps bool NOT NULL,
+	by_weight bool NOT NULL
 );
 
 DROP SEQUENCE IF EXISTS weight_sequence;
@@ -118,8 +120,7 @@ CREATE TABLE weight (
 	exercise_id integer NOT NULL,
 	date DATE NOT NULL,
 	user_id integer NOT NULL,
-	weight varchar(40),
-	reps varchar(40),
+	amount varchar(5) NOT NULL,
 	unbroken boolean not null default false
 );
 CREATE INDEX weight_user_id ON weight ( user_id );

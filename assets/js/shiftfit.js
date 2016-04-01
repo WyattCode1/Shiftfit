@@ -40,11 +40,14 @@ function load(page) {
     });
 }
 
-function find(page) {
+function find(page, callback) {
     var searchTerm = $('#search_term').val();
     $.get('/' + page + '?search_term=' + searchTerm, function (data, res){
         $('#crudHtml').html(data);
         $('#search_term').val(searchTerm);
+        if (callback) {
+        	return callback();
+        }
     });
 }
 

@@ -1,5 +1,4 @@
 {
-
 	"name"				: "Name",
 	"action"			: "Action",
 	"change"			: "Modify",
@@ -63,7 +62,9 @@
 	"date"					: "Date",
 	"weight"				: "Weight",
 	"reps"					: "Reps",
+	"reps_weight"			: "Reps/Weight",
 	"unbroken"				: "Unbroken",
+	"exercise"				: "Exercise",
 
 	"save_sucess"			: "Save success",
 	"general_error"			: "There was a problem, try again"

@@ -62,7 +62,9 @@
 	"date"					: "Fecha",
 	"weight"				: "Peso",
 	"reps"					: "Reps",
+	"reps_weight"			: "Reps/Peso",
 	"unbroken"				: "Adaptado",
+	"exercise"				: "Ejercicio",
 
 	"save_sucess"			: "Los datos se guardaron con exito",
 	"general_error"			: "Ocurrio un error, intente nuevamente"

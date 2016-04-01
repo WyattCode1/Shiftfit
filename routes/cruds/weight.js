@@ -13,36 +13,70 @@ function _get(object_id, callback) {
 }
 
 function _save(callback) {
-	var exercise_id = req.body.exercise_id;
-	var reps = req.body.reps;
-	var weight = req.body.weight;
+	var exercise_name = req.body.exercise_name;
+	var amount = req.body.amount;
 	var date = req.body.date;
 	var unbroken = (req.body.unbroken == 'on');
 	var user_id = req.body.user_id;
 
-	var insert_query = 'INSERT INTO weight (id, exercise_id, reps, weight, date, unbroken, user_id) VALUES (nextval(\'weight_sequence\'), $1, $2, $3, $4, $5, $6) RETURNING id';
-    global.connection.query(insert_query, [exercise_id, reps, weight, date, unbroken, user_id], "Inserting new weight", function (weight, err) {
+    global.connection.query('SELECT id FROM exercise WHERE lower(name) = lower($1)', [exercise_name], "getting exercise id", function (data, err) {
         if (err) {
             return callback();
         }
-        return callback(weight[0]);
+        if (data[0]) {
+	    	var insert_query = 'INSERT INTO weight (id, exercise_id, amount, date, unbroken, user_id) VALUES (nextval(\'weight_sequence\'), $1, $2, $3, $4, $5) RETURNING id';
+	    	global.connection.query(insert_query, [data[0].id, amount, date, unbroken, user_id], "Inserting new weight", function (weight, err) {
+		        if (err) {
+		            return callback();
+		        }
+		        return callback(weight[0]);
+		    });
+		} else {
+			console.info('el ejercicio no existe');
+			console.info('el ejercicio no existe');
+			console.info('el ejercicio no existe');
+			console.info('el ejercicio no existe');
+			console.info('definitr un error lindo para esto');
+			console.info('el ejercicio no existe');
+			console.info('el ejercicio no existe');
+			console.info('el ejercicio no existe');
+			console.info('el ejercicio no existe');
+			return callback();
+		}
     });
 }
 
 function _update(callback) {
 	var object_id = req.params.domainId;
-	var exercise_id = req.body.exercise_id;
-	var reps = req.body.reps;
-	var weight = req.body.weight;
+	var exercise_name = req.body.exercise_name;
+	var amount = req.body.amount;
 	var date = req.body.date;
 	var unbroken = (req.body.unbroken == 'on');
 
-	var update_query = 'UPDATE weight set exercise_id=$2, reps=$3, weight=$4, date=$5, unbroken=$6 WHERE id = $1 returning id';
-    global.connection.query(update_query, [object_id, exercise_id, reps, weight, date, unbroken], "Updating weight", function (weight, err) {
+    global.connection.query('SELECT id FROM exercise WHERE lower(name) = lower($1)', [exercise_name], "getting exercise id", function (data, err) {
         if (err) {
             return callback();
         }
-        return callback(weight[0]);
+        if (data[0]) {
+			var update_query = 'UPDATE weight set exercise_id=$2, amount=$3, date=$4, unbroken=$5 WHERE id = $1 returning id';
+		    global.connection.query(update_query, [object_id, data[0].id, amount, date, unbroken], "Updating weight", function (weight, err) {
+		        if (err) {
+		            return callback();
+		        }
+		        return callback(weight[0]);
+		    });
+		} else {
+			console.info('el ejercicio no existe');
+			console.info('el ejercicio no existe');
+			console.info('el ejercicio no existe');
+			console.info('el ejercicio no existe');
+			console.info('definitr un error lindo para esto');
+			console.info('el ejercicio no existe');
+			console.info('el ejercicio no existe');
+			console.info('el ejercicio no existe');
+			console.info('el ejercicio no existe');
+			return callback();
+		}
     });
 }
 
