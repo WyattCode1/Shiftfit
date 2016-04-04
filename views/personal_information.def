@@ -35,7 +35,7 @@
 
 			<script type="text/javascript">
 				var file_name;
-				window.onload = function() {
+				var load_picture_function = function() {
 					var options = {
 						imageBox: '.imageBox',
 						thumbBox: '.thumbBox',
@@ -89,6 +89,7 @@
 						cropper.zoomOut();
 					});
 				};
+				load_picture_function();
 				function resizeImageToFitDetails() {
 					for (i = 0 ; i < 20 ; i++) {
 						$('#btnZoomOut').click();
@@ -208,7 +209,6 @@
 <script type="text/javascript">
 	function prepare_picture() {
 		var has_picture = $('#has_picture').val();
-
 		$("#btnCrop").click().promise().done(function () {
 			var img_data = $('.cropped img').attr('src');
 			if (img_data) {
@@ -218,6 +218,11 @@
 				var name_regex = /.*fakepath\\(.*)/;
 				var final_name = file_name.replace(name_regex, '$1');
 				$("#picture_name").val(final_name.replace(/\s+/g, '-'));
+				
+				
+				console.log('DATOSSSSSS 1=======>>>> ' + $("#picture_type").val());
+				console.log('DATOSSSSSS 2=======>>>> ' + $("#picture_data").val());
+				console.log('DATOSSSSSS 3=======>>>> ' + $("#picture_name").val());
 			}
 		}); 
 	}

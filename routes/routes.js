@@ -142,6 +142,7 @@ function loadApp() {
     require('./box_users/box_users.js')().register(app);
 
     require('./autocompletes/exercises_autocomplete.js')().register(app);
+
     require('./autocompletes/users_autocomplete.js')().register(app);
 
 	require('./myaccount/myaccount.js')().register(app);
