@@ -8,7 +8,6 @@ var dot = require("dot").process({
 });
 
 function loadApp() {
-
 	app.use(function user(req, res, next) {
 		if(!req.cookies.lang) {
 			res.cookie('lang', 'es');
@@ -139,11 +138,11 @@ function loadApp() {
 	require('./cruds/crud_generator.js')().register(app, ['shift', 'box', 'accounting', 'exercise', 'weight'],
 		{'shift': ['name'], 'box': ['name', 'address', 'phone'], 'accounting': ['description', 'amount', 'box_id'], 'exercise': ['name'], 'weight': ['date'] });
 
-    require('./box_users/box_users.js')().register(app);
+	require('./box_users/box_users.js')().register(app);
 
-    require('./autocompletes/exercises_autocomplete.js')().register(app);
+	require('./autocompletes/exercises_autocomplete.js')().register(app);
 
-    require('./autocompletes/users_autocomplete.js')().register(app);
+	require('./autocompletes/users_autocomplete.js')().register(app);
 
 	require('./myaccount/myaccount.js')().register(app);
 

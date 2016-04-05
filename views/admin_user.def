@@ -32,14 +32,14 @@
 			</tr>
 		</thead>
 		<tbody>
-            {{~it.box.user_box_list :user_box :index}}
-                <tr>
-                    <td>{{=user_box.email}}</td>
-                    <td>
-                    	<a href="#admin_user_section table" onclick="deleteUser('{{=user_box.id}}');"> {{=it.i18n('delete')}} </a>
-                    </td>
-                </tr>
-            {{~}}
+			{{~it.box.user_box_list :user_box :index}}
+				<tr>
+					<td>{{=user_box.email}}</td>
+					<td>
+							<a href="#admin_user_section table" onclick="deleteUser('{{=user_box.id}}');"> {{=it.i18n('delete')}} </a>
+					</td>
+				</tr>
+			{{~}}
 		</tbody>
 	</table>
 </section>
@@ -67,10 +67,10 @@
 				modifyItem('box', box_id);
 			},
 			error: function(data) {
-	            clean_error_messages();
-	            var responseText = JSON.parse(data.responseText);
-	            show_error_messages(responseText);
-	            $('#box_user').val('');
+				clean_error_messages();
+				var responseText = JSON.parse(data.responseText);
+				show_error_messages(responseText);
+				$('#box_user').val('');
 			}
 		});
 	}
