@@ -24,15 +24,16 @@ function loadApp() {
 							req.merge = _.merge(req.merge, {'my_boxes': my_boxes});
 
 							var is_admin_box = false;
-							req.merge.my_boxes.forEach(function(each){
-								if (each.is_admin) {
+							req.merge.my_boxes.forEach(function(each) {
+								if (each.weight >= 750) {
 									is_admin_box = true;
 								}
 							});
-							req.merge = _.merge(req.merge, {"is_admin_box": is_admin_box});
+							req.merge = _.merge(req.merge, {'is_admin_box': is_admin_box});
 						}
 
-						req.merge = _.merge(req.merge, {'user': req.auth_user}, {'is_admin': req.auth_user.weight >= 10});
+						req.merge = _.merge(req.merge, {'user': req.auth_user}, {'is_admin': req.auth_user.weight >= 1000});
+						console.info('MERGE: ' + JSON.stringify(req.merge));
 						next();
 					});
 				} else {
@@ -135,8 +136,8 @@ function loadApp() {
 
 	require('./login/login.js')().register(app, config);
 
-	require('./cruds/crud_generator.js')().register(app, ['shift', 'box', 'accounting', 'exercise', 'weight'],
-		{'shift': ['name'], 'box': ['name', 'address', 'phone'], 'accounting': ['description', 'amount', 'box_id'], 'exercise': ['name'], 'weight': ['date'] });
+	require('./cruds/crud_generator.js')().register(app, ['shift', 'box', 'accounting', 'exercise', 'weight', 'category'],
+		{'shift': ['name'], 'box': ['name', 'address', 'phone'], 'accounting': ['description', 'amount', 'box_id'], 'exercise': ['name'], 'weight': ['date'], 'category': ['name'] });
 
 	require('./box_users/box_users.js')().register(app);
 

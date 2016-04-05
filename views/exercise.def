@@ -1,16 +1,14 @@
 <section id="cta">
-    
-    <h2>{{=it.i18n('exercise_title')}}</h2>
-
-    <form id="crudForm">
-        <div>
-            <div class="row uniform 50%">
-                <div class="8u 12u(mobilep)">
-                    <input type="text" name="name" id="name" placeholder="{{=it.i18n('name')}}" />
-                </div>
-                <div class="8u 12u(mobilep)">
-                    <input type="text" name="tags" id="tags" placeholder="{{=it.i18n('tags')}}" />
-                </div>
+	<h2>{{=it.i18n('exercise_title')}}</h2>
+	<form id="crudForm">
+		<div>
+			<div class="row uniform 50%">
+				<div class="8u 12u(mobilep)">
+					<input type="text" name="name" id="name" placeholder="{{=it.i18n('name')}}" />
+				</div>
+				<div class="8u 12u(mobilep)">
+					<input type="text" name="tags" id="tags" placeholder="{{=it.i18n('tags')}}" />
+				</div>
 				<div class="row uniform 70%">
 					<div class="4u 12u(narrower)">
 						<input type="radio" id="weight_radio" name="exercise_type" value="weight" checked>
@@ -21,57 +19,58 @@
 						<label for="reps_radio">{{=it.i18n('reps')}}</label>
 					</div>
 				</div>
-                <div class="8u 12u(mobilep)" style="width: 425px; margin-left: -10px;">
+				<div class="8u 12u(mobilep)" style="width: 425px; margin-left: -10px;">
 					<a id="save" class="button" onclick="submit('exercise'{{?it.exercise}}, '{{=it.exercise.id}}' {{?}})"> {{=it.i18n('create')}} </a>
 					{{?it.exercise}} <a href="#a" class="button" onclick="load('exercise')"> {{=it.i18n('cancel')}} </a> {{?}}
-                </div>
-            </div>
-        </div>
-    </form>
-    <br />
+				</div>
+			</div>
+		</div>
+	</form>
+	<br />
 
-    {{?it.exercises}}
-	    <section id="exerciseSection" class="box">
-	        <div class="table-wrapper">
-	            <table>
-	                <thead>
-	                    <tr>
-	                        <td>{{=it.i18n('name')}}</td>
-	                        <td>{{=it.i18n('weight')}}</td>
-	                        <td>{{=it.i18n('reps')}}</td>
-	                    </tr>
-	                </thead>
-	                <tbody>
-		                {{~it.exercises :exercise :index}}
-		                    <tr>
-		                        <td>{{=exercise.name}}</td>
-		                        <td>
-		                        	<input type="checkbox" id="by_weight" disabled {{?exercise.by_weight}} checked {{?}} />
-            						<label for="by_weight"> </label>
-		                        </td>
-		                        <td>
-		                        	<input type="checkbox" id="by_reps" disabled {{?exercise.by_reps}} checked {{?}} />
-            						<label for="by_reps"> </label>
-		                        </td>
-		                        <td>
-		                        	<a style="cursor: pointer;" onclick="modifyItem('exercise', '{{=exercise.id}}')"> {{=it.i18n('modify')}} </a>
-    	                        	<a style="cursor: pointer;" onclick="deleteItem('exercise', '{{=exercise.id}}')"> {{=it.i18n('delete')}} </a>
-    	                        </td>
-		                    </tr>
-		                {{~}}
-	                </tbody>
-	            </table>
-	        </div>
-	    </section>
-    {{?}}
+	{{?it.exercises}}
+		<section id="exerciseSection" class="box">
+			<div class="table-wrapper">
+				<table>
+					<thead>
+						<tr>
+							<td>{{=it.i18n('name')}}</td>
+							<td>{{=it.i18n('weight')}}</td>
+							<td>{{=it.i18n('reps')}}</td>
+							<td>{{=it.i18n('action')}}</td>
+						</tr>
+					</thead>
+					<tbody>
+						{{~it.exercises :exercise :index}}
+							<tr>
+								<td>{{=exercise.name}}</td>
+								<td>
+									<input type="checkbox" id="by_weight" disabled {{?exercise.by_weight}} checked {{?}} />
+									<label for="by_weight"> </label>
+								</td>
+								<td>
+									<input type="checkbox" id="by_reps" disabled {{?exercise.by_reps}} checked {{?}} />
+									<label for="by_reps"> </label>
+								</td>
+								<td>
+									<a style="cursor: pointer;" onclick="modifyItem('exercise', '{{=exercise.id}}')"> {{=it.i18n('modify')}} </a>
+									<a style="cursor: pointer;" onclick="deleteItem('exercise', '{{=exercise.id}}')"> {{=it.i18n('delete')}} </a>
+								</td>
+							</tr>
+						{{~}}
+					</tbody>
+				</table>
+			</div>
+		</section>
+	{{?}}
 </section>
 
 <script>
-    {{?it.exercise}}
+	{{?it.exercise}}
 		$('#name').val("{{=it.exercise.name}}");
 		$('#tags').val("{{=it.exercise.tags}}");
 		$("#weight_radio").prop('checked', {{?it.exercise.by_weight}} true {{??}} false {{?}});
 		$("#reps_radio").prop('checked', {{?it.exercise.by_reps}} true {{??}} false {{?}});
 		$('#save').html("{{=it.i18n('modify')}}");
-    {{?}}
+	{{?}}
 </script>

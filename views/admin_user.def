@@ -36,7 +36,7 @@
 				<tr>
 					<td>{{=user_box.email}}</td>
 					<td>
-							<a href="#admin_user_section table" onclick="deleteUser('{{=user_box.id}}');"> {{=it.i18n('delete')}} </a>
+						<a href="#admin_user_section table" onclick="deleteUser('{{=user_box.id}}');"> {{=it.i18n('delete')}} </a>
 					</td>
 				</tr>
 			{{~}}

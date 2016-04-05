@@ -1,0 +1,83 @@
+<head>
+	<script type="text/javascript" src="/assets/js/jscolor.js"></script>
+</head>
+
+<section id="cta">
+	<h2>{{=it.i18n('category_title')}}</h2>
+	<form id="crudForm">
+		<div>
+			<input type="hidden" name="category_box_id" id="category_box_id"/>
+			<div class="row uniform 50%">
+				<div class="8u 12u(mobilep)">
+					<input type="text" name="name" id="name" placeholder="{{=it.i18n('name')}}" />
+				</div>
+				<div class="8u 12u(mobilep)">
+					{{=it.i18n('colour')}}: <input name="color" id="color" class="jscolor" value="AB2567">
+				</div>
+				<div class="8u 12u(mobilep)" style="width: 425px; margin-left: -10px;">
+					<a id="save" class="button" onclick="createCategory()"> {{=it.i18n('create')}} </a>
+				</div>
+			</div>
+		</div>
+	</form>
+	<br />
+
+	{{?it.categorys}}
+		<section id="categorySection" class="box">
+			<div class="table-wrapper">
+				<table>
+					<thead>
+						<tr>
+							<td>{{=it.i18n('name')}}</td>
+							<td>{{=it.i18n('colour')}}</td>
+							<td>{{=it.i18n('action')}}</td>
+						</tr>
+					</thead>
+					<tbody>
+						{{~it.categorys :category :index}}
+							<tr>
+								<td>{{=category.name}}</td>
+								<td>
+									<div style="background-color: #{{=category.color}}; height: 30px; width: 70px; border: 1px solid black;"> </div>
+								</td>
+								<td>
+									<a style="cursor: pointer;" onclick="deleteCategory('category', '{{=category.id}}')"> {{=it.i18n('delete')}} </a>
+								</td>
+							</tr>
+						{{~}}
+					</tbody>
+				</table>
+			</div>
+		</section>
+	{{?}}
+</section>
+
+<script>
+	var box_id = $('#box_id').val();
+	$('#category_box_id').val(box_id);
+
+	function createCategory() {
+		clean_error_messages();
+		var page = 'category';
+		var url = '/' + page;
+		submitUrl('/category', 'crudForm', function() {
+			loadById(page, box_id);
+		});
+	}
+	function deleteCategory(page, id) {
+		clean_error_messages();
+		var url = '/' + page;
+		$.ajax({
+			url: '/' + page + '/' + id,
+			type: 'DELETE',
+			success: function (data) {
+				loadById(page, box_id);
+			},
+			error: function (data) {
+				clean_error_messages();
+				var responseText = JSON.parse(data.responseText);
+				show_error_messages(responseText);
+			}
+		});
+	}
+</script>

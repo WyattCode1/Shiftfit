@@ -1,54 +1,60 @@
 function show_error_messages(errors) {
-    var msg = '';
-    var count = 0;
-    console.info('ERRORS: ' + JSON.stringify(errors));
-    $.each(errors, function (index, error) {
-        $("#"+error.param).addClass("required");
-        count = count+1;
-        msg = msg + error.msg;
-        if ((count < errors.length) && (error.msg.length > 0)) {
-            msg = msg + ' - ';
-        } else {
-            $("#"+error.type+"-error-label").html(msg);
-            $("#"+error.type+"-error-div").show();
-        }
-    });
-    $('html, body').animate({scrollTop: 0}, 'fast');
+	var msg = '';
+	var count = 0;
+	console.info('ERRORS: ' + JSON.stringify(errors));
+	$.each(errors, function (index, error) {
+		$("#"+error.param).addClass("required");
+		count = count+1;
+		msg = msg + error.msg;
+		if ((count < errors.length) && (error.msg.length > 0)) {
+			msg = msg + ' - ';
+		} else {
+			$("#"+error.type+"-error-label").html(msg);
+			$("#"+error.type+"-error-div").show();
+		}
+	});
+	$('html, body').animate({scrollTop: 0}, 'fast');
 }
 
 function clean_error_messages(fields) {
 	if (fields) {
-        $.each(fields, function (index, field) {
-            $('#'+field).removeClass('required');
-        });
+		$.each(fields, function (index, field) {
+			$('#'+field).removeClass('required');
+		});
 	}
-    $('#general-error-div').hide();
-
+	$('#general-error-div').hide();
 }
 
 $.ajaxSetup({complete: onRequestCompleted});
 
 function onRequestCompleted(xhr, textStatus) {
-    if (xhr.status == 302) {
-        location.href = xhr.getResponseHeader("Location");
-    }
+	if (xhr.status == 302) {
+		location.href = xhr.getResponseHeader("Location");
+	}
 }
 
 function load(page) {
-    $.get('/' + page, function (data, res) {
-        $('#crudHtml').html(data);
-    });
+	$.get('/' + page, function (data, res) {
+		$('#crudHtml').html(data);
+	});
+}
+
+function loadById(page, id) {
+	$.get('/' + page + '?search_id=' + id, function (data, res) {
+		$('#crudHtml').html(data);
+	});
 }
 
 function find(page, callback) {
-    var searchTerm = $('#search_term').val();
-    $.get('/' + page + '?search_term=' + searchTerm, function (data, res){
-        $('#crudHtml').html(data);
-        $('#search_term').val(searchTerm);
-        if (callback) {
-        	return callback();
-        }
-    });
+	var searchTerm = $('#search_term').val();
+	alert('searchterm= ' + searchTerm);
+	$.get('/' + page + '?search_term=' + searchTerm, function (data, res){
+		$('#crudHtml').html(data);
+		$('#search_term').val(searchTerm);
+		if (callback) {
+			return callback();
+		}
+	});
 }
 
 function deleteItem(page, id) {
@@ -56,46 +62,46 @@ function deleteItem(page, id) {
 		url: '/' + page + '/' + id,
 		type: 'DELETE',
 		success: function (data) {
-        	load(page);
-    	},
-        error: function (data) {
-            clean_error_messages();
-            var responseText = JSON.parse(data.responseText);
-            show_error_messages(responseText);
-        }
-    });
+			load(page);
+		},
+		error: function (data) {
+			clean_error_messages();
+			var responseText = JSON.parse(data.responseText);
+			show_error_messages(responseText);
+		}
+	});
 }
 
 function modifyItem(page, id) {
-    $.get('/' + page + '/' + id, function (data, res) {
-        $('#crudHtml').html(data);
-    });
+	$.get('/' + page + '/' + id, function (data, res) {
+		$('#crudHtml').html(data);
+	});
 }
 
 function submit(page, id) {
-    clean_error_messages();
-    if (id) {
-        var url = '/' + page + '/' + id;
-    } else {
-        var url = '/' + page;
-    }
-    submitUrl(url, 'crudForm', function () {
-        load(page);
-    });
+	clean_error_messages();
+	if (id) {
+		var url = '/' + page + '/' + id;
+	} else {
+		var url = '/' + page;
+	}
+	submitUrl(url, 'crudForm', function () {
+		load(page);
+	});
 }
 
 function submitUrl(url, formId, sucessCallback) {
-    $.ajax({
-        type: 'POST',
-        url: url,
-        data: $('#' + formId).serialize(),
-        success: sucessCallback,
-        error: function (data) {
-            clean_error_messages();
-            var responseText = JSON.parse(data.responseText);
-            show_error_messages(responseText);
-        }
-    });
+	$.ajax({
+		type: 'POST',
+		url: url,
+		data: $('#' + formId).serialize(),
+		success: sucessCallback,
+		error: function (data) {
+			clean_error_messages();
+			var responseText = JSON.parse(data.responseText);
+			show_error_messages(responseText);
+		}
+	});
 }
 
 function make_autocomplete(fieldId, url, labelName, onselect) {

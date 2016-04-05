@@ -11,6 +11,7 @@
 	"accounting_title"	: "Accounting",
 	"information_title"	: "Information",
 	"weight_title"		: "Weight",
+	"category_title"	: "Category",
 
 	"save"				: "Save",
 	"search"			: "Search",
@@ -65,6 +66,7 @@
 	"reps_weight"			: "Reps/Weight",
 	"unbroken"				: "Unbroken",
 	"exercise"				: "Exercise",
+	"colour"				: "Colour",
 
 	"save_sucess"			: "Save success",
 	"general_error"			: "There was a problem, try again"

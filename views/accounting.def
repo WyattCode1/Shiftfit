@@ -63,10 +63,10 @@
 </section>
 
 <script>
-    {{?it.accounting}}
-        $('#description').val("{{=it.accounting.description}}");
-        $('#amount').val("{{=it.accounting.amount}}");
-        $('#box_id').val("{{=it.accounting.box_id}}");
-        $('#save').html("{{=it.i18n('modify')}}");
-    {{?}}
+	{{?it.accounting}}
+		$('#description').val("{{=it.accounting.description}}");
+		$('#amount').val("{{=it.accounting.amount}}");
+		$('#box_id').val("{{=it.accounting.box_id}}");
+		$('#save').html("{{=it.i18n('modify')}}");
+	{{?}}
 </script>

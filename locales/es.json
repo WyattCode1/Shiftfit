@@ -11,6 +11,7 @@
 	"accounting_title"	: "Pago",
 	"information_title"	: "Informacion",
 	"weight_title"		: "Pesos",
+	"category_title"	: "Categoria",
 
 	"save"				: "Salvar",
 	"search"			: "Buscar",
@@ -65,6 +66,7 @@
 	"reps_weight"			: "Reps/Peso",
 	"unbroken"				: "Adaptado",
 	"exercise"				: "Ejercicio",
+	"colour"				: "Color",
 
 	"save_sucess"			: "Los datos se guardaron con exito",
 	"general_error"			: "Ocurrio un error, intente nuevamente"
