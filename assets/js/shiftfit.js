@@ -47,7 +47,6 @@ function loadById(page, id) {
 
 function find(page, callback) {
 	var searchTerm = $('#search_term').val();
-	alert('searchterm= ' + searchTerm);
 	$.get('/' + page + '?search_term=' + searchTerm, function (data, res){
 		$('#crudHtml').html(data);
 		$('#search_term').val(searchTerm);

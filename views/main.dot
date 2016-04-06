@@ -25,11 +25,9 @@
 		<script type="text/javascript" src="/assets/js/util.js"></script>
 		<script type="text/javascript" src="/assets/js/main.js"></script>
 		<script type="text/javascript" src="/assets/js/shiftfit.js"></script>
+		<script type="text/javascript" src="/assets/js/highcharts.js"></script>
+		<script type="text/javascript" src="/assets/js/exporting.js"></script>
 
-		<script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
-		<script type="text/javascript" src="https://code.highcharts.com/modules/exporting.js"></script>
-
-		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="/assets/css/main.css" />
@@ -38,8 +36,8 @@
 		<link rel="stylesheet" type="text/css" href="/assets/css/table/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="/assets/css/table/demo.css" />
 		<link rel="stylesheet" type="text/css" href="/assets/css/table/component.css" />
+		<link rel="stylesheet" type="text/css" href="/assets/css/jquery-ui.css" />
 		<link rel="stylesheet" type="text/css" href="/assets/impromptu/jquery-impromptu.min.css" />
-		<link rel="stylesheet" type="text/css" href="/assets/js/jquery-ui.css" />
 
 		<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
