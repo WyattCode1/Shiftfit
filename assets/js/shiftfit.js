@@ -77,7 +77,6 @@ function modifyItem(page, id) {
 	});
 }
 
-
 function modifyItemByBox(page, id, box_id) {
 	 $.get('/' + page + '/' + id + '?box=' + box_id, function (data, res) {
 		$('#crudHtml').html(data);
@@ -166,7 +165,6 @@ function make_autocomplete(fieldId, url, labelName, onselect) {
 	});
 }
 
-
 function clear_fields(page) {
 	$('.clear_field').each(function(elem) {
 		$(this).val('');
@@ -191,4 +189,4 @@ var Cookies = {
 		else var expires = "";
 		document.cookie = name+"="+value+expires+"; path=/";
 	}
-}
+};

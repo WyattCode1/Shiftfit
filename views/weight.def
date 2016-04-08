@@ -12,80 +12,80 @@
 	});
 </script>
 <section id="cta">
-    <h2>{{=it.i18n('weight_title')}}</h2>
+	<h2>{{=it.i18n('weight_title')}}</h2>
 
-    <form id="crudForm">
-        <div>
-            <div class="row uniform 50%">
+	<form id="crudForm">
+		<div>
+			<div class="row uniform 50%">
 				<input type="hidden" name="user_id" value="{{=it.user.user_id}}" />
 				<div class="8u 12u(mobilep)">
 					<input type="text" autocomplete="off" name="exercise_name" id="exercise_name" placeholder="{{=it.i18n('exercise_title')}}" />
 				</div>
-                <div class="8u 12u(mobilep)">
-                    <input type="text" maxlength="5" name="amount" id="amount" placeholder="{{=it.i18n('reps_weight')}}" />
-                </div>
-                <div class="8u 12u(mobilep)">
+				<div class="8u 12u(mobilep)">
+					<input type="text" maxlength="5" name="amount" id="amount" placeholder="{{=it.i18n('reps_weight')}}" />
+				</div>
+				<div class="8u 12u(mobilep)">
 					<input type="date" maxlength="10" name="date" id="date" placeholder="{{=it.i18n('date')}} MM/DD/YYYY" />
-                </div>
+				</div>
 				<div class="6u 12u(narrower)">
 					<input type="checkbox" id="unbroken" name="unbroken" />
 					<label for="unbroken">{{=it.i18n('unbroken')}}</label>
 				</div>
-                <div class="8u 12u(mobilep)" style="width: 425px; margin-left: -10px;" >
-                    <a id="save" class="button" onclick="submit('weight'{{?it.weight}}, '{{=it.weight.id}}'{{?}})"> {{=it.i18n('create')}} </a>
-                    {{?it.weight}} <a href="#a" class="button" onclick="load('weight')"> {{=it.i18n('cancel')}} </a> {{?}}
-                </div>
-            </div>
+				<div class="8u 12u(mobilep)" style="width: 425px; margin-left: -10px;" >
+					<a id="save" class="button" onclick="submit('weight'{{?it.weight}}, '{{=it.weight.id}}'{{?}})"> {{=it.i18n('create')}} </a>
+					{{?it.weight}} <a href="#a" class="button" onclick="load('weight')"> {{=it.i18n('cancel')}} </a> {{?}}
+				</div>
+			</div>
 			<div class="row uniform 50%">
 				<div class="8u 12u(mobilep)">
 					<input type="text" autocomplete="off" name="search" id="search_term" placeholder="{{=it.i18n('search')}}" />
 				</div>
 			</div>
-        </div>
-    </form>
+		</div>
+	</form>
 
-    <br />
+	<br />
 	<div id="container" style="width: 700px; height: 400px; margin: 0 auto; display:none;"> </div>
-    <br />
+	<br />
 
-    {{?it.weights.weight_list}}
-	    <section id="weights" class="box">
-	        <div class="table-wrapper">
-	            <table>
-	                <thead>
-	                    <tr>
-	                        <td>{{=it.i18n('exercise_title')}}</td>
-	                        <td>{{=it.i18n('amount')}}</td>
-	                        <td>{{=it.i18n('date')}}</td>
-	                        <td>{{=it.i18n('unbroken')}}</td>
-	                        <td>{{=it.i18n('action')}}</td>
-	                    </tr>
-	                </thead>
-	                <tbody>
-		                {{~it.weights.weight_list :weight :index2}}
-		                    <tr>
+	{{?it.weights.weight_list}}
+		<section id="weights" class="box">
+			<div class="table-wrapper">
+				<table>
+					<thead>
+						<tr>
+							<td>{{=it.i18n('exercise_title')}}</td>
+							<td>{{=it.i18n('amount')}}</td>
+							<td>{{=it.i18n('date')}}</td>
+							<td>{{=it.i18n('unbroken')}}</td>
+							<td>{{=it.i18n('action')}}</td>
+						</tr>
+						</thead>
+						<tbody>
+						{{~it.weights.weight_list :weight :index2}}
+							<tr>
 								{{~it.weights.exercise_list :ex :index3}}
 									{{?ex.id == weight.exercise_id}}
-				                        <td>{{=ex.name}}</td>
+										<td>{{=ex.name}}</td>
 									{{?}}
 								{{~}}
-		                        <td>{{=weight.amount}}</td>
-		                        <td>{{=weight.date}}</td>
-		                        <td>
-		                        	<input type="checkbox" id="unbroken{{=index2}}" disabled {{?weight.unbroken}} checked {{?}} />
-            						<label for="unbroken{{=index2}}"> </label>
-		                        </td>
-		                        <td>
-		                        	<a style="cursor: pointer;" onclick="modifyItem('weight', '{{=weight.id}}')"> {{=it.i18n('modify')}} </a>
-	    	                        <a style="cursor: pointer;" onclick="deleteItem('weight', '{{=weight.id}}')"> {{=it.i18n('delete')}} </a>
-		                        </td>
-		                    </tr>
-		                {{~}}
-	                </tbody>
-	            </table>
-	        </div>
-	    </section>
-    {{?}}
+								<td>{{=weight.amount}}</td>
+								<td>{{=weight.date}}</td>
+								<td>
+									<input type="checkbox" id="unbroken{{=index2}}" disabled {{?weight.unbroken}} checked {{?}} />
+									<label for="unbroken{{=index2}}"> </label>
+								</td>
+								<td>
+									<a style="cursor: pointer;" onclick="modifyItem('weight', '{{=weight.id}}')"> {{=it.i18n('modify')}} </a>
+									<a style="cursor: pointer;" onclick="deleteItem('weight', '{{=weight.id}}')"> {{=it.i18n('delete')}} </a>
+								</td>
+							</tr>
+						{{~}}
+					</tbody>
+				</table>
+			</div>
+		</section>
+	{{?}}
 </section>
 
 <script>
@@ -118,62 +118,62 @@
 
 	function drawChart(exercise, data) {
 		$('#container').show();
-        $('#container').highcharts({
-            chart: {
-                zoomType: 'x'
-            },
-            title: {
-            	text: "{{=it.i18n('exercise')}}: " + exercise,
-            },
-            subtitle: {
-                text: document.ontouchstart === undefined ? 'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-            },
-            xAxis: {
-                type: 'datetime'
-            },
-            yAxis: {
-                title: {
-                    text: "{{=it.i18n('reps_weight')}}"
-                }
-            },
-            legend: {
-                enabled: false
-            },
-            plotOptions: {
-                area: {
-                    fillColor: {
-                        linearGradient: {
-                            x1: 0,
-                            y1: 0,
-                            x2: 0,
-                            y2: 1
-                        },
-                        stops: [
-                            [0, Highcharts.getOptions().colors[0]],
-                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                        ]
-                    },
-                    marker: {
-                        radius: 2
-                    },
-                    lineWidth: 1,
-                    states: {
-                        hover: {
-                            lineWidth: 1
-                        }
-                    },
-                    threshold: null
-                }
-            },
-	        credits: {
-        		enabled: false
+		$('#container').highcharts({
+			chart: {
+				zoomType: 'x'
 			},
-            series: [{
-                type: 'area',
-                name: "{{=it.i18n('reps_weight')}}",
-                data: data
-            }]
-        });
+			title: {
+				text: "{{=it.i18n('exercise')}}: " + exercise,
+			},
+			subtitle: {
+				text: document.ontouchstart === undefined ? 'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+			},
+			xAxis: {
+				type: 'datetime'
+			},
+			yAxis: {
+			title: {
+					text: "{{=it.i18n('reps_weight')}}"
+				}
+			},
+			legend: {
+				enabled: false
+			},
+			plotOptions: {
+				area: {
+					fillColor: {
+						linearGradient: {
+							x1: 0,
+							y1: 0,
+							x2: 0,
+							y2: 1
+						},
+						stops: [
+							[0, Highcharts.getOptions().colors[0]],
+							[1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+						]
+					},
+					marker: {
+						radius: 2
+					},
+					lineWidth: 1,
+					states: {
+						hover: {
+							lineWidth: 1
+						}
+					},
+					threshold: null
+				}
+			},
+			credits: {
+				enabled: false
+			},
+			series: [{
+				type: 'area',
+				name: "{{=it.i18n('reps_weight')}}",
+				data: data
+			}]
+		});
 	}
 	function searchExercise (ex) {
 		$('#search_term').val(ex);
@@ -185,11 +185,11 @@
 			});
 		});
 	}
-    {{?it.weight}}
-        $('#exercise_name').val("{{=it.weight.exercise_name}}");
-        $('#amount').val("{{=it.weight.amount}}");
-        $('#date').val(new Date("{{=it.weight.date}}").toISOString().slice(0,10));
-        $('#unbroken').prop( "checked", {{?it.weight.unbroken}} true {{??}} false {{?}});
-        $('#save').html("{{=it.i18n('modify')}}");
-    {{?}}
+	{{?it.weight}}
+		$('#exercise_name').val("{{=it.weight.exercise_name}}");
+		$('#amount').val("{{=it.weight.amount}}");
+		$('#date').val(new Date("{{=it.weight.date}}").toISOString().slice(0,10));
+		$('#unbroken').prop( "checked", {{?it.weight.unbroken}} true {{??}} false {{?}});
+		$('#save').html("{{=it.i18n('modify')}}");
+	{{?}}
 </script>

@@ -13,6 +13,7 @@
 	"weight_title"		: "Pesos",
 	"category_title"	: "Categoria",
 	"wod_title"			: "Wods semana",
+	"class_title"		: "Clases",
 
 	"save"				: "Salvar",
 	"search"			: "Buscar",
@@ -29,7 +30,13 @@
 	"payment_method"	: "Metodo de pago",
 	"box_admin"			: "Admin del Box",
 	"tags"				: "Etiquetas",
-  	"serach"			: "Buscar",
+
+	"wod_week_name"			: "Nombre",
+	"wod_week_public"		: "Wod es publico?",
+	"wod_week_day"			: "Wod's",
+	"wod_week_athlete"		: "Tipo de Atleta",
+	"wod_week_category"		: "Categoria",
+	"wod_week_date"			: "Dia de asociado",
 
 	"cash"					: "Efectivo",
 	"credit_card"			: "Tarjeta de credito",
@@ -69,12 +76,18 @@
 	"exercise"				: "Ejercicio",
 	"colour"				: "Color",
 
-	"wod_week_name": "Nombre",
-	"wod_week_public": "Wod es publico?",
-	"wod_week_day": "Wod's",
-	"wod_week_athlete": "Tipo de Atleta",
-	"wod_week_category": "Categoria",
-	"wod_week_date": "Dia de asociado",
+	"start_time"			: "Hora Inicio del Dia",
+	"end_time"				: "Hora Fin del Dia",
+	"duration"				: "Duracion",
+	"vacancies"				: "Vacantes",
+	"monday"				: "Lunes",
+	"tuesday"				: "Martes",
+	"wednesday"				: "Miercoles",
+	"thursday"				: "Jueves",
+	"friday"				: "Viernes",
+	"saturday"				: "Sabado",
+	"sunday"				: "Domingo",
+	"is_active"				: "Activo",
 
 	"save_sucess"			: "Los datos se guardaron con exito",
 	"general_error"			: "Ocurrio un error, intente nuevamente"

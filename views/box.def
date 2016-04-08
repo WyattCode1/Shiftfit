@@ -16,6 +16,10 @@
 				<div class="8u 12u(mobilep)">
 					{{#def.payment_method}}
 				</div>
+				<div class="6u 12u(narrower)">
+					<input type="checkbox" id="is_active" name="is_active" checked/>
+					<label for="is_active">{{=it.i18n('is_active')}}</label>
+				</div>
 				<div class="8u 12u(mobilep)" style="width: 425px; margin-left: -10px;" >
 					<a id="save" class="button" onclick="submit('box'{{?it.box}}, '{{=it.box.box_info.id}}'{{?}})"> {{=it.i18n('create')}} </a>
 					{{?it.box}} <a href="#a" class="button" onclick="load('box')"> {{=it.i18n('cancel')}} </a> {{?}}
@@ -50,6 +54,7 @@
 							<td>{{=it.i18n('address')}}</td>
 							<td>{{=it.i18n('phone')}}</td>
 							<td>{{=it.i18n('payment_method')}}</td>
+							<td>{{=it.i18n('is_active')}}</td>
 							<td>{{=it.i18n('action')}}</td>
 						</tr>
 					</thead>
@@ -60,6 +65,10 @@
 								<td>{{=box.address}}</td>
 								<td>{{=box.phone}}</td>
 								<td>{{=box.payment_method}}</td>
+								<td>
+									<input type="checkbox" id="active{{=index}}" disabled {{?box.is_active}} checked {{?}} />
+									<label for="active{{=index}}"> </label>
+								</td>
 								<td>
 									<a style="cursor: pointer;" onclick="modifyItem('box', '{{=box.id}}')"> {{=it.i18n('modify')}} </a>
 									<a style="cursor: pointer;" onclick="deleteItem('box', '{{=box.id}}')"> {{=it.i18n('delete')}} </a>
@@ -79,6 +88,7 @@
 		$('#address').val("{{=it.box.box_info.address}}");
 		$('#phone').val("{{=it.box.box_info.phone}}");
 		$('#payment_method').val("{{=it.box.box_info.payment_method}}");
+		$('#is_active').prop( "checked", {{?it.box.box_info.is_active}} true {{??}} false {{?}});
 		$('#save').html("{{=it.i18n('modify')}}");
 	{{?}}
 </script>

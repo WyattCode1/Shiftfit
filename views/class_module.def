@@ -1,0 +1,159 @@
+<section id="cta">
+	<h2>{{=it.i18n('class_title')}}</h2>
+	<form id="crudForm">
+		<div>
+			<input type="hidden" name="class_module_box_id" id="class_module_box_id"/>
+			<div class="row uniform 50%">
+				<div class="8u 12u(mobilep)">
+					<input type="text" name="description" id="description" placeholder="{{=it.i18n('description')}}" />
+				</div>
+				<div class="8u 12u(mobilep)">
+					<input type="time" name="start_time" id="start_time" placeholder="{{=it.i18n('start_time')}}" />
+				</div>
+				<div class="8u 12u(mobilep)">
+					<input type="time" name="end_time" id="end_time" placeholder="{{=it.i18n('end_time')}}" />
+				</div>
+				<div class="8u 12u(mobilep)">
+					<input type="text" name="duration" id="duration" placeholder="{{=it.i18n('duration')}}" />
+				</div>
+				<div class="8u 12u(mobilep)">
+					<input type="text" name="vacancies" id="vacancies" placeholder="{{=it.i18n('vacancies')}}" />
+				</div>
+				<div class="8u 12u(mobilep)">
+					<select name="coach_id" id="coach_id">
+						{{~it.class_modules.coach_list :coach :index}}
+							<option value="{{=coach.id}}"> {{=coach.email}} </option>
+						{{~}}
+					</select>
+				</div>
+				<div class="8u 12u(mobilep)">
+					<select name="category_id" id="category_id">
+						{{~it.class_modules.category_list :category :index}}
+							<option value="{{=category.id}}"> {{=category.name}} </option>
+						{{~}}
+					</select>
+				</div>
+				<div class="6u 12u(narrower)">
+					<input type="checkbox" id="monday" name="monday" />
+					<label for="monday">{{=it.i18n('monday')}}</label>
+				</div>
+				<div class="6u 12u(narrower)">
+					<input type="checkbox" id="tuesday" name="tuesday" />
+					<label for="tuesday">{{=it.i18n('tuesday')}}</label>
+				</div>
+				<div class="6u 12u(narrower)">
+					<input type="checkbox" id="wednesday" name="wednesday" />
+					<label for="wednesday">{{=it.i18n('wednesday')}}</label>
+				</div>
+				<div class="6u 12u(narrower)">
+					<input type="checkbox" id="thursday" name="thursday" />
+					<label for="thursday">{{=it.i18n('thursday')}}</label>
+				</div>
+				<div class="6u 12u(narrower)">
+					<input type="checkbox" id="friday" name="friday" />
+					<label for="friday">{{=it.i18n('friday')}}</label>
+				</div>
+				<div class="6u 12u(narrower)">
+					<input type="checkbox" id="saturday" name="saturday" />
+					<label for="saturday">{{=it.i18n('saturday')}}</label>
+				</div>
+				<div class="6u 12u(narrower)">
+					<input type="checkbox" id="sunday" name="sunday" />
+					<label for="sunday">{{=it.i18n('sunday')}}</label>
+				</div>
+				<div class="8u 12u(mobilep)" style="width: 425px; margin-left: -10px;">
+					<a id="save" class="button" onclick="createClassModule('class_module'{{?it.class_module}}, '{{=it.class_module.id}}' {{?}})"> {{=it.i18n('create')}} </a>
+					{{?it.class_module}} <a href="#a" class="button" onclick="cancel('class_module')"> {{=it.i18n('cancel')}} </a> {{?}}
+				</div>
+			</div>
+		</div>
+	</form>
+	<br />
+
+	{{?it.class_modules.class_module_list}}
+		<section id="class_module_section" class="box">
+			<div class="table-wrapper">
+				<table>
+					<thead>
+						<tr>
+							<td>{{=it.i18n('description')}}</td>
+							<td>{{=it.i18n('action')}}</td>
+						</tr>
+					</thead>
+					<tbody>
+						{{~it.class_modules.class_module_list :class_module :index}}
+							<tr>
+								<td>{{=class_module.description}}</td>
+								<td>
+									<a style="cursor: pointer;" onclick="modifyClassModule('class_module', '{{=class_module.id}}')"> {{=it.i18n('modify')}} </a>
+									<a style="cursor: pointer;" onclick="deleteClassModule('class_module', '{{=class_module.id}}')"> {{=it.i18n('delete')}} </a>
+								</td>
+							</tr>
+						{{~}}
+					</tbody>
+				</table>
+			</div>
+		</section>
+	{{?}}
+</section>
+
+<script>
+	var box_id = $('#box_id').val();
+	$('#class_module_box_id').val(box_id);
+
+	{{?it.class_module}}
+		$('#description').val("{{=it.class_module.description}}");
+		$('#duration').val("{{=it.class_module.duration}}");
+		$('#vacancies').val("{{=it.class_module.vacancies}}");
+		$('#start_time').val("{{=it.class_module.start_time}}");
+		$('#end_time').val("{{=it.class_module.end_time}}");
+		$('#monday').prop( "checked", {{?it.class_module.monday}} true {{??}} false {{?}});
+		$('#tuesday').prop( "checked", {{?it.class_module.tuesday}} true {{??}} false {{?}});
+		$('#wednesday').prop( "checked", {{?it.class_module.wednesday}} true {{??}} false {{?}});
+		$('#thursday').prop( "checked", {{?it.class_module.thursday}} true {{??}} false {{?}});
+		$('#friday').prop( "checked", {{?it.class_module.friday}} true {{??}} false {{?}});
+		$('#saturday').prop( "checked", {{?it.class_module.saturday}} true {{??}} false {{?}});
+		$('#sunday').prop( "checked", {{?it.class_module.sunday}} true {{??}} false {{?}});
+		$('#coach_id').val("{{=it.class_module.coach_id}}");
+		$('#category_id').val("{{=it.class_module.category_id}}");
+		$('#save').html("{{=it.i18n('modify')}}");
+	{{?}}
+
+	function cancel(page) {
+		clean_error_messages();
+		loadById(page, box_id);
+	}
+	function createClassModule(page, id) {
+		if (id) {
+			var url = '/' + page + '/' + id;
+		} else {
+			var url = '/' + page;
+		}
+		clean_error_messages();
+		submitUrl(url, 'crudForm', function() {
+			loadById(page, box_id);
+		});
+	}
+	function modifyClassModule(page, id) {
+		clean_error_messages();
+		$.get('/' + page + '/' + id + '?search_id=' + box_id, function (data, res) {
+			$('#crudHtml').html(data);
+		});
+	}
+	function deleteClassModule(page, id) {
+		clean_error_messages();
+		var url = '/' + page;
+		$.ajax({
+			url: '/' + page + '/' + id,
+			type: 'DELETE',
+			success: function (data) {
+				loadById(page, box_id);
+			},
+			error: function (data) {
+				clean_error_messages();
+				var responseText = JSON.parse(data.responseText);
+				show_error_messages(responseText);
+			}
+		});
+	}
+</script>

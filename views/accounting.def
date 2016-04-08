@@ -1,65 +1,65 @@
 <section id="cta">
-    
-    <h2>{{=it.i18n('accounting_title')}}</h2>
 
-    <form id="crudForm">
-        <div>
-            <div class="row uniform 50%">
-                <div class="8u 12u(mobilep)">
-                    <input type="text" name="description" id="description" placeholder="{{=it.i18n('description')}}" />
-                </div>
-                <div class="8u 12u(mobilep)">
-                    <input type="text" name="amount" id="amount" placeholder="{{=it.i18n('amount')}}" />
-                </div>
-                <div class="8u 12u(mobilep)">
+	<h2>{{=it.i18n('accounting_title')}}</h2>
+
+	<form id="crudForm">
+		<div>
+			<div class="row uniform 50%">
+				<div class="8u 12u(mobilep)">
+					<input type="text" name="description" id="description" placeholder="{{=it.i18n('description')}}" />
+				</div>
+				<div class="8u 12u(mobilep)">
+					<input type="text" name="amount" id="amount" placeholder="{{=it.i18n('amount')}}" />
+				</div>
+				<div class="8u 12u(mobilep)">
 					<select name="box_id" id="box_id">
 						{{~it.accountings.box_list :box :index}}
 							<option value="{{=box.id}}"> {{=box.name}} </option>
 						{{~}}
 					</select>
-                </div>
-                <div class="8u 12u(mobilep)" style="width: 425px; margin-left: -10px;">
+				</div>
+				<div class="8u 12u(mobilep)" style="width: 425px; margin-left: -10px;">
 					<a id="save" class="button" onclick="submit('accounting'{{?it.accounting}}, '{{=it.accounting.id}}' {{?}})"> {{=it.i18n('create')}} </a>
 					{{?it.accounting}} <a href="#a" class="button" onclick="load('accounting')"> {{=it.i18n('cancel')}} </a> {{?}}
-                </div>
-            </div>
-        </div>
-    </form>
-    <br />
+				</div>
+			</div>
+		</div>
+	</form>
+	<br />
 
-    {{?it.accountings.accounting_list}}
-	    <section class="box">
-	        <div class="table-wrapper">
-	            <table>
-	                <thead>
-	                    <tr>
-	                        <td>{{=it.i18n('description')}}</td>
-	                        <td>{{=it.i18n('amount')}}</td>
-	                        <td>{{=it.i18n('box_name')}}</td>
-	                        <td>{{=it.i18n('action')}}</td>
-	                    </tr>
-	                </thead>
-	                <tbody>
-		                {{~it.accountings.accounting_list :accounting :index}}
-		                    <tr>
-		                        <td>{{=accounting.description}}</td>
-		                        <td>{{=accounting.amount}}</td>
+	{{?it.accountings.accounting_list}}
+		<section class="box">
+			<div class="table-wrapper">
+				<table>
+					<thead>
+						<tr>
+							<td>{{=it.i18n('description')}}</td>
+							<td>{{=it.i18n('amount')}}</td>
+							<td>{{=it.i18n('box_name')}}</td>
+							<td>{{=it.i18n('action')}}</td>
+						</tr>
+					</thead>
+					<tbody>
+						{{~it.accountings.accounting_list :accounting :index}}
+							<tr>
+								<td>{{=accounting.description}}</td>
+								<td>{{=accounting.amount}}</td>
 								{{~it.accountings.box_list :box :index1}}
 									{{?accounting.box_id == box.id}}
-				                        <td>{{=box.name}}</td>
+										<td>{{=box.name}}</td>
 									{{?}}
 								{{~}}
-		                        <td>
-		                        	<a style="cursor: pointer;" onclick="modifyItem('accounting', '{{=accounting.id}}')"> {{=it.i18n('modify')}} </a>
-    	                        	<a style="cursor: pointer;" onclick="deleteItem('accounting', '{{=accounting.id}}')"> {{=it.i18n('delete')}} </a>
-    	                        </td>
-		                    </tr>
-		                {{~}}
-	                </tbody>
-	            </table>
-	        </div>
-	    </section>
-    {{?}}
+								<td>
+									<a style="cursor: pointer;" onclick="modifyItem('accounting', '{{=accounting.id}}')"> {{=it.i18n('modify')}} </a>
+									<a style="cursor: pointer;" onclick="deleteItem('accounting', '{{=accounting.id}}')"> {{=it.i18n('delete')}} </a>
+								</td>
+							</tr>
+						{{~}}
+					</tbody>
+				</table>
+			</div>
+		</section>
+	{{?}}
 </section>
 
 <script>

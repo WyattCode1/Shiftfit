@@ -13,7 +13,7 @@
 	"weight_title"		: "Weight",
 	"category_title"	: "Category",
 	"wod_title"			: "Wod Week",
-
+	"class_title"		: "Classes",
 
 	"save"				: "Save",
 	"search"			: "Search",
@@ -30,7 +30,6 @@
 	"payment_method"	: "Payment Method",
 	"box_admin"			: "Box Admin",
 	"tags"				: "Tags",
-	"search"			: "Search",
 
 	"wod_week_name"			: "Name",
 	"wod_week_public"		: "Wod is public?",
@@ -76,6 +75,19 @@
 	"unbroken"				: "Unbroken",
 	"exercise"				: "Exercise",
 	"colour"				: "Colour",
+
+	"start_time"			: "Day Start Time",
+	"end_time"				: "Day End Time",
+	"duration"				: "Duration",
+	"vacancies"				: "Vacancies",
+	"monday"				: "Monday",
+	"tuesday"				: "Tuesday",
+	"wednesday"				: "Wednesday",
+	"thursday"				: "Thursday",
+	"friday"				: "Friday",
+	"saturday"				: "Saturday",
+	"sunday"				: "Sunday",
+	"is_active"				: "Active",
 
 	"save_sucess"			: "Save success",
 	"general_error"			: "There was a problem, try again"

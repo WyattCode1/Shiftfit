@@ -8,7 +8,7 @@ function _get(object_id, callback) {
 		if (err1) {
 			return callback();
 		} else {
-			global.connection.query('select_user_box_list', [box[0].id], "Getting all the admin users of the box", function (user_box, err2) {
+			global.connection.query('select_user_box_list', [box[0].id, 750], "Getting all the admin users of the box", function (user_box, err2) {
 				if (err2) {
 					return callback();
 				}
@@ -24,9 +24,10 @@ function _save(callback) {
 	var address = req.body.address;
 	var phone = req.body.phone;
 	var payment_method = req.body.payment_method;
+	var is_active = req.body.is_active;
 
-	var insert_query = 'INSERT INTO box (id, name, address, phone, payment_method) VALUES (nextval(\'box_sequence\'), $1, $2, $3, $4) RETURNING id';
-	global.connection.query(insert_query, [name, address, phone, payment_method], "Inserting new box", function (box, err) {
+	var insert_query = 'INSERT INTO box (id, name, address, phone, payment_method, is_active) VALUES (nextval(\'box_sequence\'), $1, $2, $3, $4, $5) RETURNING id';
+	global.connection.query(insert_query, [name, address, phone, payment_method, is_active], "Inserting new box", function (box, err) {
 		if (err) {
 			return callback();
 		}
@@ -40,9 +41,10 @@ function _update(callback) {
 	var address = req.body.address;
 	var phone = req.body.phone;
 	var payment_method = req.body.payment_method;
+	var is_active = req.body.is_active;
 
-	var update_query = 'UPDATE box set name=$2, address=$3, phone=$4, payment_method=$5 WHERE id = $1 returning id';
-	global.connection.query(update_query, [object_id, name, address, phone, payment_method], "Updating box", function (box, err) {
+	var update_query = 'UPDATE box set name=$2, address=$3, phone=$4, payment_method=$5, is_active=$6 WHERE id = $1 returning id';
+	global.connection.query(update_query, [object_id, name, address, phone, payment_method, is_active], "Updating box", function (box, err) {
 		if (err) {
 			return callback();
 		}
@@ -52,11 +54,11 @@ function _update(callback) {
 
 function _delete(callback) {
 	var box_id = req.params.domainId;
-	global.connection.query('UPDATE user_box SET rol_id=1 WHERE box_id = $1', [box_id], "Removing admin function of all the user in the box", function (box, err1) {
+	global.connection.query('DELETE FROM user_box WHERE box_id = $1', [box_id], "Removing all the user relation of the box", function (box, err1) {
 		if (err1) {
 			return callback();
 		}
-		global.connection.query('DELETE FROM box WHERE id = $1 returning id', [box_id], "Deleting box", function (box, err2) {
+		global.connection.query('UPDATE box SET is_active=false WHERE id = $1 returning id', [box_id], "Deleting box, in a logic way", function (box, err2) {
 			if (err2) {
 				return callback();
 			}

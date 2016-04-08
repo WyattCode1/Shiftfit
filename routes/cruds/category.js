@@ -14,7 +14,7 @@ function _get(object_id, callback) {
 
 function _save(callback) {
 	var name = req.body.name;
-	var color = req.body.color;
+	var color = req.body.background_color;
 	var box_id = req.body.category_box_id;
 
 	var insert_query = 'INSERT INTO category (id, name, color, box_id) VALUES (nextval(\'category_sequence\'), $1, $2, $3) RETURNING id';
@@ -29,7 +29,7 @@ function _save(callback) {
 function _update(callback) {
 	var object_id = req.params.domainId;
 	var name = req.body.name;
-	var color = req.body.color;
+	var color = req.body.background_color;
 	var box_id = req.body.category_box_id;
 
 	var update_query = 'UPDATE category set name=$2, color=$3, box_id=$4 WHERE id = $1 returning id';

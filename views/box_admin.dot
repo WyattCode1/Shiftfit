@@ -18,6 +18,7 @@
 			<ul>
 				<li><a href="" onclick="tabSelected('box_admin_info')">{{=it.i18n('information_title')}}</a></li>
 				<li><a href="" onclick="loadSelectedById('category')">{{=it.i18n('category_title')}}</a></li>
+				<li><a href="" onclick="loadSelectedById('class_module')">{{=it.i18n('class_title')}}</a></li>
 				<li><a href="" onclick="loadTabProperly('wod_week')">{{=it.i18n('wod_title')}}</a></li>
 			</ul>
 			<div id="crudHtml"> </div>
@@ -36,7 +37,7 @@
 	function defaultSearch() {
 		tabSelected('box_admin_info');
 	}
-	
+
 	function loadTabProperly(page) {
 		var box_id = $('#box_id').val();
 		page = page + '/0?box=' + box_id;

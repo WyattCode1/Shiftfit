@@ -1,7 +1,3 @@
-<head>
-	<script type="text/javascript" src="/assets/js/jscolor.js"></script>
-</head>
-
 <section id="cta">
 	<h2>{{=it.i18n('category_title')}}</h2>
 	<form id="crudForm">
@@ -12,7 +8,7 @@
 					<input type="text" name="name" id="name" placeholder="{{=it.i18n('name')}}" />
 				</div>
 				<div class="8u 12u(mobilep)">
-					{{=it.i18n('colour')}}: <input name="color" id="color" class="jscolor" value="AB2567">
+					{{=it.i18n('colour')}} <input type="color" name="background_color" id="background_color" value="#ffffff" >
 				</div>
 				<div class="8u 12u(mobilep)" style="width: 425px; margin-left: -10px;">
 					<a id="save" class="button" onclick="createCategory()"> {{=it.i18n('create')}} </a>
@@ -38,7 +34,7 @@
 							<tr>
 								<td>{{=category.name}}</td>
 								<td>
-									<div style="background-color: #{{=category.color}}; height: 30px; width: 70px; border: 1px solid black;"> </div>
+									<div style="background-color: {{=category.color}}; height: 30px; width: 70px; border: 1px solid black;"> </div>
 								</td>
 								<td>
 									<a style="cursor: pointer;" onclick="deleteCategory('category', '{{=category.id}}')"> {{=it.i18n('delete')}} </a>
@@ -55,6 +51,7 @@
 <script>
 	var box_id = $('#box_id').val();
 	$('#category_box_id').val(box_id);
+	$('#color').addClass('jscolor');
 
 	function createCategory() {
 		clean_error_messages();

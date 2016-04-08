@@ -33,7 +33,6 @@ function loadApp() {
 						}
 
 						req.merge = _.merge(req.merge, {'user': req.auth_user}, {'is_admin': req.auth_user.weight >= 1000});
-						console.info('MERGE: ' + JSON.stringify(req.merge));
 						next();
 					});
 				} else {
@@ -172,10 +171,18 @@ function loadApp() {
 
 	require('./login/login.js')().register(app, config);
 
-
-	require('./cruds/crud_generator.js')().register(app, ['shift', 'box', 'accounting', 'exercise', 'weight', 'category', 'wod_week'],
-		{'shift': ['name'], 'box': ['name', 'address', 'phone'], 'accounting': ['description', 'amount', 'box_id'], 'exercise': ['name'], 'weight': ['date'], 'category': ['name'], 'wod_week': ['wod_date', 'wod_text', 'category_id'] });
-
+	require('./cruds/crud_generator.js')().register(app, ['shift', 'box', 'accounting', 'exercise', 'weight', 'category', 'class_module', 'wod_week'],
+		{
+			'shift': ['name'],
+			'box': ['name', 'address', 'phone'],
+			'accounting': ['description', 'amount', 'box_id'],
+			'exercise': ['name'],
+			'weight': ['date'],
+			'category': ['name'],
+			'class_module': ['description'],
+			'wod_week': ['wod_date', 'wod_text', 'category_id']
+		}
+	);
 
 	require('./box_users/box_users.js')().register(app);
 
