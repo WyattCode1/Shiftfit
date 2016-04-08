@@ -1,11 +1,11 @@
 module.exports = function() {
     return {
-        shift       : 100,
-        box         : 100,
-        accounting  : 100,
-        exercise    : 100,
-        weight      : 100,
-        category    : 100,
-        wod_week    : 100
+        shift       : 1000,
+        box         : 1000,
+        accounting  : 1000,
+        exercise    : 750,
+        weight      : 1,
+        category    : 750,
+        wod_week    : 750
     };
 };

@@ -107,10 +107,7 @@ function loadApp() {
 
 	app.weighted_get = function (path, weight, callback) {
 		app.get(path, function (req, res) {
-			console.info('WWWW: ' + weight);
-			console.info('USER WW: ' + req.auth_user.weight);
-
-			if (req.auth_user.weight > weight) {
+			if (req.auth_user.weight >= weight) {
 				return is_logged(req, res, callback);
 			} else {
 				console.info('Have not permission to access to this page');
@@ -121,7 +118,7 @@ function loadApp() {
 
 	app.weighted_post = function (path, weight, callback) {
 		app.post(path, function (req, res) {
-			if (req.auth_user.weight > weight) {
+			if (req.auth_user.weight >= weight) {
 				return is_logged(req, res, callback);
 			} else {
 				console.info('Have not permission to access to this page');
@@ -132,7 +129,7 @@ function loadApp() {
 
 	app.weighted_delete = function (path, weight, callback) {
 		app.delete(path, function (req, res) {
-			if (req.auth_user.weight > weight) {
+			if (req.auth_user.weight >= weight) {
 				return is_logged(req, res, callback);
 			} else {
 				console.info('Have not permission to access to this page');
