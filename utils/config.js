@@ -53,5 +53,13 @@ module.exports = function(env) {
     );
     config.currenttime = _currenttime;
 
+    config.url = function() {
+        var head = arguments[0];
+        var tail = _.toArray(arguments).slice(1).join('');
+        return (
+                lookup(config, head)
+            ) + tail;
+    };
+
     return config;
 };
