@@ -77,6 +77,42 @@ function modifyItem(page, id) {
 	});
 }
 
+
+function modifyItemByBox(page, id, box_id) {
+	 $.get('/' + page + '/' + id + '?box=' + box_id, function (data, res) {
+		$('#crudHtml').html(data);
+	});
+}
+
+function submitByBoxPage(page, boxId, id) {
+	clean_error_messages();
+	if (id) {
+		var url = '/' + page + '/' + id;
+	} else {
+		var url = '/' + page;
+	}
+	submitUrl(url, 'crudForm', function () {
+		page = page + '/' + id + '?box=' + boxId;
+		load(page);
+	});
+}
+
+function deleteItemByBox(page, id, box_id) {
+	$.ajax({
+		url: '/' + page + '/' + id + '?box=' + box_id,
+		type: 'DELETE',
+		success: function (data) {
+			page = page + '/' + id + '?box=' + box_id;
+			load(page);
+		},
+		error: function (data) {
+			clean_error_messages();
+			var responseText = JSON.parse(data.responseText);
+			show_error_messages(responseText);
+		}
+	});
+}
+
 function submit(page, id) {
 	clean_error_messages();
 	if (id) {
@@ -126,5 +162,12 @@ function make_autocomplete(fieldId, url, labelName, onselect) {
 			var user = $('#' + fieldId).val();
 			return onselect(user, true);
 		}
+	});
+}
+
+
+function clear_fields(page) {
+	$('.clear_field').each(function(elem) {
+		$(this).val('');
 	});
 }

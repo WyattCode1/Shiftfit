@@ -60,7 +60,8 @@ function _post (req, res, domain) {
 				res.status(500).send(errors);
 			}
 		};
-		if (req.params.domainId) {
+
+		 if (req.params.domainId && req.params.domainId != '0') {
 			console.info('Is post Edit');
 			object.update(callback);
 		} else {

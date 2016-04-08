@@ -94,7 +94,7 @@
 		var date, time, amount;
 		var data = [];
 
-		var exercise_list_size = '{{=it.weights.weight_list.length}}';
+		var exercise_list_size = 0;
 		if (exercise_list_size == 0) {
 			return callback();
 		}

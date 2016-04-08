@@ -3870,6 +3870,13 @@ span.btn-bg:hover, span.btn-conv-bg:hover {
 	border: 2px solid red !important;
 }
 
+.particular_check {
+	height: 28px !important;
+	opacity: 1 !important;
+	width: 28px !important;
+}
+
+/* Tenemos que copiar esto en el css para que funcione el servidor de fotos */
 .imageBox {
 	overflow: hidden;
 	background-repeat: no-repeat;

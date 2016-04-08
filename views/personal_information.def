@@ -218,11 +218,6 @@
 				var name_regex = /.*fakepath\\(.*)/;
 				var final_name = file_name.replace(name_regex, '$1');
 				$("#picture_name").val(final_name.replace(/\s+/g, '-'));
-				
-				
-				console.log('DATOSSSSSS 1=======>>>> ' + $("#picture_type").val());
-				console.log('DATOSSSSSS 2=======>>>> ' + $("#picture_data").val());
-				console.log('DATOSSSSSS 3=======>>>> ' + $("#picture_name").val());
 			}
 		}); 
 	}

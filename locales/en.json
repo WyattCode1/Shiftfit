@@ -12,6 +12,8 @@
 	"information_title"	: "Information",
 	"weight_title"		: "Weight",
 	"category_title"	: "Category",
+	"wod_title"			: "Wod Week",
+
 
 	"save"				: "Save",
 	"search"			: "Search",
@@ -28,7 +30,14 @@
 	"payment_method"	: "Payment Method",
 	"box_admin"			: "Box Admin",
 	"tags"				: "Tags",
-  	"search"			: "Search",
+	"search"			: "Search",
+
+	"wod_week_name"			: "Name",
+	"wod_week_public"		: "Wod is public?",
+	"wod_week_day"			: "Wod's",
+	"wod_week_athlete"		: "Athlete type",
+	"wod_week_category"		: "Category",
+	"wod_week_date"			: "Publish date",
 
 	"cash"					: "cash",
 	"credit_card"			: "credit_card",

@@ -71,6 +71,9 @@ CREATE TABLE box (
 	payment_method	varchar(30) NOT NULL
 );
 
+INSERT INTO box (id, name, address, phone, payment_method) VALUES (nextval('box_sequence'), 'AQUILA', 'Av la Plata 200', '555-5555', 'credit_card');
+
+
 DROP SEQUENCE IF EXISTS accounting_sequence;
 CREATE SEQUENCE accounting_sequence START WITH 1;
 DROP TABLE IF EXISTS accounting;
@@ -127,6 +130,7 @@ CREATE TABLE weight (
 );
 CREATE INDEX weight_user_id ON weight ( user_id );
 
+
 DROP TABLE IF EXISTS category;
 DROP SEQUENCE IF EXISTS category_sequence;
 CREATE SEQUENCE category_sequence START WITH 1;
@@ -136,3 +140,44 @@ CREATE TABLE category (
 	color		varchar(6) NOT NULL,
 	box_id		integer NOT NULL
 );
+
+DROP TABLE IF EXISTS wod_type;
+CREATE TABLE wod_type (
+	id		integer PRIMARY KEY,
+	name	varchar(100) NOT NULL
+);
+
+DROP SEQUENCE IF EXISTS wod_type_sequence;
+CREATE SEQUENCE wod_type_sequence START WITH 1;
+
+INSERT INTO wod_type (id, name) VALUES (nextval('wod_type_sequence'), 'AMRAP');
+INSERT INTO wod_type (id, name) VALUES (nextval('wod_type_sequence'), 'EMOM');
+INSERT INTO wod_type (id, name) VALUES (nextval('wod_type_sequence'), 'TIME CAP');
+INSERT INTO wod_type (id, name) VALUES (nextval('wod_type_sequence'), 'BENCHMARKS');
+
+DROP TABLE IF EXISTS wod_week;
+CREATE TABLE wod_week (
+	id					integer PRIMARY KEY,
+	name				varchar(100),
+	publish_date		timestamp,
+	wod_text 			text,
+	box_id 				integer not null,
+	category_box_id 	integer not null,
+	athlete_type_box_id integer,
+	public_wod 			boolean not null default false
+
+);
+
+DROP SEQUENCE IF EXISTS wod_week_sequence;
+CREATE SEQUENCE wod_week_sequence START WITH 1;
+
+DROP TABLE IF EXISTS athlete_type_box; 
+CREATE TABLE athlete_type_box (
+	id				integer PRIMARY KEY, 
+	name			varchar(100) NOT NULL, 
+	description		varchar(250), 
+	box_id 			integer NOT NULL 
+);
+
+DROP SEQUENCE IF EXISTS athlete_type_box_sequence; 
+CREATE SEQUENCE athlete_type_box_sequence START WITH 1;

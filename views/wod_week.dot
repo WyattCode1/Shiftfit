@@ -1,0 +1,122 @@
+<section class="box">
+	<form id="crudForm">
+		<input class="clear_field" type="hidden" name="box_id" id="box_id" value="{{=it.wod_week.box_id}}"/>
+		<input class="clear_field" type="hidden" name="o_id" id="o_id" value="{{=it.wod_week.object_id}}"/>
+		<div>
+			<div class="row uniform 50%">
+				<div class="4u 12u(narrower)">
+					<label for="priority-low">{{=it.i18n('wod_week_name')}}</label>
+				</div>
+				<div class="6u 12u(mobilep)">
+					<input class="clear_field" type="text" name="wod_name" id="wod_name"  placeholder="{{=it.i18n('wod_week_name')}}" />
+				</div>
+			</div>
+			<div class="row uniform 50%">
+				<div class="4u 12u(narrower)">
+					<label for="priority-low">{{=it.i18n('wod_week_category')}}</label>
+				</div>
+				<div class="6u 12u(mobilep)">
+					<select class="clear_field" name="category_id" id="category_id" >
+						{{?it.wod_week}}
+							{{~it.wod_week.my_categories:cat:index}}
+									<option value="{{=cat.id}}"> {{=cat.name_category}}</option>
+							{{~}}
+						{{?}}}
+					</select>
+				</div>
+			</div>
+			<div class="row uniform 50%">
+				<div class="4u 12u(narrower)">
+					<label for="priority-low">{{=it.i18n('wod_week_day')}}</label>
+				</div>
+				<div class="6u 12u(mobilep)">
+					<textarea class="clear_field" name="wod_text" id="wod_text" placeholder="{{=it.i18n('wod_week_day')}}" rows="8"> </textarea>
+				</div>
+			</div>
+			<div class="row uniform 50%">
+				<div class="4u 12u(narrower)">
+					<label for="priority-low">{{=it.i18n('wod_week_date')}}</label>
+				</div>
+				<div class="6u 12u(mobilep)">
+					<input class="clear_field" type="date" name="wod_date" id="wod_date" placeholder="{{=it.i18n('date')}} MM/DD/YYYY" />
+				</div>
+			</div>
+
+			<div class="row uniform 50%">
+				<div class="4u 12u(narrower)">
+					<label for="priority-low">{{=it.i18n('wod_week_public')}}</label>
+				</div>
+				<div class="6u 12u(mobilep)">
+					<input type="checkbox" id="wod_public" name="wod_public" checked="" class="particular_check" class="clear_field" />
+					<label> &nbsp; </label>
+				</div>
+			</div>
+
+			<div class="row uniform">
+				<div class="12u">
+					<ul class="actions align-center">
+						<li><a id="save" class="button" onclick="submitByBoxPage('wod_week', '{{=it.wod_week.box_id}}', {{?it.wod_week.wod_modify[0]}} $('#o_id').val() {{??}} '0' {{?}});clear_fields();"> {{=it.i18n('create')}} </a></li>
+						<li><a class="button" onclick="clear_fields();load('wod_week/0?box=' + '{{=it.wod_week.box_id}}')"> {{=it.i18n('cancel')}} </a> </li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<br />
+	<div id="container" style="width: 700px; height: 400px; margin: 0 auto; display:none;"> </div>
+	<br />
+
+	<h4>LISTA</h4>  
+
+	{{?it.wod_week.wods_week}}
+	<div id="wods_week" class="12u">
+		<div class="table-wrapper">
+			<table class="alt">
+				<thead>
+					<tr>
+						<td>{{=it.i18n('wod_week_date')}}</td>
+						<td>{{=it.i18n('wod_week_category')}}</td>
+						<td>{{=it.i18n('wod_week_name')}}</td>
+						<td>{{=it.i18n('action')}}</td>
+					</tr>
+				</thead>
+
+				<tbody>
+					{{~it.wod_week.wods_week:wod:index}}
+						<tr>
+							<td>{{=wod.publish_date}}</td>
+							<td>{{=wod.category}}</td>
+							<td>{{=wod.name}}</td>
+							<td>
+								<a style="cursor: pointer;" onclick="modifyItemByBox('wod_week', '{{=wod.id}}', '{{=it.wod_week.box_id}}')"> {{=it.i18n('modify')}} </a>
+								<a style="cursor: pointer;" onclick="deleteItemByBox('wod_week', '{{=wod.id}}', '{{=it.wod_week.box_id}}')"> {{=it.i18n('delete')}} </a>
+							</td>
+						</tr>
+					{{~}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	{{?}}
+</section>
+
+<script>
+
+	var id_wod = $('#o_id').val();
+	if(id_wod != 0) {
+		{{?it.wod_week.wod_modify.length > 0}}
+			console.log("ENTRE");
+			$('#wod_name').val("{{=it.wod_week.wod_modify[0].name}}");
+			$('#wod_date').val(new Date("{{=it.wod_week.wod_modify[0].publish_date}}").toISOString().slice(0,10));
+			$('#category_id').val("{{=it.wod_week.wod_modify[0].category_box_id}}");
+			$('#wod_public').val("{{=it.wod_week.wod_modify[0].public_wod}}");
+			$('#wod_text').val("{{=it.wod_week.wod_modify[0].wod_text}}");
+			$('#wod_id').val("{{=it.wod_week.wod_modify[0].id}}");
+	
+			$('#save').html("{{=it.i18n('modify')}}");
+		{{?}}
+	} else {
+		$('#wod_id').val("0");
+	}
+</script>

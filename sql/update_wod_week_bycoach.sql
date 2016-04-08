@@ -1,0 +1,1 @@
+UPDATE wod_week SET name=$1, publish_date=$2, wod_text=$3, category_box_id=$4, public_wod=$5, box_id=$6 where id=$7 RETURNING id;
