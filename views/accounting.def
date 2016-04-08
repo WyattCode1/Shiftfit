@@ -19,7 +19,7 @@
 					</select>
 				</div>
 				<div class="8u 12u(mobilep)" style="width: 425px; margin-left: -10px;">
-					<a id="save" class="button" onclick="submit('accounting'{{?it.accounting}}, '{{=it.accounting.id}}' {{?}})"> {{=it.i18n('create')}} </a>
+					<a id="save" class="button" onclick="submitForm('accounting'{{?it.accounting}}, '{{=it.accounting.id}}' {{?}})"> {{=it.i18n('create')}} </a>
 					{{?it.accounting}} <a href="#a" class="button" onclick="load('accounting')"> {{=it.i18n('cancel')}} </a> {{?}}
 				</div>
 			</div>

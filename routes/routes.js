@@ -118,6 +118,7 @@ function loadApp() {
 
 	app.weighted_post = function (path, weight, callback) {
 		app.post(path, function (req, res) {
+			res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
 			if (req.auth_user.weight >= weight) {
 				return is_logged(req, res, callback);
 			} else {

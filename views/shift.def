@@ -8,7 +8,7 @@
                     <input type="text" name="name" id="name" placeholder="{{=it.i18n('name')}}" />
                 </div>
                 <div class="8u 12u(mobilep)">
-                    <a id="save" class="button" onclick="submit('shift'{{?it.shift}}, '{{=it.shift.id}}'{{?}})">{{=it.i18n('create')}}</a>
+                    <a id="save" class="button" onclick="submitForm('shift'{{?it.shift}}, '{{=it.shift.id}}'{{?}})">{{=it.i18n('create')}}</a>
                     {{?it.shift}}<a href="#a" class="button" onclick="load('shift')"> {{=it.i18n('cancel')}} </a>{{?}}
                 </div>
             </div>

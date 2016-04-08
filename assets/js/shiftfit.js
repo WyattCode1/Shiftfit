@@ -112,7 +112,7 @@ function deleteItemByBox(page, id, box_id) {
 	});
 }
 
-function submit(page, id) {
+function submitForm(page, id) {
 	clean_error_messages();
 	if (id) {
 		var url = '/' + page + '/' + id;
@@ -125,10 +125,12 @@ function submit(page, id) {
 }
 
 function submitUrl(url, formId, sucessCallback) {
+	var dataS =  $('#' + formId).serialize();
 	$.ajax({
 		type: 'POST',
+		async : false,
 		url: url,
-		data: $('#' + formId).serialize(),
+		data: dataS,
 		success: sucessCallback,
 		error: function (data) {
 			clean_error_messages();

@@ -21,7 +21,7 @@
 					<label for="is_active">{{=it.i18n('is_active')}}</label>
 				</div>
 				<div class="8u 12u(mobilep)" style="width: 425px; margin-left: -10px;" >
-					<a id="save" class="button" onclick="submit('box'{{?it.box}}, '{{=it.box.box_info.id}}'{{?}})"> {{=it.i18n('create')}} </a>
+					<a id="save" href="#a" class="button" onclick="submitForm('box'{{?it.box}}, '{{=it.box.box_info.id}}'{{?}})"> {{=it.i18n('create')}} </a>
 					{{?it.box}} <a href="#a" class="button" onclick="load('box')"> {{=it.i18n('cancel')}} </a> {{?}}
 				</div>
 			</div>

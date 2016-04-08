@@ -32,7 +32,7 @@
 					<label for="unbroken">{{=it.i18n('unbroken')}}</label>
 				</div>
 				<div class="8u 12u(mobilep)" style="width: 425px; margin-left: -10px;" >
-					<a id="save" class="button" onclick="submit('weight'{{?it.weight}}, '{{=it.weight.id}}'{{?}})"> {{=it.i18n('create')}} </a>
+					<a id="save" class="button" onclick="submitForm('weight'{{?it.weight}}, '{{=it.weight.id}}'{{?}})"> {{=it.i18n('create')}} </a>
 					{{?it.weight}} <a href="#a" class="button" onclick="load('weight')"> {{=it.i18n('cancel')}} </a> {{?}}
 				</div>
 			</div>
