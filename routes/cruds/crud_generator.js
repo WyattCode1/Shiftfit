@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var required;
+var permissions = require('./crud_permissions.js')();
 
 function _get (req, res, domain) {
 	var object = require('./' + domain + '.js')(req);
@@ -91,13 +92,13 @@ function _register (app, domainNames, requiredNames) {
 	console.info("Initializing CRUDS");
 	required = requiredNames;
 	domainNames.forEach(function (domain) {
-		app.get('/' + domain + '/:domainId?', function (req, res) {
+		app.weighted_get('/' + domain + '/:domainId?', permissions[domain], function (req, res) {
 			return _get(req, res, domain);
 		});
-		app.post('/' + domain + '/:domainId?', function (req, res) {
+		app.weighted_post('/' + domain + '/:domainId?', permissions[domain], function (req, res) {
 			return _post(req, res, domain);
 		});
-		app.delete('/' + domain + '/:domainId?', function (req, res) {
+		app.weighted_delete('/' + domain + '/:domainId?', permissions[domain], function (req, res) {
 			return _delete(req, res, domain);
 		});
 		console.info(domain + ' Registered');
@@ -112,7 +113,7 @@ function _root_register() {
 
 }
 
-module.exports = module.exports = function() {
+module.exports = function() {
 	return {
 		register		: _register,
 		admin_register	: _admin_register,

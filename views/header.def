@@ -8,8 +8,32 @@
 				<li style="float:right;" class="opener active">
 					<a class="icon fa-angle-down">{{=it.user.user_name}}</a>
 					<ul style="top:8%;right:5px">
+						<li id="backToAdmin" style="display:none"><a href="#" onclick="back_to_admin();">BACK TO ADMIN</a></li>
 						{{?it.is_admin}}
 							<li><a href="/admin">ADMIN</a></li>
+							<li><input type="text" name="impersonate" autocomplete="off"  id="imp"></input></li>
+							<script>
+
+                            	function user_selected(email) {
+                            		var datas = 'userEmail='+email;
+                            		var url = '/impersonate';
+									$.ajax({
+										type: 'POST',
+										url: url,
+										data: datas,
+										success: function (data, data1) {
+										 	location.href = data;
+										},
+										error: function (data) {
+											clean_error_messages();
+											var responseText = JSON.parse(data.responseText);
+											show_error_messages(responseText);
+										}
+									});
+                            	}
+								var url = "/userautocomplete";
+								make_autocomplete('imp', url, 'user', user_selected);
+                            </script>
 						{{?}}
 						{{?it.is_admin_box}}
 							<li><a href="/myboxes">MY BOXES</a></li>
@@ -25,4 +49,18 @@
 			{{?}}
 		</ul>
 	</nav>
+	<script>
+		function back_to_admin() {
+			Cookies.delete_cookie('ShiftfitLogin');
+			Cookies.create_cookie('ShiftfitLogin', Cookies.get_cookie('AdminShiftLogin'));
+			Cookies.delete_cookie('AdminShiftLogin');
+			window.location.reload();
+		}
+		function show_back_to_admin() {
+			if (Cookies.get_cookie('AdminShiftLogin')) {
+				$('#backToAdmin').show();
+			}
+		}
+		show_back_to_admin();
+	</script>
 </header>

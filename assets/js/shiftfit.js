@@ -140,6 +140,7 @@ function submitUrl(url, formId, sucessCallback) {
 }
 
 function make_autocomplete(fieldId, url, labelName, onselect) {
+	console.log('Making autocomplete');
 	$("#" + fieldId).autocomplete({
 		source: function(request, response) {
 			$.get(url + '/' + request.term, function(data) {
@@ -170,4 +171,24 @@ function clear_fields(page) {
 	$('.clear_field').each(function(elem) {
 		$(this).val('');
 	});
+}
+
+var Cookies = {
+	get_cookie : function get_cookie(name) {
+		var value = "; " + document.cookie;
+		var parts = value.split("; " + name + "=");
+		if (parts.length == 2) return parts.pop().split(";").shift();
+	},
+	delete_cookie : function delete_cookie( name ) {
+		document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+	},
+	create_cookie : function createCookie(name,value,days) {
+		if (days) {
+			var date = new Date();
+			date.setTime(date.getTime()+(days*24*60*60*1000));
+			var expires = "; expires="+date.toGMTString();
+		}
+		else var expires = "";
+		document.cookie = name+"="+value+expires+"; path=/";
+	}
 }
