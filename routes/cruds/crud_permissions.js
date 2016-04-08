@@ -5,6 +5,7 @@ module.exports = function() {
         accounting  : 100,
         exercise    : 100,
         weight      : 100,
-        category    : 100
+        category    : 100,
+        wod_week    : 100
     };
 };

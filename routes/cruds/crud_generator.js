@@ -92,31 +92,26 @@ function _register (app, domainNames, requiredNames) {
 	console.info("Initializing CRUDS");
 	required = requiredNames;
 	domainNames.forEach(function (domain) {
-		app.weighted_get('/' + domain + '/:domainId?', permissions[domain], function (req, res) {
-			return _get(req, res, domain);
-		});
-		app.weighted_post('/' + domain + '/:domainId?', permissions[domain], function (req, res) {
-			return _post(req, res, domain);
-		});
-		app.weighted_delete('/' + domain + '/:domainId?', permissions[domain], function (req, res) {
-			return _delete(req, res, domain);
-		});
-		console.info(domain + ' Registered');
+		if (permissions[domain]) {
+			app.weighted_get('/' + domain + '/:domainId?', permissions[domain], function (req, res) {
+				return _get(req, res, domain);
+			});
+			app.weighted_post('/' + domain + '/:domainId?', permissions[domain], function (req, res) {
+				return _post(req, res, domain);
+			});
+			app.weighted_delete('/' + domain + '/:domainId?', permissions[domain], function (req, res) {
+				return _delete(req, res, domain);
+			});
+			console.info(domain + ' Registered');
+		} else {
+			throw new Error('Permission not setted up in crud_permissions.js for: ' + domain);
+		}
+
 	});
-}
-
-function _admin_register() {
-
-}
-
-function _root_register() {
-
 }
 
 module.exports = function() {
 	return {
 		register		: _register,
-		admin_register	: _admin_register,
-		root_register	: _root_register
 	};
 };

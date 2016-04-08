@@ -21,6 +21,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="crud_generator.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/cruds/crud_generator.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-25.444445">
+              <caret line="106" column="94" selection-start-line="106" selection-start-column="94" selection-end-line="106" selection-end-column="94" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="crud_permissions.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/routes/cruds/crud_permissions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.15810277">
+              <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/routes.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -61,20 +81,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="box.def" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/box.def">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="27" column="68" selection-start-line="27" selection-start-column="67" selection-end-line="27" selection-end-column="68" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="shiftfit.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="shiftfit.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/shiftfit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.3565574">
+            <state vertical-scroll-proportion="-91.55556">
               <caret line="193" column="1" selection-start-line="193" selection-start-column="1" selection-end-line="193" selection-end-column="1" />
               <folding />
             </state>
@@ -86,16 +96,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="14" column="89" selection-start-line="14" selection-start-column="73" selection-end-line="14" selection-end-column="89" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="box_admin_info.def" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/box_admin_info.def">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="89" selection-start-line="7" selection-start-column="87" selection-end-line="7" selection-end-column="89" />
               <folding />
             </state>
           </provider>
@@ -168,8 +168,6 @@
         <option value="$PROJECT_DIR$/views/home.dot" />
         <option value="$PROJECT_DIR$/views/main.dot" />
         <option value="$PROJECT_DIR$/schema/create_schema.sql" />
-        <option value="$PROJECT_DIR$/routes/cruds/crud_generator.js" />
-        <option value="$PROJECT_DIR$/routes/cruds/crud_permissions.js" />
         <option value="$PROJECT_DIR$/routes/cruds/box.js" />
         <option value="$PROJECT_DIR$/views/shift.def" />
         <option value="$PROJECT_DIR$/domain/User.js" />
@@ -177,6 +175,8 @@
         <option value="$PROJECT_DIR$/routes/impersonate/impersonate.js" />
         <option value="$PROJECT_DIR$/views/header.def" />
         <option value="$PROJECT_DIR$/assets/js/shiftfit.js" />
+        <option value="$PROJECT_DIR$/routes/cruds/crud_generator.js" />
+        <option value="$PROJECT_DIR$/routes/cruds/crud_permissions.js" />
       </list>
     </option>
   </component>
@@ -755,26 +755,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/cruds/crud_permissions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17786561">
-          <caret line="9" column="2" selection-start-line="0" selection-start-column="0" selection-end-line="9" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/locales/en.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4180791">
           <caret line="42" column="16" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/cruds/crud_generator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.259259">
-          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="53" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -893,8 +877,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/shiftfit.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.3565574">
+        <state vertical-scroll-proportion="-91.55556">
           <caret line="193" column="1" selection-start-line="193" selection-start-column="1" selection-end-line="193" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/cruds/crud_generator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-25.444445">
+          <caret line="106" column="94" selection-start-line="106" selection-start-column="94" selection-end-line="106" selection-end-column="94" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/cruds/crud_permissions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15810277">
+          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
           <folding />
         </state>
       </provider>
